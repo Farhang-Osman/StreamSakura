@@ -8,7 +8,10 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='bg-indigo-400'>
+        hello
+      </div>
+      <div className='flex justify-evenly'>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
