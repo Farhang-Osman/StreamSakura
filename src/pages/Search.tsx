@@ -1,7 +1,5 @@
 const Search = () => {
-    return (
-        <p className="text-6xl font-bold">Search page</p>
-    )
-}
+  return <p className='text-6xl font-bold'>Search page</p>;
+};
 
-export default Search
+export default Search;
