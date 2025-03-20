@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "release": "commit-and-tag-version"
+    "release": "commit-and-tag-version -- --release-as"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.10",
