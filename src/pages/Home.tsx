@@ -5,7 +5,11 @@ const Home = () => {
     document.title = 'StreamSakura | watch anime online';
   }, []);
 
-  return <p className='text-6xl font-bold'>Home page</p>;
+  return (
+    <div className='flex flex-col gap-4 mx-auto my-0 max-w-full'>
+      home carousal
+    </div>
+  );
 };
 
 export default Home;
