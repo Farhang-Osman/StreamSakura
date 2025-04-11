@@ -1,7 +1,13 @@
 import { FC, useEffect, useState } from 'react';
 import axios from 'axios';
 
-const BASE_URL = 'http://0.0.0.0:3000/';
+const log: boolean = true;
+
+function endUrlWithSlash(url: string) {
+  return url.endsWith('/') ? url : `${url}/`;
+}
+
+const BASE_URL = endUrlWithSlash(import.meta.env.VITE_BACKEND_URL as string);
 
 // Axios instance
 const axiosInstance = axios.create({
@@ -39,6 +45,13 @@ async function fetchFromProxy(url: string) {
           response.data.statusCode || response.status
         } ${errorMessage}`,
       );
+    }
+
+    if (log) {
+      console.log(url);
+      console.log('response.data', response.data);
+      console.log('response.data.currentPage', response.data.currentPage);
+      console.log('response.data.hasNextPage', response.data.hasNextPage);
     }
 
     return response.data.results; // Return the newly fetched data
@@ -139,16 +152,6 @@ const HomeCarousal: FC<HomeCarousalProps> = ({
   // loading,
   // error,
 }) => {
-  console.log('data', data);
-  // const filterData = data.filter(
-  //   (item) =>
-  //     item.title &&
-  //     item.title.english &&
-  //     item.description &&
-  //     item.cover !== item.image,
-  // );
-  // console.log('filterData', filterData);
-
   return (
     <>
       {data.map(
