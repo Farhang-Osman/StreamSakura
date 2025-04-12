@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import { Anime } from '../../index';
 
-interface HomeCarousalProps {
+interface HomeCarouselProps {
   data: Anime[];
   loading: boolean;
   error: string | null;
 }
 
-export const HomeCarousal: FC<HomeCarousalProps> = ({
+export const HomeCarousel: FC<HomeCarouselProps> = ({
   data = [],
   // loading,
   // error,

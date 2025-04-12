@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Anime } from '../index';
+import { HomeCarousel } from '../index';
 
 const log: boolean = true;
 
@@ -166,7 +167,7 @@ const Home = () => {
 
   return (
     <div className='flex flex-col gap-4 mx-auto my-0 max-w-full'>
-      <HomeCarousal
+      <HomeCarousel
         data={state.trendingAnime}
         loading={state.loading.trending}
         error={state.error}

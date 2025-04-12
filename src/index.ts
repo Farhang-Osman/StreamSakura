@@ -11,3 +11,6 @@ export { default as Watch } from './pages/Watch';
 
 // interfaces and APIs
 export * from './hooks/animeInterface';
+
+// home page components
+export { HomeCarousel } from '../src/components/Home/HomeCarousal';
