@@ -8,3 +8,6 @@ export { default as Profile } from './pages/Profile';
 export { default as Search } from './pages/Search';
 export { default as TOS } from './pages/TOS-and-privacy-policy';
 export { default as Watch } from './pages/Watch';
+
+// interfaces and APIs
+export * from './hooks/animeInterface';

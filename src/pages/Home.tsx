@@ -1,5 +1,6 @@
-import { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Anime } from '../index';
 
 const log: boolean = true;
 
@@ -122,70 +123,6 @@ async function fetchList(
 
 const fetchTrendingAnime = (page: number, perPage: number) =>
   fetchList('Trending', page, perPage);
-
-interface Anime {
-  id: string;
-  title: {
-    romaji: string;
-    english: string;
-    native: string;
-    userPreferred: string;
-  };
-  cover: string;
-  image: string;
-  description: string;
-  status: string;
-  totalEpisodes: number;
-  rating: number;
-  duration: number;
-  genres: string[];
-  type: string;
-}
-interface HomeCarousalProps {
-  data: Anime[];
-  loading: boolean;
-  error: string | null;
-}
-
-const HomeCarousal: FC<HomeCarousalProps> = ({
-  data = [],
-  // loading,
-  // error,
-}) => {
-  return (
-    <>
-      {data.map(
-        ({
-          id,
-          title,
-          cover,
-          image,
-          description,
-          status,
-          rating,
-          genres,
-          totalEpisodes,
-          duration,
-          type,
-        }) => (
-          <div>
-            id={id}
-            title={title.english}
-            cover= {cover}
-            image= {image}
-            description= {description}
-            status= {status}
-            rating= {rating}
-            genres= {genres}
-            totalEpisodes= {totalEpisodes}
-            duration= {duration}
-            type= {type}
-          </div>
-        ),
-      )}
-    </>
-  );
-};
 
 const Home = () => {
   useEffect(() => {
