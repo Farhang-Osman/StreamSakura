@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Anime } from '../index';
 import { HomeCarousel } from '../index';
 
-const log: boolean = true;
+const log: boolean = false;
 
 function endUrlWithSlash(url: string) {
   return url.endsWith('/') ? url : `${url}/`;
