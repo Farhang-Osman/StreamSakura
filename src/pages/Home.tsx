@@ -166,12 +166,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='flex flex-col gap-4 mx-auto my-0 max-w-full'>
+    <div className='flex flex-col gap-4 mx-auto my-0'>
       <HomeCarousel
         data={state.trendingAnime}
         loading={state.loading.trending}
         error={state.error}
       />
+      <p>window.innerWidth={window.innerWidth}</p>
     </div>
   );
 };
