@@ -28,7 +28,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
   return (
     <>
       <div>
-        <Swiper className='max-w-full h-full cursor-grab active:cursor-progress'>
+        <Swiper className='max-w-full h-full cursor-grab active:cursor-grabbing'>
           {filteredData.map(
             ({
               id,
