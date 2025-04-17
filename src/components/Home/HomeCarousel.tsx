@@ -2,6 +2,10 @@ import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 import { Anime } from '../../index';
+import { TbCards } from 'react-icons/tb';
+import { FaPlay, FaStar } from 'react-icons/fa';
+import { FaClock } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
 
 interface HomeCarouselProps {
   data: Anime[];
@@ -14,6 +18,12 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
   // loading,
   // error,
 }) => {
+  const navigate = useNavigate();
+
+  const handlePlayButtonCllick = (id: string) => {
+    return navigate(`/watch/${id}`);
+  };
+
   const filteredData = data.filter(
     (item) =>
       item.title &&
@@ -58,21 +68,59 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
               id,
               title,
               cover,
-              // image,
-              // description,
-              // status,
-              // rating,
-              // genres,
-              // totalEpisodes,
-              // duration,
-              // type,
+              image,
+              description,
+              status,
+              rating,
+              genres,
+              totalEpisodes,
+              duration,
+              type,
             }) => (
               <SwiperSlide key={id} title={title.english || title.romaji}>
-                <p className='font-bold'>{title.romaji}</p>
-                <img
-                  src={cover}
-                  alt={title.english || title.romaji + ' Banner Image '}
-                />
+                <div>
+                  <img
+                    src={cover}
+                    alt={title.english || title.romaji + ' Banner Image '}
+                  />
+                  <div>
+                    <div>
+                      <h2>{title.english}</h2>
+                      <div>
+                        {type && <p>{type}</p>}
+                        {totalEpisodes && (
+                          <p>
+                            <TbCards />
+                            {totalEpisodes}
+                          </p>
+                        )}
+                        {rating && (
+                          <p>
+                            <FaStar />
+                            {rating}
+                          </p>
+                        )}
+                        {duration && (
+                          <p>
+                            <FaClock />
+                            {duration}
+                          </p>
+                        )}
+                      </div>
+                      <p dangerouslySetInnerHTML={{ __html: description }} />
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => handlePlayButtonCllick(id)}
+                        title={'Watch ' + (title.english || title.romaji)}
+                      >
+                        <FaPlay />
+                        <span>WATCH NOW</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div></div>
+                </div>
               </SwiperSlide>
             ),
           )}
