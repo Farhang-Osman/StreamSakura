@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { register } from 'swiper/element/bundle';
 import {
   Home,
   About,
@@ -10,6 +11,8 @@ import {
   TOS,
   Watch,
 } from './index';
+
+register();
 
 function App() {
   return (

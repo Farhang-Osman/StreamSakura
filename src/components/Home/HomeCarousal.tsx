@@ -28,7 +28,31 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
   return (
     <>
       <div>
-        <Swiper className='max-w-full h-full cursor-grab active:cursor-grabbing'>
+        <Swiper
+          className='max-w-full h-full cursor-grab active:cursor-grabbing'
+          spaceBetween={15}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }}
+          pagination={{
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+            type: 'bullets',
+          }}
+          freeMode={false}
+          virtual={true}
+          grabCursor={true}
+          keyboard={true}
+          centeredSlides={true}
+        >
           {filteredData.map(
             ({
               id,
