@@ -87,21 +87,21 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                     <div>
                       <h2>{title.english}</h2>
                       <div>
-                        {type && <p>{type}</p>}
+                        {type && <p className='flex gap-1'>{type}</p>}
                         {totalEpisodes && (
-                          <p>
+                          <p className='flex gap-1'>
                             <TbCards />
                             {totalEpisodes}
                           </p>
                         )}
                         {rating && (
-                          <p>
+                          <p className='flex gap-1'>
                             <FaStar />
                             {rating}
                           </p>
                         )}
                         {duration && (
-                          <p>
+                          <p className='flex gap-1'>
                             <FaClock />
                             {duration}
                           </p>
