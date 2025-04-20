@@ -16,4 +16,6 @@ body {
   --breakpoint-lg: 64rem; /* 1024px */
   --breakpoint-xl: 75rem; /* 1200px */
   --breakpoint-xxl: 90rem; /* 1440px */
+
+  --text-clamp-title: clamp(1.2rem, 3vw, 2.5rem);
 }

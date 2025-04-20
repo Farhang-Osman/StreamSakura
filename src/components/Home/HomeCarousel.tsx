@@ -39,14 +39,14 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
     <>
       <div>
         <Swiper
-          className='max-w-full h-full cursor-grab active:cursor-grabbing'
+          className='relative max-w-full h-96 rounded-lg max-lg:h-80 max-sm:h-64 cursor-grab active:cursor-grabbing'
           spaceBetween={15}
           slidesPerView={1}
-          loop={true}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-          }}
+          // loop={false}
+          // autoplay={{
+          //   delay: 4000,
+          //   disableOnInteraction: false,
+          // }}
           navigation={{
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -77,16 +77,23 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
               duration,
               type,
             }) => (
-              <SwiperSlide key={id} title={title.english || title.romaji}>
-                <div>
+              <SwiperSlide
+                className='flex relative justify-start items-center'
+                key={id}
+                title={title.english || title.romaji}
+              >
+                <div className='relative w-full h-full'>
                   <img
+                    className='object-contain absolute w-full h-full'
                     src={cover}
                     alt={title.english || title.romaji + ' Banner Image '}
                   />
-                  <div>
-                    <div>
-                      <h2>{title.english}</h2>
-                      <div>
+                  <div className='flex flex-col justify-between h-full'>
+                    <div className='absolute bottom-6 left-8 max-lg:left-4 max-lg:bottom-6 z-5 max-w-1/2'>
+                      <h2 className='overflow-hidden m-auto max-w-full text-white overflow-ellipsis bg-gray-400 text-clamp-title min-sm:whitespace-nowrap'>
+                        {title.english}
+                      </h2>
+                      <div className='flex overflow-hidden gap-3 m-auto mt-0 text-sm text-white overflow-ellipsis bg-gray-500 max-lg:gap-2 max-lg:text-sm max-sm:gap-1.5'>
                         {type && <p className='flex gap-1'>{type}</p>}
                         {totalEpisodes && (
                           <p className='flex gap-1'>
@@ -107,7 +114,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                           </p>
                         )}
                       </div>
-                      <p dangerouslySetInnerHTML={{ __html: description }} />
+                      {/* <p dangerouslySetInnerHTML={{ __html: description }} /> */}
                     </div>
                     <div>
                       <button
