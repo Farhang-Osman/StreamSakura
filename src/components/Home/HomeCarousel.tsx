@@ -47,6 +47,12 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
           //   delay: 4000,
           //   disableOnInteraction: false,
           // }}
+          // breakpoints={{
+          //   1024: {
+          //     slidesPerView: 2,
+          //     spaceBetween: 20,
+          //   },
+          // }}
           navigation={{
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -84,53 +90,63 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
               >
                 <div className='relative w-full h-full'>
                   <img
-                    className='object-contain absolute w-full h-full'
+                    className='object-cover absolute w-full h-full'
                     src={cover}
                     alt={title.english || title.romaji + ' Banner Image '}
                   />
                   <div className='flex flex-col justify-between h-full'>
                     <div className='absolute bottom-6 left-8 max-lg:left-4 max-lg:bottom-6 z-5 max-w-1/2'>
-                      <h2 className='overflow-hidden m-auto max-w-full text-white overflow-ellipsis bg-gray-400 text-clamp-title min-sm:whitespace-nowrap'>
+                      <h2 className='overflow-hidden m-auto max-w-full font-bold text-white overflow-ellipsis text-clamp-title min-sm:whitespace-nowrap min-phone:whitespace-nowrap'>
                         {title.english}
                       </h2>
-                      <div className='flex overflow-hidden gap-3 m-auto mt-0 text-sm text-white overflow-ellipsis bg-gray-500 max-lg:gap-2 max-lg:text-sm max-sm:gap-1.5'>
-                        {type && <p className='flex gap-1'>{type}</p>}
+                      <div className='flex overflow-hidden gap-3 m-auto mt-0 text-sm text-white overflow-ellipsis  max-lg:gap-2 max-lg:text-sm max-sm:gap-1.5'>
+                        {type && <p className='flex font-bold gap-1'>{type}</p>}
                         {totalEpisodes && (
-                          <p className='flex gap-1'>
+                          <p className='flex items-center gap-1'>
                             <TbCards />
                             {totalEpisodes}
                           </p>
                         )}
                         {rating && (
-                          <p className='flex gap-1'>
+                          <p className='flex items-center gap-1'>
                             <FaStar />
                             {rating}
                           </p>
                         )}
                         {duration && (
-                          <p className='flex gap-1'>
+                          <p className='flex items-center gap-1'>
                             <FaClock />
-                            {duration}
+                            {duration}mins
                           </p>
                         )}
                       </div>
-                      {/* <p dangerouslySetInnerHTML={{ __html: description }} /> */}
+                      <p
+                        className='overflow-hidden overflow-y-auto max-h-16 text-xs text-gray-300 max-w-2/3'
+                        dangerouslySetInnerHTML={{ __html: description }}
+                      />
                     </div>
-                    <div>
+                    <div className='absolute bottom-6 right-8 z-5 max-lg:right-6'>
                       <button
+                        className='flex p-6 bg-gray-900 rounded-full border-none transition-all duration-200 ease-in-out cursor-pointer max-sm:p-4 hover:bg-blue-800 active:bg-blue-800 focus:bg-blue-800 hover:scale-115 active:scale-115 focus:scale-115'
                         onClick={() => handlePlayButtonCllick(id)}
                         title={'Watch ' + (title.english || title.romaji)}
                       >
-                        <FaPlay />
-                        <span>WATCH NOW</span>
+                        <FaPlay className='text-2xl text-white' />
                       </button>
                     </div>
                   </div>
-                  <div></div>
+                  <div
+                    className='absolute inset-0 rounded-lg z-1'
+                    style={{
+                      background:
+                        'linear-gradient(45deg, rgba(8, 8, 8, 1) 0%, transparent 60%)',
+                    }}
+                  ></div>
                 </div>
               </SwiperSlide>
             ),
           )}
+          <div className='swiper-pagination'></div>
         </Swiper>
       </div>
     </>
