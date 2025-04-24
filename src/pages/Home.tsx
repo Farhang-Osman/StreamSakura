@@ -126,9 +126,30 @@ const fetchTrendingAnime = (page: number, perPage: number) =>
   fetchList('Trending', page, perPage);
 
 const Home = () => {
+  const [activeTab, setActiveTab] = useState(() => {
+    const time = Date.now();
+    const savedData = localStorage.getItem('home tab');
+    if (savedData) {
+      const { tab, timestamp } = JSON.parse(savedData);
+      if (time - timestamp < 300000) {
+        return tab;
+      } else {
+        localStorage.removeItem('home tab');
+      }
+    }
+
+    return 'trending';
+  });
+
   useEffect(() => {
     document.title = 'StreamSakura | watch anime online';
   }, []);
+
+  useEffect(() => {
+    const time = new Date().getTime();
+    const tabData = JSON.stringify({ tab: activeTab, timestamp: time });
+    localStorage.setItem('home tab', tabData);
+  }, [activeTab]);
 
   const [state, setState] = useState({
     trendingAnime: [] as Anime[],
@@ -165,6 +186,10 @@ const Home = () => {
     fetchData();
   }, []);
 
+  const handleTabClick = (tabName: string): void => {
+    return setActiveTab(tabName);
+  };
+
   return (
     <div className='flex flex-col gap-4 mx-auto my-0'>
       <HomeCarousel
@@ -172,6 +197,32 @@ const Home = () => {
         loading={state.loading.trending}
         error={state.error}
       />
+      {/* <EpisodeCard /> */}
+      <div className='flex flex-col gap-8 w-full'>
+        <div className='flex flex-wrap gap-2 justify-center w-full'>
+          <div
+            className='cursor-pointer'
+            title='Trending Tab'
+            onClick={() => handleTabClick('trending')}
+          >
+            TRENDING
+          </div>
+          <div
+            className='cursor-pointer'
+            title='Popular Tab'
+            onClick={() => handleTabClick('popular')}
+          >
+            POPULAR
+          </div>
+          <div
+            className='cursor-pointer'
+            title='Top Rated Tab'
+            onClick={() => handleTabClick('topRated')}
+          >
+            TOP RATED
+          </div>
+        </div>
+      </div>
       <p>window.innerWidth={window.innerWidth}</p>
     </div>
   );

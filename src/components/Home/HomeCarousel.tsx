@@ -100,21 +100,21 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                         {title.english}
                       </h2>
                       <div className='flex overflow-hidden gap-3 m-auto mt-0 text-sm text-white overflow-ellipsis  max-lg:gap-2 max-lg:text-sm max-sm:gap-1.5'>
-                        {type && <p className='flex font-bold gap-1'>{type}</p>}
+                        {type && <p className='flex gap-1 font-bold'>{type}</p>}
                         {totalEpisodes && (
-                          <p className='flex items-center gap-1'>
+                          <p className='flex gap-1 items-center'>
                             <TbCards />
                             {totalEpisodes}
                           </p>
                         )}
                         {rating && (
-                          <p className='flex items-center gap-1'>
+                          <p className='flex gap-1 items-center'>
                             <FaStar />
                             {rating}
                           </p>
                         )}
                         {duration && (
-                          <p className='flex items-center gap-1'>
+                          <p className='flex gap-1 items-center'>
                             <FaClock />
                             {duration}mins
                           </p>
