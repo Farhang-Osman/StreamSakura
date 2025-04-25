@@ -127,7 +127,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                     </div>
                     <div className='absolute bottom-6 right-8 z-5 max-lg:right-6'>
                       <button
-                        className='flex p-6 bg-gray-900 rounded-full border-none transition-all duration-200 ease-in-out cursor-pointer max-sm:p-4 hover:bg-blue-800 active:bg-blue-800 focus:bg-blue-800 hover:scale-115 active:scale-115 focus:scale-115'
+                        className='flex p-6 bg-gray-900 rounded-full border-none transition-all duration-200 ease-in-out cursor-pointer max-sm:p-4 hover:bg-blue-700 active:bg-blue-700 focus:bg-blue-700 hover:scale-115 active:scale-115 focus:scale-115'
                         onClick={() => handlePlayButtonCllick(id)}
                         title={'Watch ' + (title.english || title.romaji)}
                       >

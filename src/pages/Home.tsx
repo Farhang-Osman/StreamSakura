@@ -201,21 +201,24 @@ const Home = () => {
       <div className='flex flex-col gap-8 w-full'>
         <div className='flex flex-wrap gap-2 justify-center w-full'>
           <div
-            className='cursor-pointer'
+            className={`${activeTab === 'trending' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
+            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
             title='Trending Tab'
             onClick={() => handleTabClick('trending')}
           >
             TRENDING
           </div>
           <div
-            className='cursor-pointer'
+            className={`${activeTab === 'popular' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
+            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
             title='Popular Tab'
             onClick={() => handleTabClick('popular')}
           >
             POPULAR
           </div>
           <div
-            className='cursor-pointer'
+            className={`${activeTab === 'topRated' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
+            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
             title='Top Rated Tab'
             onClick={() => handleTabClick('topRated')}
           >
