@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Anime } from '../index';
+import { Anime, CardGrid } from '../index';
 import { HomeCarousel } from '../index';
 
 const log: boolean = false;
@@ -153,9 +153,13 @@ const Home = () => {
 
   const [state, setState] = useState({
     trendingAnime: [] as Anime[],
+    popularAnime: [] as Anime[],
+    topAnime: [] as Anime[],
     error: null as string | null,
     loading: {
       trending: true,
+      popular: true,
+      topRated: true,
     },
   });
 
@@ -178,6 +182,8 @@ const Home = () => {
           ...prevState,
           loading: {
             trending: false,
+            popular: false,
+            topRated: false,
           },
         }));
       }
@@ -185,6 +191,24 @@ const Home = () => {
 
     fetchData();
   }, []);
+
+  const renderCardGrid = (
+    animeData: Anime[],
+    isloading: boolean,
+    hasError: boolean,
+  ) => (
+    <div>
+      {isloading || hasError ? (
+        <div></div>
+      ) : (
+        <CardGrid
+          animeData={animeData}
+          hasNextPage={false}
+          onLoadMore={() => {}}
+        />
+      )}
+    </div>
+  );
 
   const handleTabClick = (tabName: string): void => {
     return setActiveTab(tabName);
@@ -224,6 +248,26 @@ const Home = () => {
           >
             TOP RATED
           </div>
+        </div>
+        <div>
+          {activeTab === 'trending' &&
+            renderCardGrid(
+              state.trendingAnime,
+              state.loading.trending,
+              !!state.error,
+            )}
+          {activeTab === 'popular' &&
+            renderCardGrid(
+              state.popularAnime,
+              state.loading.popular,
+              !!state.error,
+            )}
+          {activeTab === 'topRated' &&
+            renderCardGrid(
+              state.topAnime,
+              state.loading.topRated,
+              !!state.error,
+            )}
         </div>
       </div>
       <p>window.innerWidth={window.innerWidth}</p>

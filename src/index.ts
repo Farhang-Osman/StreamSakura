@@ -14,3 +14,7 @@ export * from './hooks/animeInterface';
 
 // home page components
 export { HomeCarousel } from './components/Home/HomeCarousel';
+
+// Cards
+export * from './components/Cards/CardGrid';
+export { CardItem } from './components/Cards/CardItem';
