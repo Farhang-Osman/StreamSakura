@@ -20,16 +20,16 @@ const axiosInstance = axios.create({
   },
 });
 
-// interface FetchOptions {
-//   type?: string;
-//   season?: string;
-//   format?: string;
-//   sort?: string[];
-//   genres?: string[];
-//   id?: string;
-//   year?: string;
-//   status?: string;
-// }
+interface FetchOptions {
+  type?: string;
+  season?: string;
+  format?: string;
+  sort?: string[];
+  genres?: string[];
+  id?: string;
+  year?: string;
+  status?: string;
+}
 
 async function fetchFromProxy(url: string) {
   try {
@@ -67,7 +67,7 @@ async function fetchList(
   type: string,
   page: number = 1,
   perPage: number = 16,
-  // options: FetchOptions = {},
+  options: FetchOptions = {},
 ) {
   // let cacheKey: string;
   let url: string;
@@ -81,19 +81,20 @@ async function fetchList(
   ) {
     url = `${BASE_URL}meta/anilist/${type.toLowerCase()}`;
 
-    // if (type === 'TopRated') {
-    //   options = {
-    //     type: 'ANIME',
-    //     sort: ['["SCORE_DESC"]'],
-    //   };
-    //   url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&sort=${options.sort}&`;
-    // } else if (type === 'Popular') {
-    //   options = {
-    //     type: 'ANIME',
-    //     sort: ['["POPULARITY_DESC"]'],
-    //   };
-    //   url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&sort=${options.sort}&`;
-    // } else if (type === 'Upcoming') {
+    if (type === 'TopRated') {
+      options = {
+        type: 'ANIME',
+        sort: ['["SCORE_DESC"]'],
+      };
+      url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&sort=${options.sort}&`;
+    } else if (type === 'Popular') {
+      options = {
+        type: 'ANIME',
+        sort: ['["POPULARITY_DESC"]'],
+      };
+      url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&sort=${options.sort}&`;
+    }
+    // else if (type === 'Upcoming') {
     //   const season = getNextSeason(); // This will set the season based on the current month
     //   options = {
     //     type: 'ANIME',
@@ -124,6 +125,10 @@ async function fetchList(
 
 const fetchTrendingAnime = (page: number, perPage: number) =>
   fetchList('Trending', page, perPage);
+const fetchPopularAnime = (page: number, perPage: number) =>
+  fetchList('Popular', page, perPage);
+const fetchTopAnime = (page: number, perPage: number) =>
+  fetchList('TopRated', page, perPage);
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState(() => {
@@ -168,10 +173,17 @@ const Home = () => {
     const fetchData = async () => {
       try {
         setState((prevState) => ({ ...prevState, error: null }));
-        const [trending] = await Promise.all([
+        const [trending, popular, topRated] = await Promise.all([
           fetchTrendingAnime(1, fetchCount),
+          fetchPopularAnime(1, fetchCount),
+          fetchTopAnime(1, fetchCount),
         ]);
-        setState((prevState) => ({ ...prevState, trendingAnime: trending }));
+        setState((prevState) => ({
+          ...prevState,
+          trendingAnime: trending,
+          popularAnime: popular,
+          topAnime: topRated,
+        }));
       } catch {
         setState((prevState) => ({
           ...prevState,
