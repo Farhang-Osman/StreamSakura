@@ -44,4 +44,34 @@ body {
   --breakpoint-xxl: 90rem; /* 1440px */
 
   --text-clamp-title: clamp(1.2rem, 3vw, 2.5rem);
+
+  --animate-slideUp: slideUp 0.4s ease;
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+@layer {
+  .grid-layout {
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    grid-template-rows: auto;
+  }
+  .animation1 {
+    transition: 0.2s ease-in-out;
+  }
+}
+
+.text-long {
+  @apply overflow-hidden whitespace-nowrap text-ellipsis;
+}
+.whfull {
+  @apply w-full h-full;
 }
