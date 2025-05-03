@@ -1,3 +1,13 @@
+export interface Episode {
+  id: string;
+  title: string;
+  description: string | null;
+  number: number;
+  image: string;
+  imageHash: string;
+  airDate: string | null;
+}
+
 export interface Anime {
   id: string;
   title: {
@@ -10,9 +20,11 @@ export interface Anime {
   image: string;
   description: string;
   status: string;
+  releaseDate: number;
   totalEpisodes: number;
   rating: number;
   duration: number;
   genres: string[];
+  episodes: Episode[];
   type: string;
 }
