@@ -30,7 +30,7 @@ export const CardItem: FC<{ anime: Anime }> = ({ anime }) => {
               </div>
             </div>
           </div>
-          <div className='p-2'>
+          <div className='pt-1 pl-2'>
             <h5
               className='text-sm font-bold transition duration-300 ease-in-out text-long group-hover/title:text-fuchsia-500'
               title={'Title: ' + (anime.title.english || anime.title.romaji)}
@@ -40,7 +40,7 @@ export const CardItem: FC<{ anime: Anime }> = ({ anime }) => {
           </div>
           <div>
             <div></div>
-            <div className='flex justify-evenly pt-1'>
+            <div className='flex justify-evenly mt-0.5'>
               {anime.type && (
                 <p className='px-1 text-xs font-bold rounded-sm bg-neutral-200 text-neutral-500'>
                   {anime.type}
