@@ -42,7 +42,7 @@ export const CardGrid: FC<CardGridProps> = ({
   }, [handleLoadMore, hasNextPage]);
 
   return (
-    <div className='grid relative gap-x-2 gap-y-5 mx-1 transition duration-0 grid-layout'>
+    <div className='relative mx-4 transition card-grid-layout duration-0'>
       {animeData.map((anime: Anime) => (
         <CardItem key={anime.id} anime={anime} />
       ))}
