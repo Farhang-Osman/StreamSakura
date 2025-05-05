@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Anime, CardGrid } from '../index';
+import { Anime, CardGrid, HomeSideBar } from '../index';
 import { HomeCarousel } from '../index';
 
 const log: boolean = false;
@@ -63,6 +63,20 @@ async function fetchFromProxy(url: string) {
   }
 }
 
+async function getCurrentSeason() {
+  const month = new Date().getMonth();
+
+  if (month >= 2 && month <= 4) {
+    return 'SPRING';
+  } else if (month >= 5 && month <= 7) {
+    return 'SUMMER';
+  } else if (month >= 8 && month <= 10) {
+    return 'FALL';
+  } else {
+    return 'WINTER';
+  }
+}
+
 async function fetchList(
   type: string,
   page: number = 1,
@@ -93,28 +107,19 @@ async function fetchList(
         sort: ['["POPULARITY_DESC"]'],
       };
       url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&sort=${options.sort}&`;
+    } else if (type === 'TopAiring') {
+      const season = await getCurrentSeason();
+      const year = new Date().getFullYear();
+
+      options = {
+        type: 'ANIME',
+        season: season,
+        year: year.toString(),
+        status: 'RELEASING',
+        sort: ['["POPULARITY_DESC"]'],
+      };
+      url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&status=${options.status}&sort=${options.sort}&season=${options.season}&year=${options.year}&`;
     }
-    // else if (type === 'Upcoming') {
-    //   const season = getNextSeason(); // This will set the season based on the current month
-    //   options = {
-    //     type: 'ANIME',
-    //     season: season,
-    //     year: year.toString(),
-    //     status: 'NOT_YET_RELEASED',
-    //     sort: ['["POPULARITY_DESC"]'],
-    //   };
-    //   url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&status=${options.status}&sort=${options.sort}&season=${options.season}&year=${options.year}&`;
-    // } else if (type === 'TopAiring') {
-    //   const season = getCurrentSeason(); // This will set the season based on the current month
-    //   options = {
-    //     type: 'ANIME',
-    //     season: season,
-    //     year: year.toString(),
-    //     status: 'RELEASING',
-    //     sort: ['["POPULARITY_DESC"]'],
-    //   };
-    //   url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&status=${options.status}&sort=${options.sort}&season=${options.season}&year=${options.year}&`;
-    // }
   } else {
     url = `${BASE_URL}meta/anilist/${type.toLowerCase()}`;
     // params already defined above
@@ -129,6 +134,8 @@ const fetchPopularAnime = (page: number, perPage: number) =>
   fetchList('Popular', page, perPage);
 const fetchTopAnime = (page: number, perPage: number) =>
   fetchList('TopRated', page, perPage);
+const fetchTopAiringAnime = (page: number, perPage: number) =>
+  fetchList('TopAiring', page, perPage);
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState(() => {
@@ -160,11 +167,13 @@ const Home = () => {
     trendingAnime: [] as Anime[],
     popularAnime: [] as Anime[],
     topAnime: [] as Anime[],
+    topAiring: [] as Anime[],
     error: null as string | null,
     loading: {
       trending: true,
       popular: true,
       topRated: true,
+      topAiring: true,
     },
   });
 
@@ -173,16 +182,18 @@ const Home = () => {
     const fetchData = async () => {
       try {
         setState((prevState) => ({ ...prevState, error: null }));
-        const [trending, popular, topRated] = await Promise.all([
+        const [trending, popular, topRated, topAiring] = await Promise.all([
           fetchTrendingAnime(1, fetchCount),
           fetchPopularAnime(1, fetchCount),
           fetchTopAnime(1, fetchCount),
+          fetchTopAiringAnime(1, 6),
         ]);
         setState((prevState) => ({
           ...prevState,
           trendingAnime: trending,
           popularAnime: popular,
           topAnime: topRated,
+          topAiring: topAiring,
         }));
       } catch {
         setState((prevState) => ({
@@ -196,6 +207,7 @@ const Home = () => {
             trending: false,
             popular: false,
             topRated: false,
+            topAiring: false,
           },
         }));
       }
@@ -235,51 +247,58 @@ const Home = () => {
       />
       {/* <EpisodeCard /> */}
       <div className='flex flex-col gap-4 w-full'>
-        <div className='flex flex-wrap gap-2 justify-center w-full'>
-          <div
-            className={`${activeTab === 'trending' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
+        <div className='flex flex-col gap-4'>
+          <div className='flex flex-wrap gap-2 justify-center w-full'>
+            <div
+              className={`${activeTab === 'trending' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
             relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
-            title='Trending Tab'
-            onClick={() => handleTabClick('trending')}
-          >
-            TRENDING
+              title='Trending Tab'
+              onClick={() => handleTabClick('trending')}
+            >
+              TRENDING
+            </div>
+            <div
+              className={`${activeTab === 'popular' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
+            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
+              title='Popular Tab'
+              onClick={() => handleTabClick('popular')}
+            >
+              POPULAR
+            </div>
+            <div
+              className={`${activeTab === 'topRated' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
+            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
+              title='Top Rated Tab'
+              onClick={() => handleTabClick('topRated')}
+            >
+              TOP RATED
+            </div>
           </div>
-          <div
-            className={`${activeTab === 'popular' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
-            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
-            title='Popular Tab'
-            onClick={() => handleTabClick('popular')}
-          >
-            POPULAR
-          </div>
-          <div
-            className={`${activeTab === 'topRated' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
-            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
-            title='Top Rated Tab'
-            onClick={() => handleTabClick('topRated')}
-          >
-            TOP RATED
+          <div>
+            {activeTab === 'trending' &&
+              renderCardGrid(
+                state.trendingAnime,
+                state.loading.trending,
+                !!state.error,
+              )}
+            {activeTab === 'popular' &&
+              renderCardGrid(
+                state.popularAnime,
+                state.loading.popular,
+                !!state.error,
+              )}
+            {activeTab === 'topRated' &&
+              renderCardGrid(
+                state.topAnime,
+                state.loading.topRated,
+                !!state.error,
+              )}
           </div>
         </div>
         <div>
-          {activeTab === 'trending' &&
-            renderCardGrid(
-              state.trendingAnime,
-              state.loading.trending,
-              !!state.error,
-            )}
-          {activeTab === 'popular' &&
-            renderCardGrid(
-              state.popularAnime,
-              state.loading.popular,
-              !!state.error,
-            )}
-          {activeTab === 'topRated' &&
-            renderCardGrid(
-              state.topAnime,
-              state.loading.topRated,
-              !!state.error,
-            )}
+          <p>TOP AIRING</p>
+          <HomeSideBar animeData={state.topAiring} />
+          <p>UPCOMING</p>
         </div>
       </div>
       <p>window.innerWidth={window.innerWidth}</p>
