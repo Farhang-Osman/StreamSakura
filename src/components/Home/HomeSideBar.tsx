@@ -9,16 +9,19 @@ export const HomeSideBar: FC<{ animeData: Anime[] }> = ({ animeData }) => {
       {animeData.map((anime: Anime) => (
         <Link className='' to={`/watch/${anime.id}`} key={anime.id}>
           <div className='relative aspect-[5/1]'>
-            <img
-              className='object-fill absolute right-0 w-5/6 h-full rounded-tr-lg rounded-br-lg blur-xs'
-              src={anime.cover}
-              alt=''
-            />
+            <div className='absolute right-0 w-3/4 h-full'>
+              <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-white'></div>
+              <img
+                className='object-cover w-full h-full rounded-lg'
+                src={anime.cover}
+                alt=''
+              />
+            </div>
             <div className='flex overflow-hidden relative h-full rounded-lg'>
               <img className='rounded-lg' src={anime.image} alt='' />
               <div className='flex flex-col justify-between ml-2'>
                 <div className='flex flex-col justify-between py-1 h-full'>
-                  <h5 className='px-1 rounded-lg bg-neutral-200 w-fit'>
+                  <h5 className=''>
                     {anime.title.english || anime.title.romaji}
                   </h5>
                   <div className='flex gap-1'>
