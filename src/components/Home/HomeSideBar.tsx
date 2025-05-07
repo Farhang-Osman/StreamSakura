@@ -13,7 +13,7 @@ export const HomeSideBar: FC<{ animeData: Anime[] }> = ({ animeData }) => {
               <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-white from-25%'></div>
               <img
                 className='object-cover w-full h-full rounded-lg'
-                src={anime.cover}
+                src={anime.cover || anime.image}
                 alt=''
               />
             </div>
