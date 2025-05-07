@@ -8,7 +8,7 @@ export const HomeSideBar: FC<{ animeData: Anime[] }> = ({ animeData }) => {
     <div className='flex relative flex-col gap-2 mx-2 mt-2 rounded-lg'>
       {animeData.map((anime: Anime) => (
         <Link className='' to={`/watch/${anime.id}`} key={anime.id}>
-          <div className='group relative aspect-[5/1] animate-slideUp'>
+          <div className='group relative aspect-[5/1] animate-slideUp min-h-28 max-h-28 w-full'>
             <div className='absolute right-0 w-3/4 h-full transition grayscale-80 group-hover:grayscale-0'>
               <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-white from-25%'></div>
               <img
