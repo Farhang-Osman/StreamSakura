@@ -77,6 +77,23 @@ async function getCurrentSeason() {
   }
 }
 
+async function getNextSeason() {
+  const currentSeason = await getCurrentSeason();
+  switch (currentSeason) {
+    case 'SPRING':
+      return 'SUMMER';
+    case 'SUMMER':
+      return 'FALL';
+    case 'FALL':
+      return 'WINTER';
+    case 'WINTER':
+      return 'SPRING';
+
+    default:
+      return 'UNKNOWN'; // should never be reached
+  }
+}
+
 async function fetchList(
   type: string,
   page: number = 1,
@@ -119,6 +136,18 @@ async function fetchList(
         sort: ['["POPULARITY_DESC"]'],
       };
       url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&status=${options.status}&sort=${options.sort}&season=${options.season}&year=${options.year}&`;
+    } else if (type === 'Upcoming') {
+      const season = await getNextSeason();
+      const year = new Date().getFullYear();
+
+      options = {
+        type: 'ANIME',
+        season: season,
+        year: year.toString(),
+        status: 'NOT_YET_RELEASED',
+        sort: ['["POPULARITY_DESC"]'],
+      };
+      url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&status=${options.status}&sort=${options.sort}&season=${options.season}&year=${options.year}&`;
     }
   } else {
     url = `${BASE_URL}meta/anilist/${type.toLowerCase()}`;
@@ -136,6 +165,8 @@ const fetchTopAnime = (page: number, perPage: number) =>
   fetchList('TopRated', page, perPage);
 const fetchTopAiringAnime = (page: number, perPage: number) =>
   fetchList('TopAiring', page, perPage);
+const fetchUpcomingSeason = (page: number, perPage: number) =>
+  fetchList('Upcoming', page, perPage);
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState(() => {
@@ -168,6 +199,7 @@ const Home = () => {
     popularAnime: [] as Anime[],
     topAnime: [] as Anime[],
     topAiring: [] as Anime[],
+    Upcoming: [] as Anime[],
     error: null as string | null,
     loading: {
       trending: true,
@@ -182,18 +214,21 @@ const Home = () => {
     const fetchData = async () => {
       try {
         setState((prevState) => ({ ...prevState, error: null }));
-        const [trending, popular, topRated, topAiring] = await Promise.all([
-          fetchTrendingAnime(1, fetchCount),
-          fetchPopularAnime(1, fetchCount),
-          fetchTopAnime(1, fetchCount),
-          fetchTopAiringAnime(1, 6),
-        ]);
+        const [trending, popular, topRated, topAiring, Upcoming] =
+          await Promise.all([
+            fetchTrendingAnime(1, fetchCount),
+            fetchPopularAnime(1, fetchCount),
+            fetchTopAnime(1, fetchCount),
+            fetchTopAiringAnime(1, 6),
+            fetchUpcomingSeason(1, 6),
+          ]);
         setState((prevState) => ({
           ...prevState,
           trendingAnime: trending,
           popularAnime: popular,
           topAnime: topRated,
           topAiring: topAiring,
+          Upcoming: Upcoming,
         }));
       } catch {
         setState((prevState) => ({
@@ -208,6 +243,7 @@ const Home = () => {
             popular: false,
             topRated: false,
             topAiring: false,
+            Upcoming: false,
           },
         }));
       }
@@ -299,6 +335,7 @@ const Home = () => {
           <p>TOP AIRING</p>
           <HomeSideBar animeData={state.topAiring} />
           <p>UPCOMING</p>
+          <HomeSideBar animeData={state.Upcoming} />
         </div>
       </div>
       <p>window.innerWidth={window.innerWidth}</p>
