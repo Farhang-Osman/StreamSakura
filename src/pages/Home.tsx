@@ -96,6 +96,8 @@ async function getNextSeason() {
   }
 }
 
+const SEASON = await getNextSeason();
+
 async function fetchList(
   type: string,
   page: number = 1,
@@ -333,16 +335,16 @@ const Home = () => {
               )}
           </div>
         </div>
-        <div>
+        <div className='flex flex-col gap-6'>
           <HomeSideBar
             animeData={state.topAiring}
             title='TOP AIRING'
-            icon={<GiTv />}
+            icon={<GiTv className='p-1 ml-1 w-10 h-10' />}
           />
           <HomeSideBar
             animeData={state.Upcoming}
-            title='UPCOMING'
-            icon={<GrAnnounce />}
+            title={`UPCOMING ${SEASON}`}
+            icon={<GrAnnounce className='p-1 ml-1 w-10 h-10' />}
           />
         </div>
       </div>

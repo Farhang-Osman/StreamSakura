@@ -9,9 +9,13 @@ export const HomeSideBar: FC<{
   icon?: React.ReactNode;
 }> = ({ animeData, title, icon }) => {
   return (
-    <>
-      {icon}
-      {title}
+    <div className='rounded-xl border-t-6 border-l-6 border-neutral-400'>
+      <div className='flex gap-1'>
+        {icon}
+        <p className='content-center px-2 text-lg font-medium rounded-b-lg border-b-2 bg-neutral-200'>
+          {title}
+        </p>
+      </div>
       <div className='flex relative flex-col gap-2 mx-2 mt-2 rounded-lg'>
         {animeData.map((anime: Anime) => (
           <Link className='' to={`/watch/${anime.id}`} key={anime.id}>
@@ -75,6 +79,6 @@ export const HomeSideBar: FC<{
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 };
