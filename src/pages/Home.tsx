@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Anime, CardGrid, HomeSideBar } from '../index';
 import { HomeCarousel } from '../index';
+import { GiTv } from 'react-icons/gi';
+import { GrAnnounce } from 'react-icons/gr';
 
 const log: boolean = false;
 
@@ -332,10 +334,16 @@ const Home = () => {
           </div>
         </div>
         <div>
-          <p>TOP AIRING</p>
-          <HomeSideBar animeData={state.topAiring} />
-          <p>UPCOMING</p>
-          <HomeSideBar animeData={state.Upcoming} />
+          <HomeSideBar
+            animeData={state.topAiring}
+            title='TOP AIRING'
+            icon={<GiTv />}
+          />
+          <HomeSideBar
+            animeData={state.Upcoming}
+            title='UPCOMING'
+            icon={<GrAnnounce />}
+          />
         </div>
       </div>
       <p>window.innerWidth={window.innerWidth}</p>
