@@ -286,8 +286,8 @@ const Home = () => {
         error={state.error}
       />
       {/* <EpisodeCard /> */}
-      <div className='flex flex-col gap-4 w-full'>
-        <div className='flex flex-col gap-4'>
+      <div className='flex max-lg:flex-col'>
+        <div className='flex min-lg:flex-4/5 flex-col gap-4'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
             <div
               className={`${activeTab === 'trending' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
@@ -335,7 +335,7 @@ const Home = () => {
               )}
           </div>
         </div>
-        <div className='flex flex-col gap-6'>
+        <div className='grid grid-cols-1 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1'>
           <HomeSideBar
             animeData={state.topAiring}
             title='TOP AIRING'
