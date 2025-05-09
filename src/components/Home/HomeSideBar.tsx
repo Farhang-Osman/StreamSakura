@@ -9,7 +9,7 @@ export const HomeSideBar: FC<{
   icon?: React.ReactNode;
 }> = ({ animeData, title, icon }) => {
   return (
-    <div className='rounded-xl border-t-6 border-l-6 border-neutral-400'>
+    <div className='rounded-xl border-t-6 border-l-6 border-neutral-400 h-fit'>
       <div className='flex gap-1'>
         {icon}
         <p className='content-center px-2 text-lg font-medium rounded-b-lg border-b-2 bg-neutral-200'>

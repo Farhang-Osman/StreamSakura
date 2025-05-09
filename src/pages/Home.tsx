@@ -335,7 +335,7 @@ const Home = () => {
               )}
           </div>
         </div>
-        <div className='grid grid-cols-1 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1'>
+        <div className='grid grid-cols-1 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 h-fit'>
           <HomeSideBar
             animeData={state.topAiring}
             title='TOP AIRING'
