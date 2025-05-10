@@ -9,12 +9,10 @@ export const HomeSideBar: FC<{
   icon?: React.ReactNode;
 }> = ({ animeData, title, icon }) => {
   return (
-    <div className='rounded-xl border-t-6 border-l-6 border-neutral-400 h-fit'>
-      <div className='flex gap-1'>
+    <div className='flex flex-col gap-2 h-fit'>
+      <div className='flex gap-2 items-center text-blue-800'>
         {icon}
-        <p className='content-center px-2 text-lg font-medium rounded-b-lg border-b-2 bg-neutral-200'>
-          {title}
-        </p>
+        <h3 className='bg-gray-200 label'>{title}</h3>
       </div>
       <div className='flex relative flex-col gap-2 mt-2 rounded-lg'>
         {animeData.map((anime: Anime) => (
@@ -36,22 +34,22 @@ export const HomeSideBar: FC<{
                 />
                 <div className='flex flex-col justify-between'>
                   <div className='flex flex-col justify-between py-1 h-full'>
-                    <h5 className='pr-1 rounded-lg backdrop-blur-lg transition duration-100 ease-out w-fit group-hover:translate-x-3'>
+                    <h5 className='pr-1 font-medium text-blue-800 rounded-lg backdrop-blur-lg transition duration-100 ease-out group-hover:text-blue-500 w-fit group-hover:translate-x-3'>
                       {anime.title.english || anime.title.romaji}
                     </h5>
                     <div className='flex gap-1'>
                       {anime.type && (
-                        <p className='px-1 text-xs rounded-sm bg-neutral-200 text-neutral-500'>
+                        <p className='px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
                           {anime.type}
                         </p>
                       )}
                       {anime.releaseDate && (
-                        <p className='px-1 text-xs rounded-sm bg-neutral-200 text-neutral-500'>
+                        <p className='px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
                           {anime.releaseDate}
                         </p>
                       )}
                       {anime.rating && (
-                        <p className='flex items-center px-1 text-xs rounded-sm bg-neutral-200 text-neutral-500'>
+                        <p className='flex items-center px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
                           {anime.rating >= 75 ? (
                             <TbStarFilled />
                           ) : (
@@ -66,7 +64,7 @@ export const HomeSideBar: FC<{
                     {anime.genres && (
                       <>
                         {anime.genres.map((item) => (
-                          <p className='px-1 text-xs rounded-md rounded-br-none rounded-bl-none bg-neutral-200 text-neutral-500'>
+                          <p className='px-1 text-xs text-blue-800 bg-gray-200 rounded-md rounded-br-none rounded-bl-none'>
                             {item}
                           </p>
                         ))}

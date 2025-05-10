@@ -289,25 +289,25 @@ const Home = () => {
       <div className='flex gap-8 max-lg:gap-12 max-lg:flex-col'>
         <div className='flex flex-col gap-4 min-lg:flex-4/5'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
-            <div
-              className={`${activeTab === 'trending' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
-            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
+            <h3
+              className={` label ${activeTab === 'trending' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
+             transition-colors duration-100 ease-in-out cursor-pointer`}
               title='Trending Tab'
               onClick={() => handleTabClick('trending')}
             >
               TRENDING
-            </div>
+            </h3>
             <div
-              className={`${activeTab === 'popular' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
-            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
+              className={`${activeTab === 'popular' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
+            label transition-colors duration-100 ease-in-out cursor-pointer`}
               title='Popular Tab'
               onClick={() => handleTabClick('popular')}
             >
               POPULAR
             </div>
             <div
-              className={`${activeTab === 'topRated' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}
-            relative m-0 p-4 text-white transition-colors duration-100 ease-in-out text-sm border-none font-bold rounded-lg cursor-pointer`}
+              className={`${activeTab === 'topRated' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
+            label transition-colors duration-100 ease-in-out cursor-pointer`}
               title='Top Rated Tab'
               onClick={() => handleTabClick('topRated')}
             >
@@ -339,12 +339,12 @@ const Home = () => {
           <HomeSideBar
             animeData={state.topAiring}
             title='TOP AIRING'
-            icon={<GiTv className='p-1 ml-1 w-10 h-10' />}
+            icon={<GiTv className='size-9' />}
           />
           <HomeSideBar
             animeData={state.Upcoming}
             title={`UPCOMING ${SEASON}`}
-            icon={<GrAnnounce className='p-1 ml-1 w-10 h-10' />}
+            icon={<GrAnnounce className='size-9' />}
           />
         </div>
       </div>

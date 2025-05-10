@@ -96,42 +96,46 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                   />
                   <div className='flex flex-col justify-between h-full'>
                     <div className='absolute bottom-6 left-8 max-lg:left-4 max-lg:bottom-6 z-5 max-w-1/2'>
-                      <h2 className='overflow-hidden m-auto max-w-full font-bold text-white overflow-ellipsis text-clamp-title min-sm:whitespace-nowrap min-phone:whitespace-nowrap'>
+                      <h2 className='overflow-hidden m-auto max-w-full font-bold text-white overflow-ellipsis text-clamp-title min-sm:whitespace-nowrap'>
                         {title.english}
                       </h2>
-                      <div className='flex overflow-hidden gap-3 m-auto mt-0 text-sm text-white overflow-ellipsis  max-lg:gap-2 max-lg:text-sm max-sm:gap-1.5'>
-                        {type && <p className='flex gap-1 font-bold'>{type}</p>}
+                      <div className='flex overflow-hidden gap-4 m-auto mt-0 text-sm text-white overflow-ellipsis max-lg:text-sm max-sm:gap-1.5'>
+                        {type && (
+                          <p className='flex px-1 text-xs font-bold text-blue-800 bg-gray-200 rounded-sm'>
+                            {type}
+                          </p>
+                        )}
                         {totalEpisodes && (
-                          <p className='flex gap-1 items-center'>
+                          <p className='flex gap-1 items-center px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
                             <TbCards />
                             {totalEpisodes}
                           </p>
                         )}
                         {rating && (
-                          <p className='flex gap-1 items-center'>
+                          <p className='flex gap-1 items-center px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
                             <FaStar />
                             {rating}
                           </p>
                         )}
                         {duration && (
-                          <p className='flex gap-1 items-center'>
+                          <p className='flex gap-1 items-center px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
                             <FaClock />
                             {duration}mins
                           </p>
                         )}
                       </div>
                       <p
-                        className='overflow-hidden overflow-y-auto max-h-16 text-xs text-gray-300 max-w-2/3'
+                        className='overflow-hidden overflow-y-auto max-h-16 text-xs text-blue-100 max-w-2/3'
                         dangerouslySetInnerHTML={{ __html: description }}
                       />
                     </div>
                     <div className='absolute bottom-6 right-8 z-5 max-lg:right-6'>
                       <button
-                        className='flex p-6 bg-gray-900 rounded-full border-none transition-all duration-200 ease-in-out cursor-pointer max-sm:p-4 hover:bg-blue-700 active:bg-blue-700 focus:bg-blue-700 hover:scale-115 active:scale-115 focus:scale-115'
+                        className='flex p-6 bg-gray-200 rounded-full border-none transition-all duration-200 ease-in-out cursor-pointer max-sm:p-4 hover:bg-blue-200 active:bg-blue-200 focus:bg-blue-200 hover:scale-115 active:scale-115 focus:scale-115'
                         onClick={() => handlePlayButtonCllick(id)}
                         title={'Watch ' + (title.english || title.romaji)}
                       >
-                        <FaPlay className='text-2xl text-white' />
+                        <FaPlay className='text-2xl text-blue-500' />
                       </button>
                     </div>
                   </div>

@@ -35,7 +35,7 @@ export const CardItem: FC<{ anime: Anime }> = ({ anime }) => {
           </div>
           <div className='pt-1 pl-2'>
             <h5
-              className='text-sm font-bold transition duration-300 ease-in-out text-long group-hover/title:text-fuchsia-500'
+              className='text-sm text-blue-800 font-bold transition duration-300 ease-in-out text-long group-hover/title:text-blue-500'
               title={'Title: ' + (anime.title.english || anime.title.romaji)}
             >
               {anime.title.english || anime.title.romaji}
@@ -45,17 +45,17 @@ export const CardItem: FC<{ anime: Anime }> = ({ anime }) => {
             <div></div>
             <div className='flex justify-evenly'>
               {anime.type && (
-                <p className='px-1 text-xs rounded-sm bg-neutral-200 text-neutral-500'>
+                <p className='px-1 text-xs bg-gray-200 text-blue-800 rounded-sm'>
                   {anime.type}
                 </p>
               )}
               {anime.releaseDate && (
-                <p className='px-1 text-xs rounded-sm bg-neutral-200 text-neutral-500'>
+                <p className='px-1 text-xs bg-gray-200 text-blue-800 rounded-sm'>
                   {anime.releaseDate}
                 </p>
               )}
               {anime.rating && (
-                <p className='flex items-center px-1 text-xs rounded-sm bg-neutral-200 text-neutral-500'>
+                <p className='flex items-center px-1 text-xs bg-gray-200 text-blue-800 rounded-sm'>
                   {anime.rating >= 75 ? <TbStarFilled /> : <TbStarHalfFilled />}
                   {anime.rating}
                 </p>
