@@ -286,8 +286,8 @@ const Home = () => {
         error={state.error}
       />
       {/* <EpisodeCard /> */}
-      <div className='flex max-lg:flex-col'>
-        <div className='flex min-lg:flex-4/5 flex-col gap-4'>
+      <div className='flex gap-8 max-lg:gap-12 max-lg:flex-col'>
+        <div className='flex flex-col gap-4 min-lg:flex-4/5'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
             <div
               className={`${activeTab === 'trending' ? 'bg-blue-700' : 'bg-gray-900 hover:bg-blue-900'}

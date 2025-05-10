@@ -43,7 +43,7 @@ export const CardItem: FC<{ anime: Anime }> = ({ anime }) => {
           </div>
           <div>
             <div></div>
-            <div className='flex justify-evenly mt-0.5'>
+            <div className='flex justify-evenly'>
               {anime.type && (
                 <p className='px-1 text-xs rounded-sm bg-neutral-200 text-neutral-500'>
                   {anime.type}

@@ -16,7 +16,7 @@ export const HomeSideBar: FC<{
           {title}
         </p>
       </div>
-      <div className='flex relative flex-col gap-2 mx-2 mt-2 rounded-lg'>
+      <div className='flex relative flex-col gap-2 mt-2 rounded-lg'>
         {animeData.map((anime: Anime) => (
           <Link className='' to={`/watch/${anime.id}`} key={anime.id}>
             <div className='group relative aspect-[5/1] animate-slideUp min-h-28 max-h-28 w-full'>
