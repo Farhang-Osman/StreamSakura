@@ -27,7 +27,7 @@ export const CardItem: FC<{ anime: Anime }> = ({ anime }) => {
                   className='whfull animation1 group-hover:brightness-60'
                 />
                 <TbPlayerPlayFilled
-                  className='absolute inset-0 top-1/2 left-1/2 z-10 text-3xl text-white opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100'
+                  className='absolute inset-0 top-1/2 left-1/2 z-10 text-3xl text-blue-300 opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100'
                   title={'Play ' + (anime.title.english || anime.title.romaji)}
                 />
               </div>

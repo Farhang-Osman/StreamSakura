@@ -96,7 +96,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                   />
                   <div className='flex flex-col justify-between h-full'>
                     <div className='absolute bottom-6 left-8 max-lg:left-4 max-lg:bottom-6 z-5 max-w-1/2'>
-                      <h2 className='overflow-hidden m-auto max-w-full font-bold text-white overflow-ellipsis text-clamp-title min-sm:whitespace-nowrap'>
+                      <h2 className='overflow-hidden m-auto max-w-full font-bold text-blue-800 overflow-ellipsis text-clamp-title min-sm:whitespace-nowrap'>
                         {title.english}
                       </h2>
                       <div className='flex overflow-hidden gap-4 m-auto mt-0 text-sm text-white overflow-ellipsis max-lg:text-sm max-sm:gap-1.5'>
@@ -125,7 +125,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                         )}
                       </div>
                       <p
-                        className='overflow-hidden overflow-y-auto max-h-16 text-xs text-blue-100 max-w-2/3'
+                        className='overflow-hidden overflow-y-auto max-h-16 text-xs text-blue-600 max-w-2/3'
                         dangerouslySetInnerHTML={{ __html: description }}
                       />
                     </div>
@@ -139,13 +139,8 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                       </button>
                     </div>
                   </div>
-                  <div
-                    className='absolute inset-0 rounded-lg z-1'
-                    style={{
-                      background:
-                        'linear-gradient(45deg, rgba(8, 8, 8, 1) 0%, transparent 60%)',
-                    }}
-                  ></div>
+                  <div className='absolute inset-0 bg-gradient-to-b from-transparent to-white  from-50% rounded-lg z-1'></div>
+                  <div className='absolute inset-0 bg-gradient-to-bl from-transparent to-white from-50% z-1'></div>
                 </div>
               </SwiperSlide>
             ),
