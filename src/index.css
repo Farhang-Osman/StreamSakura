@@ -48,6 +48,7 @@ body {
   --text-clamp-title: clamp(1.2rem, 3vw, 2.5rem);
 
   --animate-slideUp: slideUp 0.4s ease;
+  --animate-rainbow: rainbow 3s linear infinite;
 
   @keyframes slideUp {
     from {
@@ -57,6 +58,32 @@ body {
     to {
       transform: translateY(0);
       opacity: 1;
+    }
+  }
+  @keyframes rainbow {
+    0% {
+      color: #ff0000;
+    }
+    14% {
+      color: #ff7f00;
+    }
+    28% {
+      color: #ffff00;
+    }
+    42% {
+      color: #00ff00;
+    }
+    57% {
+      color: #155dfc;
+    }
+    71% {
+      color: #4b0082;
+    }
+    85% {
+      color: #9400d3;
+    }
+    100% {
+      color: #ff0000;
     }
   }
 }

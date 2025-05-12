@@ -96,7 +96,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                   />
                   <div className='flex flex-col justify-between h-full'>
                     <div className='absolute bottom-6 left-8 max-lg:left-4 max-lg:bottom-6 z-5 max-w-1/2'>
-                      <h2 className='overflow-hidden m-auto max-w-full font-bold text-blue-800 overflow-ellipsis text-clamp-title min-sm:whitespace-nowrap'>
+                      <h2 className='overflow-hidden m-auto max-w-full font-bold overflow-ellipsis animate-rainbow text-clamp-title min-sm:whitespace-nowrap'>
                         {title.english}
                       </h2>
                       <div className='flex overflow-hidden gap-4 m-auto mt-0 text-sm text-white overflow-ellipsis max-lg:text-sm max-sm:gap-1.5'>
