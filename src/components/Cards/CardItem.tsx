@@ -18,7 +18,7 @@ export const CardItem: FC<{ anime: Anime }> = ({ anime }) => {
         title={anime.title.english || anime.title.romaji}
       >
         <div className='w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer group/title'>
-          <div className='transition duration-200 ease-in-out max-sm:hover:translate-y-2.5 max-sm:active:translate-y-2.5 max-sm:focus:translate-y-2.5'>
+          <div className='transition duration-200 ease-in-out hover:-translate-y-2.5'>
             <div className='rounded-lg overflow-hidden relative aspect-[3/4] shadow-blue-900 animate-slideUp transition duration-200 ease-in-out shadow-[2px_2px_10px] text-left'>
               <div className='whfull group'>
                 <img
