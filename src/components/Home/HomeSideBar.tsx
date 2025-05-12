@@ -18,8 +18,8 @@ export const HomeSideBar: FC<{
         {animeData.map((anime: Anime) => (
           <Link className='' to={`/watch/${anime.id}`} key={anime.id}>
             <div className='group relative aspect-[5/1] animate-slideUp min-h-28 max-h-28 w-full'>
-              <div className='absolute right-0 w-3/4 h-full transition grayscale-80 group-hover:grayscale-0'>
-                <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-white from-25%'></div>
+              <div className='absolute right-0 w-3/4 h-full'>
+                <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-white to-85% group-hover:to-100% group-hover:from-75%'></div>
                 <img
                   className='object-cover w-full h-full rounded-lg'
                   src={anime.cover || anime.image}
@@ -28,13 +28,13 @@ export const HomeSideBar: FC<{
               </div>
               <div className='flex overflow-hidden relative gap-4 h-full rounded-lg'>
                 <img
-                  className='rounded-lg transition duration-100 ease-out group-hover:translate-x-3'
+                  className='rounded-lg transition duration-200 ease-in-out group-hover:translate-x-3'
                   src={anime.image}
                   alt=''
                 />
                 <div className='flex flex-col justify-between'>
                   <div className='flex flex-col justify-between py-1 h-full'>
-                    <h5 className='pr-1 font-medium text-blue-800 rounded-lg backdrop-blur-lg transition duration-100 ease-out group-hover:text-blue-500 w-fit group-hover:translate-x-3'>
+                    <h5 className='pr-1 font-medium text-blue-800 rounded-lg backdrop-blur-3xl transition duration-200 ease-out group-hover:text-blue-500 w-fit'>
                       {anime.title.english || anime.title.romaji}
                     </h5>
                     <div className='flex gap-1'>
