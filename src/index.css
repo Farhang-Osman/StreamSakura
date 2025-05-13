@@ -48,7 +48,7 @@ body {
   --text-clamp-title: clamp(1.2rem, 3vw, 2.5rem);
 
   --animate-slideUp: slideUp 0.4s ease;
-  --animate-rainbow: rainbow 3s linear infinite;
+  --animate-rainbow: rainbow 7s linear infinite;
 
   @keyframes slideUp {
     from {

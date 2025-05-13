@@ -1,176 +1,16 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Anime, CardGrid, HomeSideBar } from '../index';
 import { HomeCarousel } from '../index';
 import { GiTv } from 'react-icons/gi';
 import { GrAnnounce } from 'react-icons/gr';
-
-const log: boolean = false;
-
-function endUrlWithSlash(url: string) {
-  return url.endsWith('/') ? url : `${url}/`;
-}
-
-const BASE_URL = endUrlWithSlash(import.meta.env.VITE_BACKEND_URL as string);
-
-// Axios instance
-const axiosInstance = axios.create({
-  baseURL: undefined,
-  timeout: 10000,
-  headers: {
-    'X-API-Key': '', // Assuming your API expects the key in this header
-  },
-});
-
-interface FetchOptions {
-  type?: string;
-  season?: string;
-  format?: string;
-  sort?: string[];
-  genres?: string[];
-  id?: string;
-  year?: string;
-  status?: string;
-}
-
-async function fetchFromProxy(url: string) {
-  try {
-    // Proceed with the network request
-    const response = await axiosInstance.get(url, {});
-
-    // After obtaining the response, verify it for errors or empty data
-    if (
-      response.status !== 200 ||
-      (response.data.statusCode && response.data.statusCode >= 400)
-    ) {
-      const errorMessage = response.data.message || 'Unknown server error';
-      throw new Error(
-        `Server error: ${
-          response.data.statusCode || response.status
-        } ${errorMessage}`,
-      );
-    }
-
-    if (log) {
-      console.log(url);
-      console.log('response.data', response.data);
-      console.log('response.data.currentPage', response.data.currentPage);
-      console.log('response.data.hasNextPage', response.data.hasNextPage);
-    }
-
-    return response.data.results; // Return the newly fetched data
-  } catch (error) {
-    console.log(error);
-    throw error; // Rethrow the error for the caller to handle
-  }
-}
-
-function getCurrentSeason() {
-  const month = new Date().getMonth();
-
-  if (month >= 2 && month <= 4) {
-    return 'SPRING';
-  } else if (month >= 5 && month <= 7) {
-    return 'SUMMER';
-  } else if (month >= 8 && month <= 10) {
-    return 'FALL';
-  } else {
-    return 'WINTER';
-  }
-}
-
-function getNextSeason() {
-  const currentSeason = getCurrentSeason();
-  switch (currentSeason) {
-    case 'SPRING':
-      return 'SUMMER';
-    case 'SUMMER':
-      return 'FALL';
-    case 'FALL':
-      return 'WINTER';
-    case 'WINTER':
-      return 'SPRING';
-
-    default:
-      return 'UNKNOWN'; // should never be reached
-  }
-}
-
-const SEASON = getNextSeason();
-
-async function fetchList(
-  type: string,
-  page: number = 1,
-  perPage: number = 16,
-  options: FetchOptions = {},
-) {
-  // let cacheKey: string;
-  let url: string;
-  const params = new URLSearchParams({
-    page: page.toString(),
-    perPage: perPage.toString(),
-  });
-
-  if (
-    ['TopRated', 'Trending', 'Popular', 'TopAiring', 'Upcoming'].includes(type)
-  ) {
-    url = `${BASE_URL}meta/anilist/${type.toLowerCase()}`;
-
-    if (type === 'TopRated') {
-      options = {
-        type: 'ANIME',
-        sort: ['["SCORE_DESC"]'],
-      };
-      url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&sort=${options.sort}&`;
-    } else if (type === 'Popular') {
-      options = {
-        type: 'ANIME',
-        sort: ['["POPULARITY_DESC"]'],
-      };
-      url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&sort=${options.sort}&`;
-    } else if (type === 'TopAiring') {
-      const season = getCurrentSeason();
-      const year = new Date().getFullYear();
-
-      options = {
-        type: 'ANIME',
-        season: season,
-        year: year.toString(),
-        status: 'RELEASING',
-        sort: ['["POPULARITY_DESC"]'],
-      };
-      url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&status=${options.status}&sort=${options.sort}&season=${options.season}&year=${options.year}&`;
-    } else if (type === 'Upcoming') {
-      const season = getNextSeason();
-      const year = new Date().getFullYear();
-
-      options = {
-        type: 'ANIME',
-        season: season,
-        year: year.toString(),
-        status: 'NOT_YET_RELEASED',
-        sort: ['["POPULARITY_DESC"]'],
-      };
-      url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&status=${options.status}&sort=${options.sort}&season=${options.season}&year=${options.year}&`;
-    }
-  } else {
-    url = `${BASE_URL}meta/anilist/${type.toLowerCase()}`;
-    // params already defined above
-  }
-
-  return fetchFromProxy(`${url}?${params.toString()}`);
-}
-
-const fetchTrendingAnime = (page: number, perPage: number) =>
-  fetchList('Trending', page, perPage);
-const fetchPopularAnime = (page: number, perPage: number) =>
-  fetchList('Popular', page, perPage);
-const fetchTopAnime = (page: number, perPage: number) =>
-  fetchList('TopRated', page, perPage);
-const fetchTopAiringAnime = (page: number, perPage: number) =>
-  fetchList('TopAiring', page, perPage);
-const fetchUpcomingSeason = (page: number, perPage: number) =>
-  fetchList('Upcoming', page, perPage);
+import { getNextSeason } from '../hooks/useTime';
+import {
+  fetchPopularAnime,
+  fetchTopAiringAnime,
+  fetchTopAnime,
+  fetchTrendingAnime,
+  fetchUpcomingSeason,
+} from '../hooks/useApi';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState(() => {
@@ -343,7 +183,7 @@ const Home = () => {
           />
           <HomeSideBar
             animeData={state.Upcoming}
-            title={`UPCOMING ${SEASON}`}
+            title={`UPCOMING ${getNextSeason()}`}
             icon={<GrAnnounce className='size-9' />}
           />
         </div>
