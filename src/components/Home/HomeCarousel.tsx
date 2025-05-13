@@ -42,11 +42,11 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
           className='relative max-w-full h-96 rounded-lg max-lg:h-80 max-sm:h-64 cursor-grab active:cursor-grabbing'
           spaceBetween={15}
           slidesPerView={1}
-          // loop={false}
-          // autoplay={{
-          //   delay: 4000,
-          //   disableOnInteraction: false,
-          // }}
+          loop={true}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
           // breakpoints={{
           //   1024: {
           //     slidesPerView: 2,
@@ -74,11 +74,8 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
               id,
               title,
               cover,
-              image,
               description,
-              status,
               rating,
-              genres,
               totalEpisodes,
               duration,
               type,

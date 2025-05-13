@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, useMemo } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Anime } from '../../index';
 import {
