@@ -65,7 +65,7 @@ async function fetchFromProxy(url: string) {
   }
 }
 
-async function getCurrentSeason() {
+function getCurrentSeason() {
   const month = new Date().getMonth();
 
   if (month >= 2 && month <= 4) {
@@ -79,8 +79,8 @@ async function getCurrentSeason() {
   }
 }
 
-async function getNextSeason() {
-  const currentSeason = await getCurrentSeason();
+function getNextSeason() {
+  const currentSeason = getCurrentSeason();
   switch (currentSeason) {
     case 'SPRING':
       return 'SUMMER';
@@ -96,7 +96,7 @@ async function getNextSeason() {
   }
 }
 
-const SEASON = await getNextSeason();
+const SEASON = getNextSeason();
 
 async function fetchList(
   type: string,
@@ -129,7 +129,7 @@ async function fetchList(
       };
       url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&sort=${options.sort}&`;
     } else if (type === 'TopAiring') {
-      const season = await getCurrentSeason();
+      const season = getCurrentSeason();
       const year = new Date().getFullYear();
 
       options = {
@@ -141,7 +141,7 @@ async function fetchList(
       };
       url = `${BASE_URL}meta/anilist/advanced-search?type=${options.type}&status=${options.status}&sort=${options.sort}&season=${options.season}&year=${options.year}&`;
     } else if (type === 'Upcoming') {
-      const season = await getNextSeason();
+      const season = getNextSeason();
       const year = new Date().getFullYear();
 
       options = {
