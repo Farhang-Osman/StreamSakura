@@ -1,16 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { register } from 'swiper/element/bundle';
-import {
-  Home,
-  About,
-  NotFound,
-  Callback,
-  History,
-  Profile,
-  Search,
-  TOS,
-  Watch,
-} from './index';
+import NotFound from './pages/404';
+import About from './pages/About';
+import Callback from './pages/Callback';
+import Home from './pages/Home';
+import History from './pages/History';
+import Profile from './pages/Profile';
+import Search from './pages/Search';
+import TOS from './pages/TOS-and-privacy-policy';
+import Watch from './pages/Watch';
 
 register();
 
@@ -23,7 +21,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='*' element={<NotFound />} />
         <Route path='/callback' element={<Callback />} />
-        <Route path='/istory' element={<History />} />
+        <Route path='/history' element={<History />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/TOS' element={<TOS />} />
         <Route path='/search' element={<Search />} />

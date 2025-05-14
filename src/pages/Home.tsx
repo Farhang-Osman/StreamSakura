@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Anime, CardGrid, HomeSideBar } from '../index';
-import { HomeCarousel } from '../index';
 import { GiTv } from 'react-icons/gi';
 import { GrAnnounce } from 'react-icons/gr';
 import { getNextSeason } from '../hooks/useTime';
@@ -11,6 +9,10 @@ import {
   fetchTrendingAnime,
   fetchUpcomingSeason,
 } from '../hooks/useApi';
+import { CardGrid } from '../components/Cards/CardGrid';
+import { HomeCarousel } from '../components/Home/HomeCarousel';
+import { HomeSideBar } from '../components/Home/HomeSideBar';
+import { Anime } from '../hooks/animeInterface';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState(() => {

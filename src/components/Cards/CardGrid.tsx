@@ -1,5 +1,6 @@
 import { FC, useEffect, useCallback } from 'react';
-import { CardItem, Anime } from '../../index';
+import { Anime } from '../../hooks/animeInterface';
+import { CardItem } from './CardItem';
 
 interface CardGridProps {
   animeData: Anime[];

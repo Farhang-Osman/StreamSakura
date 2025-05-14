@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Anime } from '../../index';
+import { Anime } from '../../hooks/animeInterface';
 import {
   TbStarFilled,
   TbStarHalfFilled,

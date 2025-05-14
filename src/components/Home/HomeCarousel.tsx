@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import { Anime } from '../../index';
+import { Anime } from '../../hooks/animeInterface';
 import { TbCards } from 'react-icons/tb';
 import { FaPlay, FaStar } from 'react-icons/fa';
 import { FaClock } from 'react-icons/fa6';
