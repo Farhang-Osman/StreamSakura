@@ -14,10 +14,7 @@ const Profile = () => {
         <p className='px-1 text-sm text-blue-800 bg-gray-200 rounded-sm'>
           Please log in to view your AniList profile
         </p>
-        <div
-          onClick=''
-          className='flex gap-2 items-center bg-gray-200 rounded-t-lg cursor-pointer hover:bg-blue-200 label'
-        >
+        <div className='flex gap-2 items-center bg-gray-200 rounded-t-lg cursor-pointer hover:bg-blue-200 label'>
           <h3>Log in with</h3>
           <SiAnilist className='size-8' />
         </div>
