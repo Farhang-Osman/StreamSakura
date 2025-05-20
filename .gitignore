@@ -29,3 +29,4 @@ dist-ssr
 # dotenv environment files
 .env
 .env.local
+.vercel
