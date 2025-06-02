@@ -8,14 +8,29 @@ const Profile = () => {
   return (
     <div>
       {isLoggedIn && userData ? (
-        <>
-          <img src={userData.avatar.large} alt='' />
-          {username}
-          {userData.statistics.anime.count}
-          {userData.statistics.anime.episodesWatched}
-          {userData.statistics.anime.meanScore}
-          {userData.statistics.anime.minutesWatched}
-        </>
+        <div className='flex flex-col gap-2 items-center'>
+          <img
+            className='size-28'
+            src={userData.avatar.large}
+            alt={`${username}'s avatar`}
+          />
+          <p className='px-1 text-lg text-blue-600 bg-gray-200 rounded-sm'>
+            <b>{username}</b>
+          </p>
+          <p className='px-1 text-blue-800 bg-gray-200 rounded-sm'>
+            anime watched: <b>{userData.statistics.anime.count}</b>
+          </p>
+          <p className='px-1 text-blue-800 bg-gray-200 rounded-sm'>
+            total episodes watched:{' '}
+            <b>{userData.statistics.anime.episodesWatched}</b>
+          </p>
+          <p className='px-1 text-blue-800 bg-gray-200 rounded-sm'>
+            total minutes watched: <b>{userData.statistics.anime.meanScore}</b>
+          </p>
+          <p className='px-1 text-blue-800 bg-gray-200 rounded-sm'>
+            average score: <b>{userData.statistics.anime.minutesWatched}</b>
+          </p>
+        </div>
       ) : (
         <div className='flex flex-col gap-16 items-center p-2'>
           <div className='flex flex-col items-center'>
