@@ -1,9 +1,10 @@
 import { CgProfile } from 'react-icons/cg';
 import { SiAnilist } from 'react-icons/si';
+import { IoLogOutOutline } from 'react-icons/io5';
 import { useAuth } from '../client/useAuth';
 
 const Profile = () => {
-  const { isLoggedIn, userData, username, login } = useAuth();
+  const { isLoggedIn, userData, username, login, logout } = useAuth();
 
   return (
     <div>
@@ -14,7 +15,7 @@ const Profile = () => {
             src={userData.avatar.large}
             alt={`${username}'s avatar`}
           />
-          <p className='px-1 text-lg text-blue-600 bg-gray-200 rounded-sm'>
+          <p className='px-1 mb-2 text-lg text-blue-600 bg-gray-200 rounded-sm'>
             <b>{username}</b>
           </p>
           <p className='px-1 text-blue-800 bg-gray-200 rounded-sm'>
@@ -30,6 +31,13 @@ const Profile = () => {
           <p className='px-1 text-blue-800 bg-gray-200 rounded-sm'>
             average score: <b>{userData.statistics.anime.minutesWatched}</b>
           </p>
+          <a
+            onClick={logout}
+            className='flex gap-2 items-center mt-2 bg-gray-200 rounded-t-lg cursor-pointer hover:bg-blue-200 label'
+          >
+            <h3>Log out</h3>
+            <IoLogOutOutline className='size-8' />
+          </a>
         </div>
       ) : (
         <div className='flex flex-col gap-16 items-center p-2'>

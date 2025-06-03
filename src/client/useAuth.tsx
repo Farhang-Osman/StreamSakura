@@ -25,6 +25,7 @@ type AuthConstextType = {
   userData: UserData | null;
   username: string | null;
   login: () => void;
+  logout: () => void;
 };
 
 const AuthConstext = createContext<AuthConstextType | undefined>(undefined);
@@ -65,12 +66,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const logout = async () => {
+    localStorage.removeItem('accessToken');
+    setIsLoggedIn(false);
+    setUserData(null);
+    setAuthLoading(true); // Reset auth loading state on logout
+    window.location.href = '/profile';
+  };
+
   if (authLoading) {
     return null;
   }
 
   return (
-    <AuthConstext.Provider value={{ isLoggedIn, userData, username, login }}>
+    <AuthConstext.Provider
+      value={{ isLoggedIn, userData, username, login, logout }}
+    >
       {children}
     </AuthConstext.Provider>
   );
