@@ -46,7 +46,7 @@ const Callback = () => {
   }, [location, navigate]);
 
   return (
-    <div className='font-medium mt-20'>
+    <div className='mt-20 text-xl font-bold text-center text-blue-800'>
       {errorMessage ? `${errorMessage}` : 'Logging in...'}
     </div>
   );
