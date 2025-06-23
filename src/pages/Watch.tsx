@@ -66,13 +66,23 @@ const Watch: FC = () => {
   // select episode number based on url
   useEffect(() => {
     if (!episodesLoading && !filteredUrlSearch) {
-      const epUrl = episodes.length !== 0 ? episodes[0].id : '';
-      const episodeNumber = epUrl.split('ep=')[1];
-      setSelectedEpisode(Number(episodeNumber));
-      console.log('<><><><>', episodeNumber);
+      const epUrl = episodes[0].id;
+      const epNumber = epUrl.split('ep=')[1];
+      setSelectedEpisode(Number(epNumber));
     } else if (!episodesLoading && filteredUrlSearch) {
-      setSelectedEpisode(Number(filteredUrlSearch));
-      console.log('<><><><>', filteredUrlSearch);
+      for (let i = 0; i < episodes.length; i++) {
+        const epNumber = episodes[i].id.split('ep=')[1];
+        const isLastIteration = i === episodes.length - 1;
+
+        if (epNumber === filteredUrlSearch) {
+          setSelectedEpisode(Number(filteredUrlSearch));
+          break;
+        } else if (isLastIteration) {
+          const epNumber = episodes[0].id.split('ep=')[1];
+          setSelectedEpisode(Number(epNumber));
+          break;
+        }
+      }
     }
   }, [filteredUrlSearch, episodesLoading]);
 
