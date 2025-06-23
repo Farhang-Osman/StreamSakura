@@ -29,6 +29,7 @@ const Watch: FC = () => {
   const thePath = window.location.pathname;
   const Title = thePath.split('/').pop() as string;
 
+  const origin = location.origin;
   const urlSearch = window.location.search.split('ep=')[1];
   const filteredUrlSearch =
     urlSearch !== undefined && urlSearch !== '' && !isNaN(Number(urlSearch))
@@ -63,23 +64,28 @@ const Watch: FC = () => {
     reqAnimeEpisodes();
   }, []);
 
-  // select episode number based on url
+  // select episode number based on url and rewrite url without refreshing
   useEffect(() => {
     if (!episodesLoading && !filteredUrlSearch) {
       const epUrl = episodes[0].id;
       const epNumber = epUrl.split('ep=')[1];
       setSelectedEpisode(Number(epNumber));
+      history.replaceState({}, '', `${origin}/watch/${epUrl}`);
     } else if (!episodesLoading && filteredUrlSearch) {
       for (let i = 0; i < episodes.length; i++) {
         const epNumber = episodes[i].id.split('ep=')[1];
         const isLastIteration = i === episodes.length - 1;
 
         if (epNumber === filteredUrlSearch) {
+          const epUrl = episodes[i].id;
           setSelectedEpisode(Number(filteredUrlSearch));
+          history.replaceState({}, '', `${origin}/watch/${epUrl}`);
           break;
         } else if (isLastIteration) {
-          const epNumber = episodes[0].id.split('ep=')[1];
+          const epUrl = episodes[0].id;
+          const epNumber = epUrl.split('ep=')[1];
           setSelectedEpisode(Number(epNumber));
+          history.replaceState({}, '', `${origin}/watch/${epUrl}`);
           break;
         }
       }
