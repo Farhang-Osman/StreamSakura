@@ -95,11 +95,11 @@ const Watch: FC = () => {
   const thereIsError = false;
 
   return thereIsError ? (
-    <div className='flex items-center flex-col gap-2 mt-4'>
-      <p className='font-medium text-xl'>No episodes found</p>
+    <div className='flex flex-col gap-2 items-center mt-4'>
+      <p className='text-xl font-medium'>No episodes found</p>
       <img src={punch_screen} alt='404 Error' />
       <button
-        className='cursor-pointer bg-gray-200 hover:bg-blue-200 rounded-lg label'
+        className='bg-gray-200 rounded-lg cursor-pointer hover:bg-blue-200 label'
         onClick={() => navigate('/home')}
       >
         go to home
@@ -107,16 +107,26 @@ const Watch: FC = () => {
     </div>
   ) : episodesLoading ? (
     <>
-      <p className='text-3xl text-center w-full'>episodesLoading...</p>
+      <p className='w-full text-3xl text-center'>episodesLoading...</p>
     </>
   ) : (
-    <div className='bg-gray-400'>
-      <div className='w-full aspect-video'>
+    <div className='flex gap-3 p-1 bg-gray-400 max-lg:flex-col max-lg:h-[45rem]'>
+      <div className='mb-1 w-full aspect-video'>
         <iframe
           src={`${STREAMING_URL}/stream/s-2/${selectedEpisode}/sub`}
           className='w-full h-full'
           allowFullScreen
         ></iframe>
+      </div>
+      <div className='overflow-auto p-1 border-1 aspect-square'>
+        {episodes.map(({ ...ep }) => (
+          <div className='px-1 rounded-sm border-1'>
+            <div className='flex gap-4'>
+              <p>{ep.episode_no}.</p>
+              <p>{ep.title}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
