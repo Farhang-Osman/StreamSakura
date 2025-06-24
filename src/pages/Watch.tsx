@@ -122,7 +122,7 @@ const Watch: FC = () => {
         <div className='px-1 text-blue-500 bg-gray-200 rounded-sm'>
           {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
         </div>
-        <div className='grid overflow-auto gap-2 gap-x-3 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'>
+        <div className='grid overflow-auto gap-1 max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'>
           {episodes.map(({ ...ep }) => (
             <div className='flex gap-4 px-1 text-blue-500 bg-gray-100 rounded-sm'>
               <p>{ep.episode_no}.</p>
