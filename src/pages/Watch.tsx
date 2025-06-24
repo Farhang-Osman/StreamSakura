@@ -110,23 +110,26 @@ const Watch: FC = () => {
       <p className='w-full text-3xl text-center'>episodesLoading...</p>
     </>
   ) : (
-    <div className='flex gap-3 p-1 bg-gray-400 max-lg:flex-col max-lg:h-[45rem]'>
+    <div className='flex gap-3 p-1 max-lg:flex-col max-lg:h-[45rem]'>
       <div className='mb-1 w-full aspect-video'>
         <iframe
           src={`${STREAMING_URL}/stream/s-2/${selectedEpisode}/sub`}
-          className='w-full h-full'
+          className='w-full h-full rounded-sm'
           allowFullScreen
         ></iframe>
       </div>
-      <div className='overflow-auto p-1 border-1 aspect-square'>
-        {episodes.map(({ ...ep }) => (
-          <div className='px-1 rounded-sm border-1'>
-            <div className='flex gap-4'>
+      <div className='grid gap-1 p-1 bg-gray-200 rounded-sm aspect-square'>
+        <div className='text-blue-500'>
+          {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
+        </div>
+        <div className='grid overflow-auto gap-1'>
+          {episodes.map(({ ...ep }) => (
+            <div className='flex gap-4 px-1 text-blue-500 bg-gray-300 rounded-sm'>
               <p>{ep.episode_no}.</p>
               <p>{ep.title}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
