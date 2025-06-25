@@ -118,7 +118,7 @@ const Watch: FC = () => {
           allowFullScreen
         ></iframe>
       </div>
-      <div className='grid gap-1 p-1 bg-gray-300 rounded-sm max-xl:h-72 aspect-square'>
+      <div className='grid gap-1 p-1 bg-gray-300 rounded-sm min-xl:max-w-3/10 min-xl:min-w-1/4 max-xl:h-72 aspect-square'>
         <div className='px-1 text-blue-500 bg-gray-200 rounded-sm'>
           {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
         </div>
