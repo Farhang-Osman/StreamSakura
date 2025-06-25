@@ -26,6 +26,7 @@ const Watch: FC = () => {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [selectedEpisode, setSelectedEpisode] = useState(0);
   const [episodesLoading, setEpisodesLoading] = useState(true);
+  const [isStreamLoading, setIsStreamLoading] = useState(true);
 
   const thePath = window.location.pathname;
   const Title = thePath.split('/').pop() as string;
@@ -93,6 +94,19 @@ const Watch: FC = () => {
     }
   }, [filteredUrlSearch, episodesLoading]);
 
+  const handleLoad = () => {
+    // Show loading for at least 0.5 second (even if content loads faster)
+    setTimeout(() => {
+      setIsStreamLoading(false);
+    }, 500);
+  };
+
+  const onClickEp = (ep: Episode) => {
+    const epNumber = Number(ep.id.split('ep=')[1]);
+    setSelectedEpisode(epNumber);
+    setIsStreamLoading(true);
+  };
+
   const thereIsError = false;
 
   return thereIsError ? (
@@ -112,11 +126,17 @@ const Watch: FC = () => {
     </>
   ) : (
     <div className='flex gap-3 p-1 max-xl:flex-col max-xl:h-[45rem]'>
-      <div className='mb-1 w-full aspect-video'>
+      <div className='relative mb-1 w-full aspect-video'>
+        {isStreamLoading && (
+          <div className='flex absolute inset-0 justify-center items-center bg-black rounded-sm'>
+            <div className='w-12 h-12 rounded-full border-t-2 border-b-2 border-blue-500 animate-spin'></div>
+          </div>
+        )}
         <iframe
           src={`${STREAMING_URL}/stream/s-2/${selectedEpisode}/sub`}
-          className='w-full h-full rounded-sm'
+          className={`w-full h-full rounded-sm ${isStreamLoading ? 'opacity-0' : 'opacity-100'}`}
           allowFullScreen
+          onLoad={handleLoad}
         ></iframe>
       </div>
       <div className='grid gap-1 p-1 bg-gray-300 rounded-sm min-xl:max-w-3/10 min-xl:min-w-1/4 max-xl:h-72 aspect-square'>
@@ -132,10 +152,8 @@ const Watch: FC = () => {
               </button>
             ) : (
               <button
-                onClick={() =>
-                  setSelectedEpisode(Number(ep.id.split('ep=')[1]))
-                }
-                className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm transition duration-100 ease-in-out cursor-pointer hover:scale-105'
+                onClick={() => onClickEp(ep)}
+                className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm transition duration-100 ease-in-out cursor-pointer hover:bg-blue-200 hover:scale-105'
               >
                 <p>{ep.episode_no}.</p>
                 <p>{ep.title}</p>
