@@ -123,15 +123,15 @@ const Watch: FC = () => {
         <div className='px-1 text-gray-500 bg-gray-200 rounded-sm'>
           {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
         </div>
-        <div className='grid overflow-auto gap-1 max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'>
+        <div className='grid overflow-auto gap-1 p-1 px-2 max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'>
           {episodes.map(({ ...ep }) =>
             selectedEpisode === Number(ep.id.split('ep=')[1]) ? (
-              <div className='flex gap-4 items-center px-1 text-blue-500 bg-blue-100 rounded-sm border-2 border-blue-400'>
+              <div className='flex gap-4 items-center px-1 text-blue-500 bg-blue-100 rounded-sm border-2 border-blue-400 transition duration-100 ease-in-out cursor-pointer hover:scale-105'>
                 <FaPlay />
                 <p>{ep.title}</p>
               </div>
             ) : (
-              <div className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm'>
+              <div className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm transition duration-100 ease-in-out cursor-pointer hover:scale-105'>
                 <p>{ep.episode_no}.</p>
                 <p>{ep.title}</p>
               </div>
