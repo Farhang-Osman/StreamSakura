@@ -139,21 +139,21 @@ const Watch: FC = () => {
           onLoad={handleLoad}
         ></iframe>
       </div>
-      <div className='grid gap-1 p-1 bg-gray-300 rounded-sm min-xl:max-w-3/10 min-xl:min-w-1/4 max-xl:h-72 aspect-square'>
+      <div className='grid gap-1 content-start p-1 bg-gray-300 rounded-sm min-xl:max-w-3/10 min-xl:min-w-1/4 max-xl:h-72 aspect-square'>
         <div className='px-1 text-gray-500 bg-gray-200 rounded-sm'>
           {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
         </div>
-        <div className='grid overflow-auto gap-1 p-1 px-2 max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'>
+        <div className='grid overflow-auto gap-1 p-1 px-3 max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'>
           {episodes.map(({ ...ep }) =>
             selectedEpisode === Number(ep.id.split('ep=')[1]) ? (
-              <button className='flex gap-4 items-center px-1 text-blue-500 bg-blue-100 rounded-sm border-2 border-blue-400 transition duration-100 ease-in-out cursor-pointer hover:scale-105'>
+              <button className='flex gap-4 items-center px-1 text-blue-500 bg-blue-100 scale-103 rounded-sm border-2 border-blue-400 transition duration-100 ease-in-out cursor-pointer'>
                 <FaPlay />
                 <p>{ep.title}</p>
               </button>
             ) : (
               <button
                 onClick={() => onClickEp(ep)}
-                className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm transition duration-100 ease-in-out cursor-pointer hover:bg-blue-200 hover:scale-105'
+                className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm transition duration-100 ease-in-out cursor-pointer hover:bg-blue-200 hover:scale-103'
               >
                 <p>{ep.episode_no}.</p>
                 <p>{ep.title}</p>
