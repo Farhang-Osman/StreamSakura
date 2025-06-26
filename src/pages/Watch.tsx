@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import punch_screen from '/src/assets/punch_screen.webp';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { FaPlay } from 'react-icons/fa';
 
@@ -81,7 +81,7 @@ const Watch: FC = () => {
         if (epNumber === filteredUrlSearch) {
           const epUrl = episodes[i].id;
           setSelectedEpisode(Number(filteredUrlSearch));
-          history.replaceState({}, '', `${origin}/watch/${epUrl}`);
+          history.pushState({}, '', `${origin}/watch/${epUrl}`);
           break;
         } else if (isLastIteration) {
           const epUrl = episodes[0].id;
@@ -101,10 +101,26 @@ const Watch: FC = () => {
     }, 500);
   };
 
-  const onClickEp = (ep: Episode) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const onClickEp = (ep: Episode, element: HTMLElement) => {
+    if (!containerRef.current) return;
+
+    const container = containerRef.current;
+    const containerHeight = container.clientHeight;
+    const elementHeight = element.clientHeight;
+    const scrollPosition =
+      element.offsetTop - containerHeight / 2 + elementHeight / 2;
+
+    container.scrollTo({
+      top: scrollPosition,
+      behavior: 'smooth',
+    });
+
     const epNumber = Number(ep.id.split('ep=')[1]);
     setSelectedEpisode(epNumber);
     setIsStreamLoading(true);
+    const epUrl = ep.id;
+    history.pushState({}, '', `${origin}/watch/${epUrl}`);
   };
 
   const thereIsError = false;
@@ -143,16 +159,19 @@ const Watch: FC = () => {
         <div className='px-1 text-gray-500 bg-gray-200 rounded-sm'>
           {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
         </div>
-        <div className='grid overflow-auto gap-1 p-1 px-3 max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'>
+        <div
+          ref={containerRef}
+          className='grid overflow-auto gap-1 p-1 px-3 scroll-smooth max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'
+        >
           {episodes.map(({ ...ep }) =>
             selectedEpisode === Number(ep.id.split('ep=')[1]) ? (
-              <button className='flex gap-4 items-center px-1 text-blue-500 bg-blue-100 scale-103 rounded-sm border-2 border-blue-400 transition duration-100 ease-in-out cursor-pointer'>
+              <button className='flex gap-4 items-center px-1 text-blue-500 bg-blue-100 rounded-sm border-2 border-blue-400 transition duration-100 ease-in-out cursor-pointer snap-center scale-103'>
                 <FaPlay />
                 <p>{ep.title}</p>
               </button>
             ) : (
               <button
-                onClick={() => onClickEp(ep)}
+                onClick={(e) => onClickEp(ep, e.currentTarget)}
                 className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm transition duration-100 ease-in-out cursor-pointer hover:bg-blue-200 hover:scale-103'
               >
                 <p>{ep.episode_no}.</p>
