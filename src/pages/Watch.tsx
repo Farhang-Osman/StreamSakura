@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import punch_screen from '/src/assets/punch_screen.webp';
 import { FC, useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay, FaClosedCaptioning, FaMicrophone } from 'react-icons/fa';
 
 interface Episode {
   episode_no: number;
@@ -27,6 +27,8 @@ const Watch: FC = () => {
   const [selectedEpisode, setSelectedEpisode] = useState(0);
   const [episodesLoading, setEpisodesLoading] = useState(true);
   const [isStreamLoading, setIsStreamLoading] = useState(true);
+  const [episode, setEpisode] = useState<Episode>();
+  const [isSubOrDub, setIsSubOrDub] = useState<'sub' | 'dub'>('sub');
 
   const thePath = window.location.pathname;
   const Title = thePath.split('/').pop() as string;
@@ -72,6 +74,7 @@ const Watch: FC = () => {
       const epUrl = episodes[0].id;
       const epNumber = epUrl.split('ep=')[1];
       setSelectedEpisode(Number(epNumber));
+      setEpisode(episodes[0]);
       history.replaceState({}, '', `${origin}/watch/${epUrl}`);
     } else if (!episodesLoading && filteredUrlSearch) {
       for (let i = 0; i < episodes.length; i++) {
@@ -81,12 +84,14 @@ const Watch: FC = () => {
         if (epNumber === filteredUrlSearch) {
           const epUrl = episodes[i].id;
           setSelectedEpisode(Number(filteredUrlSearch));
+          setEpisode(episodes[i]);
           history.pushState({}, '', `${origin}/watch/${epUrl}`);
           break;
         } else if (isLastIteration) {
           const epUrl = episodes[0].id;
           const epNumber = epUrl.split('ep=')[1];
           setSelectedEpisode(Number(epNumber));
+          setEpisode(episodes[0]);
           history.replaceState({}, '', `${origin}/watch/${epUrl}`);
           break;
         }
@@ -118,6 +123,7 @@ const Watch: FC = () => {
 
     const epNumber = Number(ep.id.split('ep=')[1]);
     setSelectedEpisode(epNumber);
+    setEpisode(ep);
     setIsStreamLoading(true);
     const epUrl = ep.id;
     history.pushState({}, '', `${origin}/watch/${epUrl}`);
@@ -141,44 +147,83 @@ const Watch: FC = () => {
       <p className='w-full text-3xl text-center'>episodesLoading...</p>
     </>
   ) : (
-    <div className='flex gap-3 p-1 max-xl:flex-col max-xl:h-[45rem]'>
-      <div className='relative mb-1 w-full aspect-video'>
-        {isStreamLoading && (
-          <div className='flex absolute inset-0 justify-center items-center bg-black rounded-sm'>
-            <div className='w-12 h-12 rounded-full border-t-2 border-b-2 border-blue-500 animate-spin'></div>
-          </div>
-        )}
-        <iframe
-          src={`${STREAMING_URL}/stream/s-2/${selectedEpisode}/sub`}
-          className={`w-full h-full rounded-sm ${isStreamLoading ? 'opacity-0' : 'opacity-100'}`}
-          allowFullScreen
-          onLoad={handleLoad}
-        ></iframe>
-      </div>
-      <div className='grid gap-1 content-start p-1 bg-gray-300 rounded-sm min-xl:max-w-3/10 min-xl:min-w-1/4 max-xl:h-72 aspect-square'>
-        <div className='px-1 text-gray-500 bg-gray-200 rounded-sm'>
-          {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
-        </div>
-        <div
-          ref={containerRef}
-          className='grid overflow-auto gap-1 p-1 px-3 scroll-smooth max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'
-        >
-          {episodes.map(({ ...ep }) =>
-            selectedEpisode === Number(ep.id.split('ep=')[1]) ? (
-              <button className='flex gap-4 items-center px-1 text-blue-500 bg-blue-100 rounded-sm border-2 border-blue-400 transition duration-100 ease-in-out cursor-pointer snap-center scale-103'>
-                <FaPlay />
-                <p>{ep.title}</p>
-              </button>
-            ) : (
-              <button
-                onClick={(e) => onClickEp(ep, e.currentTarget)}
-                className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm transition duration-100 ease-in-out cursor-pointer hover:bg-blue-200 hover:scale-103'
-              >
-                <p>{ep.episode_no}.</p>
-                <p>{ep.title}</p>
-              </button>
-            ),
+    <div className='grid gap-3'>
+      <div className='flex gap-3 p-1 max-xl:flex-col'>
+        <div className='relative mb-1 w-full aspect-video'>
+          {isStreamLoading && (
+            <div className='flex absolute inset-0 justify-center items-center bg-black rounded-sm'>
+              <div className='w-12 h-12 rounded-full border-t-2 border-b-2 border-blue-500 animate-spin'></div>
+            </div>
           )}
+          <iframe
+            src={`${STREAMING_URL}/stream/s-2/${selectedEpisode}/${isSubOrDub}`}
+            className={`w-full h-full rounded-sm ${isStreamLoading ? 'opacity-0' : 'opacity-100'}`}
+            allowFullScreen
+            onLoad={handleLoad}
+          ></iframe>
+        </div>
+        <div className='grid gap-1 content-start p-1 bg-gray-300 rounded-sm min-xl:max-w-3/10 min-xl:min-w-1/4 max-xl:h-72 aspect-square'>
+          <div className='px-1 text-gray-500 bg-gray-200 rounded-sm'>
+            {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
+          </div>
+          <div
+            ref={containerRef}
+            className='grid overflow-auto gap-1 p-1 px-3 scroll-smooth max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'
+          >
+            {episodes.map(({ ...ep }) =>
+              selectedEpisode === Number(ep.id.split('ep=')[1]) ? (
+                <button className='flex gap-4 items-center px-1 text-blue-500 bg-blue-100 rounded-sm border-2 border-blue-400 transition duration-100 ease-in-out cursor-pointer snap-center scale-103'>
+                  <FaPlay />
+                  <p>{ep.title}</p>
+                </button>
+              ) : (
+                <button
+                  onClick={(e) => onClickEp(ep, e.currentTarget)}
+                  className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm transition duration-100 ease-in-out cursor-pointer hover:bg-blue-200 hover:scale-103'
+                >
+                  <p>{ep.episode_no}.</p>
+                  <p>{ep.title}</p>
+                </button>
+              ),
+            )}
+          </div>
+        </div>
+      </div>
+      {/* beyond watch and episodes list container */}
+      <div className='flex gap-3 max-xl:flex-col'>
+        {/* Source and anime info */}
+        <div className='w-full aspect-video'>
+          <div className='flex justify-evenly items-center p-2 bg-gray-300'>
+            <p className='px-4 bg-gray-100 rounded-sm'>
+              you are watching Episode {episode?.episode_no}
+            </p>
+            <div className='flex gap-4'>
+              {isSubOrDub === 'sub' ? (
+                <>
+                  <p className='flex gap-2 items-center p-1 px-4 text-blue-500 bg-blue-200 rounded-sm border-2'>
+                    <FaClosedCaptioning /> sub
+                  </p>
+                  <p className='flex gap-2 items-center p-1 px-4 bg-gray-100 rounded-sm hover:bg-blue-200'>
+                    <FaMicrophone /> dub
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className='flex gap-2 items-center p-1 px-4 text-blue-500 bg-blue-200 rounded-sm border-2'>
+                    <FaClosedCaptioning /> sub
+                  </p>
+                  <p className='flex gap-2 items-center p-1 px-4 bg-gray-100 rounded-sm hover:bg-blue-200'>
+                    <FaMicrophone /> dub
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+          <div className='border'>anime Info</div>
+        </div>
+        {/* related and recommendations */}
+        <div className='border min-xl:max-w-3/10 min-xl:min-w-1/4'>
+          related and recommendations{' '}
         </div>
       </div>
     </div>
