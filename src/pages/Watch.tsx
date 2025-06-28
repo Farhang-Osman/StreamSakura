@@ -192,31 +192,27 @@ const Watch: FC = () => {
       {/* beyond watch and episodes list container */}
       <div className='flex gap-3 max-xl:flex-col'>
         {/* Source and anime info */}
-        <div className='w-full aspect-video'>
-          <div className='flex justify-evenly items-center p-2 bg-gray-300'>
-            <p className='px-4 bg-gray-100 rounded-sm'>
-              you are watching Episode {episode?.episode_no}
+        <div className='flex flex-col gap-3 w-full aspect-video'>
+          <div className='flex justify-evenly items-center p-2 bg-gray-300 rounded-sm'>
+            <p className='flex gap-1 p-1 px-4 bg-gray-100 rounded-sm'>
+              you are watching Episode{' '}
+              <p className='px-1 text-blue-500 bg-blue-100 rounded-sm border'>
+                {episode?.episode_no}
+              </p>
             </p>
             <div className='flex gap-4'>
-              {isSubOrDub === 'sub' ? (
-                <>
-                  <p className='flex gap-2 items-center p-1 px-4 text-blue-500 bg-blue-200 rounded-sm border-2'>
-                    <FaClosedCaptioning /> sub
-                  </p>
-                  <p className='flex gap-2 items-center p-1 px-4 bg-gray-100 rounded-sm hover:bg-blue-200'>
-                    <FaMicrophone /> dub
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p className='flex gap-2 items-center p-1 px-4 text-blue-500 bg-blue-200 rounded-sm border-2'>
-                    <FaClosedCaptioning /> sub
-                  </p>
-                  <p className='flex gap-2 items-center p-1 px-4 bg-gray-100 rounded-sm hover:bg-blue-200'>
-                    <FaMicrophone /> dub
-                  </p>
-                </>
-              )}
+              <button
+                onClick={() => setIsSubOrDub('sub')}
+                className={`flex gap-2 items-center p-1 px-4 rounded-sm ${isSubOrDub === 'sub' ? 'bg-blue-200 text-blue-500 border-2' : 'cursor-pointer bg-gray-100 hover:bg-blue-200'}`}
+              >
+                <FaClosedCaptioning /> sub
+              </button>
+              <button
+                onClick={() => setIsSubOrDub('dub')}
+                className={`flex gap-2 items-center p-1 px-4 rounded-sm ${isSubOrDub === 'dub' ? 'bg-blue-200 text-blue-500 border-2' : 'cursor-pointer bg-gray-100 hover:bg-blue-200'}`}
+              >
+                <FaMicrophone /> dub
+              </button>
             </div>
           </div>
           <div className='border'>anime Info</div>
