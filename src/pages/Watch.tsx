@@ -17,6 +17,90 @@ interface totalEpisodes {
   episodes: Episode[];
 }
 
+interface tvInfo {
+  showType: string;
+  duration: string;
+  sub: string;
+  dub: string;
+  eps: string;
+}
+
+interface animeInfo {
+  data: {
+    adultContent: boolean;
+    data_id: number;
+    id: string;
+    anilistId: string;
+    malId: string;
+    title: string;
+    japanese_title: string;
+    synonyms: string;
+    poster: string;
+    showType: string;
+    animeInfo: {
+      Overview: string;
+      Japanese: string;
+      Synonyms: string;
+      Aired: string;
+      Premiered: string;
+      Duration: string;
+      Status: string;
+      'MAL Score': string;
+      Genres: string[];
+      Studios: string;
+      Producers: string[];
+      tvInfo: tvInfo;
+    };
+    charactersVoiceActors: [
+      {
+        character: {
+          id: string;
+          poster: string;
+          name: string;
+          cast: string;
+        };
+        voiceActors: {
+          id: string;
+          poster: string;
+          name: string;
+        };
+      },
+    ];
+    recommended_data: [
+      {
+        data_id: string;
+        id: string;
+        title: string;
+        japanese_title: string;
+        poster: string;
+        tvInfo: tvInfo;
+        adultContent: boolean;
+      },
+    ];
+    related_data: [
+      {
+        data_id: string;
+        id: string;
+        title: string;
+        japanese_title: string;
+        poster: string;
+        tvInfo: tvInfo;
+        adultContent: boolean;
+      },
+    ];
+  };
+  seasons: [
+    {
+      id: string;
+      data_number: number;
+      data_id: number;
+      season: string;
+      title: string;
+      season_poster: string;
+    },
+  ];
+}
+
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const STREAMING_URL = import.meta.env.VITE_STREAMING_URL;
 
@@ -29,6 +113,7 @@ const Watch: FC = () => {
   const [isStreamLoading, setIsStreamLoading] = useState(true);
   const [episode, setEpisode] = useState<Episode>();
   const [isSubOrDub, setIsSubOrDub] = useState<'sub' | 'dub'>('sub');
+  const [animeInfo, setAnimeInfo] = useState<animeInfo>();
 
   const thePath = window.location.pathname;
   const Title = thePath.split('/').pop() as string;
@@ -57,8 +142,30 @@ const Watch: FC = () => {
       console.log(error);
     }
   }
+
+  async function fetchAnimeInfo(animeTitleAndId: string) {
+    try {
+      const res = await axios.get(`${BASE_URL}/api/info`, {
+        params: { id: animeTitleAndId },
+      });
+
+      if (res.status !== 200 || res.status >= 400) {
+        throw new Error(`Server Error: ${res.status}`);
+      } else if (Object.keys(res.data.results).length === 0) {
+        navigate('/404');
+      }
+
+      return res.data.results;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     const reqAnimeEpisodes = async () => {
+      const animeInfo: animeInfo = await fetchAnimeInfo(Title);
+      setAnimeInfo(animeInfo);
+
       const totalEpisodes: totalEpisodes = await fetchEpisodes(Title);
       const animeEpisodes = totalEpisodes.episodes;
       // setEpisodes(animeEpisodes)
@@ -215,12 +322,12 @@ const Watch: FC = () => {
               </button>
             </div>
           </div>
-          <div className='border'>anime Info</div>
+          <div className='border'>
+            <>{animeInfo?.data.id}</>
+          </div>
         </div>
         {/* related and recommendations */}
-        <div className='border min-xl:max-w-3/10 min-xl:min-w-1/4'>
-          related and recommendations{' '}
-        </div>
+        <div className='border min-xl:max-w-3/10 min-xl:min-w-1/4'></div>
       </div>
     </div>
   );
