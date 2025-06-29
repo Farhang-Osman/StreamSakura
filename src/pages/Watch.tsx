@@ -3,6 +3,7 @@ import punch_screen from '/src/assets/punch_screen.webp';
 import { FC, useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { FaPlay, FaClosedCaptioning, FaMicrophone } from 'react-icons/fa';
+import { SideBar } from '../components/shared/sideBar';
 
 interface Episode {
   episode_no: number;
@@ -24,8 +25,37 @@ interface tvInfo {
   dub: string;
   eps: string;
 }
-
-interface animeInfo {
+interface charactersVoiceActors {
+  character: {
+    id: string;
+    poster: string;
+    name: string;
+    cast: string;
+  };
+  voiceActors: {
+    id: string;
+    poster: string;
+    name: string;
+  };
+}
+export interface recommendedAndRelatedData {
+  data_id: string;
+  id: string;
+  title: string;
+  japanese_title: string;
+  poster: string;
+  tvInfo: tvInfo;
+  adultContent: boolean;
+}
+interface seasons {
+  id: string;
+  data_number: number;
+  data_id: number;
+  season: string;
+  title: string;
+  season_poster: string;
+}
+export interface animeInfo {
   data: {
     adultContent: boolean;
     data_id: number;
@@ -51,54 +81,11 @@ interface animeInfo {
       Producers: string[];
       tvInfo: tvInfo;
     };
-    charactersVoiceActors: [
-      {
-        character: {
-          id: string;
-          poster: string;
-          name: string;
-          cast: string;
-        };
-        voiceActors: {
-          id: string;
-          poster: string;
-          name: string;
-        };
-      },
-    ];
-    recommended_data: [
-      {
-        data_id: string;
-        id: string;
-        title: string;
-        japanese_title: string;
-        poster: string;
-        tvInfo: tvInfo;
-        adultContent: boolean;
-      },
-    ];
-    related_data: [
-      {
-        data_id: string;
-        id: string;
-        title: string;
-        japanese_title: string;
-        poster: string;
-        tvInfo: tvInfo;
-        adultContent: boolean;
-      },
-    ];
+    charactersVoiceActors: charactersVoiceActors[];
+    recommended_data: recommendedAndRelatedData[];
+    related_data: recommendedAndRelatedData[];
   };
-  seasons: [
-    {
-      id: string;
-      data_number: number;
-      data_id: number;
-      season: string;
-      title: string;
-      season_poster: string;
-    },
-  ];
+  seasons: seasons[];
 }
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
@@ -113,7 +100,7 @@ const Watch: FC = () => {
   const [isStreamLoading, setIsStreamLoading] = useState(true);
   const [episode, setEpisode] = useState<Episode>();
   const [isSubOrDub, setIsSubOrDub] = useState<'sub' | 'dub'>('sub');
-  const [animeInfo, setAnimeInfo] = useState<animeInfo>();
+  const [animeInfo, setAnimeInfo] = useState<animeInfo>({} as animeInfo);
 
   const thePath = window.location.pathname;
   const Title = thePath.split('/').pop() as string;
@@ -327,7 +314,13 @@ const Watch: FC = () => {
           </div>
         </div>
         {/* related and recommendations */}
-        <div className='border min-xl:max-w-3/10 min-xl:min-w-1/4'></div>
+        <div className='grid grid-cols-1 gap-10 border min-xl:max-w-3/10 min-xl:min-w-1/4 max-lg:grid-cols-2 max-md:grid-cols-1 h-fit'>
+          <SideBar animeData={animeInfo.data?.related_data} title={'RELATED'} />
+          <SideBar
+            animeData={animeInfo.data?.recommended_data}
+            title={'RECOMMENDED'}
+          />
+        </div>
       </div>
     </div>
   );
