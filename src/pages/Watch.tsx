@@ -4,6 +4,7 @@ import { FC, useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { FaPlay, FaClosedCaptioning, FaMicrophone } from 'react-icons/fa';
 import { SideBar } from '../components/shared/sideBar';
+import { SiAnilist, SiMyanimelist } from 'react-icons/si';
 
 interface Episode {
   episode_no: number;
@@ -308,9 +309,40 @@ const Watch: FC = () => {
             </button>
           </div>
         </div>
-        <div className='border'>
-          <>{animeInfo?.data.id}</>
+
+        <div className='flex gap-2 w-full bg-gray-300 rounded-sm'>
+          <div className='w-1/4'>
+            <img src={animeInfo.data?.poster} alt='' className='rounded-sm' />
+            <div>
+              {animeInfo.data?.anilistId && (
+                <a
+                  href={`https://anilist.co/anime/${animeInfo.data?.anilistId}`}
+                  target='_blank'
+                >
+                  <SiAnilist />
+                </a>
+              )}
+              {animeInfo.data?.malId && (
+                <a
+                  href={`https://myanimelist.net/anime/${animeInfo.data?.malId}`}
+                  target='_blank'
+                >
+                  <SiMyanimelist />
+                </a>
+              )}
+            </div>
+          </div>
+          <div className='w-3/4'>
+            <p className='text-xl'>
+              {animeInfo.data?.title || animeInfo.data?.japanese_title}
+            </p>
+            <p className='text-sm bg-gray-100'>
+              {animeInfo.data?.animeInfo?.Overview}
+            </p>
+          </div>
         </div>
+
+        <div>to display seasons</div>
       </div>
       {/* related and recommendations */}
       <div className='grid grid-cols-1 col-span-3 gap-10 max-xl:gap-4 max-md:gap-10 max-xl:col-span-10 max-xl:grid-cols-2 max-md:grid-cols-1 h-fit'>
