@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FaPlay, FaClosedCaptioning, FaMicrophone } from 'react-icons/fa';
 import { SideBar } from '../components/shared/sideBar';
 import { SiAnilist, SiMyanimelist } from 'react-icons/si';
+import { TbStarFilled, TbStarHalfFilled } from 'react-icons/tb';
 
 interface Episode {
   episode_no: number;
@@ -20,11 +21,13 @@ interface totalEpisodes {
 }
 
 interface tvInfo {
+  rating?: string;
+  quality?: string;
   showType: string;
   duration: string;
   sub: string;
-  dub: string;
-  eps: string;
+  dub?: string;
+  eps?: string;
 }
 interface charactersVoiceActors {
   character: {
@@ -310,7 +313,7 @@ const Watch: FC = () => {
           </div>
         </div>
 
-        <div className='flex gap-2 w-full bg-gray-300 rounded-sm'>
+        <div className='flex w-full bg-gray-300 rounded-sm'>
           <div className='w-1/4'>
             <img src={animeInfo.data?.poster} alt='' className='rounded-sm' />
             <div>
@@ -332,13 +335,51 @@ const Watch: FC = () => {
               )}
             </div>
           </div>
-          <div className='w-3/4'>
-            <p className='text-xl'>
-              {animeInfo.data?.title || animeInfo.data?.japanese_title}
+          <div className='flex flex-col gap-1 p-2 w-3/4'>
+            <div className='flex gap-1 items-center'>
+              <p className='px-1 text-xl text-blue-500 bg-gray-100 rounded-sm'>
+                {animeInfo.data?.title || animeInfo.data?.japanese_title}
+              </p>
+              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+                {animeInfo.data?.animeInfo?.tvInfo?.showType}
+              </p>
+              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+                {animeInfo.data?.animeInfo?.Premiered.split('-')[1]}
+              </p>
+              <p className='flex gap-1 items-center px-1 text-sm bg-gray-100 rounded-sm'>
+                {Number(animeInfo.data?.animeInfo?.['MAL Score']) >= 75 ? (
+                  <TbStarFilled />
+                ) : (
+                  <TbStarHalfFilled />
+                )}
+                {animeInfo.data?.animeInfo?.['MAL Score']}
+              </p>
+            </div>
+            <p className='px-1 bg-gray-100 rounded-sm w-fit'>
+              {animeInfo.data?.animeInfo?.Japanese}
             </p>
-            <p className='text-sm bg-gray-100'>
-              {animeInfo.data?.animeInfo?.Overview}
-            </p>
+
+            <div className='flex gap-1 justify-center text-nowrap'>
+              {animeInfo.data?.animeInfo.Genres && (
+                <>
+                  {animeInfo.data?.animeInfo.Genres.map((item) => (
+                    <p className='overflow-hidden overflow-y-auto p-1 text-xs text-red-800 bg-gray-100 rounded-md'>
+                      {item}
+                    </p>
+                  ))}
+                </>
+              )}
+            </div>
+            <p
+              className='overflow-y-auto px-1 max-h-40 text-sm text-gray-500 bg-gray-200 rounded-sm'
+              dangerouslySetInnerHTML={{
+                __html: animeInfo.data?.animeInfo?.Overview,
+              }}
+            />
+
+            {/* <div>
+              <p>{animeInfo.data?.animeInfo?.tvInfo.rating}</p>
+            </div> */}
           </div>
         </div>
 
