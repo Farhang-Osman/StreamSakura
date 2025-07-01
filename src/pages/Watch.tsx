@@ -316,45 +316,11 @@ const Watch: FC = () => {
         <div className='flex w-full bg-gray-300 rounded-sm'>
           <div className='w-1/4'>
             <img src={animeInfo.data?.poster} alt='' className='rounded-sm' />
-            <div>
-              {animeInfo.data?.anilistId && (
-                <a
-                  href={`https://anilist.co/anime/${animeInfo.data?.anilistId}`}
-                  target='_blank'
-                >
-                  <SiAnilist />
-                </a>
-              )}
-              {animeInfo.data?.malId && (
-                <a
-                  href={`https://myanimelist.net/anime/${animeInfo.data?.malId}`}
-                  target='_blank'
-                >
-                  <SiMyanimelist />
-                </a>
-              )}
-            </div>
           </div>
           <div className='flex flex-col gap-1 p-2 w-3/4'>
-            <div className='flex gap-1 items-center'>
-              <p className='px-1 text-xl text-blue-500 bg-gray-100 rounded-sm'>
-                {animeInfo.data?.title || animeInfo.data?.japanese_title}
-              </p>
-              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
-                {animeInfo.data?.animeInfo?.tvInfo?.showType}
-              </p>
-              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
-                {animeInfo.data?.animeInfo?.Premiered.split('-')[1]}
-              </p>
-              <p className='flex gap-1 items-center px-1 text-sm bg-gray-100 rounded-sm'>
-                {Number(animeInfo.data?.animeInfo?.['MAL Score']) >= 75 ? (
-                  <TbStarFilled />
-                ) : (
-                  <TbStarHalfFilled />
-                )}
-                {animeInfo.data?.animeInfo?.['MAL Score']}
-              </p>
-            </div>
+            <p className='px-1 text-xl text-blue-500 bg-gray-100 rounded-sm w-fit'>
+              {animeInfo.data?.title || animeInfo.data?.japanese_title}
+            </p>
             <p className='px-1 bg-gray-100 rounded-sm w-fit'>
               {animeInfo.data?.animeInfo?.Japanese}
             </p>
@@ -371,15 +337,56 @@ const Watch: FC = () => {
               )}
             </div>
             <p
-              className='overflow-y-auto px-1 max-h-40 text-sm text-gray-500 bg-gray-200 rounded-sm'
+              className='overflow-y-auto px-1 max-h-40 text-sm text-gray-500 bg-gray-200 rounded-sm scroll-smooth'
               dangerouslySetInnerHTML={{
                 __html: animeInfo.data?.animeInfo?.Overview,
               }}
             />
 
-            {/* <div>
-              <p>{animeInfo.data?.animeInfo?.tvInfo.rating}</p>
-            </div> */}
+            <div className='flex gap-2 justify-center items-center'>
+              {animeInfo.data?.anilistId && (
+                <a
+                  href={`https://anilist.co/anime/${animeInfo.data?.anilistId}`}
+                  target='_blank'
+                  className='flex items-center px-8 h-6 bg-gray-100 rounded-sm'
+                >
+                  <SiAnilist className='size-6' />
+                </a>
+              )}
+              {animeInfo.data?.malId && (
+                <a
+                  href={`https://myanimelist.net/anime/${animeInfo.data?.malId}`}
+                  target='_blank'
+                  className='flex items-center px-8 h-6 bg-gray-100 rounded-sm'
+                >
+                  <SiMyanimelist className='size-10' />
+                </a>
+              )}
+            </div>
+
+            <div className='flex gap-2 justify-center'>
+              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+                {animeInfo.data?.showType}
+              </p>
+              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+                {animeInfo.data?.animeInfo?.Premiered.split('-')[1]}
+              </p>
+              <p className='flex gap-1 items-center px-1 text-sm bg-gray-100 rounded-sm'>
+                {Number(animeInfo.data?.animeInfo?.['MAL Score']) >= 7.5 ? (
+                  <TbStarFilled />
+                ) : (
+                  <TbStarHalfFilled />
+                )}
+                {animeInfo.data?.animeInfo?.['MAL Score']}
+              </p>
+              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+                {' '}
+                Rating: {animeInfo.data?.animeInfo?.tvInfo.rating}
+              </p>
+              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+                {animeInfo.data?.animeInfo?.Status}
+              </p>
+            </div>
           </div>
         </div>
 
