@@ -105,6 +105,7 @@ const Watch: FC = () => {
   const [episode, setEpisode] = useState<Episode>();
   const [isSubOrDub, setIsSubOrDub] = useState<'sub' | 'dub'>('sub');
   const [animeInfo, setAnimeInfo] = useState<animeInfo>({} as animeInfo);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   const thePath = window.location.pathname;
   const Title = thePath.split('/').pop() as string;
@@ -227,6 +228,10 @@ const Watch: FC = () => {
     history.pushState({}, '', `${origin}/watch/${epUrl}`);
   };
 
+  const toggleDescription = () => {
+    setIsDescriptionExpanded(!isDescriptionExpanded);
+  };
+
   const thereIsError = false;
 
   return thereIsError ? (
@@ -336,12 +341,23 @@ const Watch: FC = () => {
                 </>
               )}
             </div>
-            <p
-              className='overflow-y-auto px-1 max-h-40 text-sm text-gray-500 bg-gray-200 rounded-sm scroll-smooth'
-              dangerouslySetInnerHTML={{
-                __html: animeInfo.data?.animeInfo?.Overview,
-              }}
-            />
+            {isDescriptionExpanded ? (
+              <p
+                className='overflow-y-auto px-1 text-sm text-gray-500 bg-gray-200 rounded-sm max-h-30 scroll-smooth'
+                dangerouslySetInnerHTML={{
+                  __html: `${animeInfo.data?.animeInfo?.Overview}`,
+                }}
+                onClick={toggleDescription}
+              />
+            ) : (
+              <p
+                className='overflow-y-auto px-1 text-sm text-gray-500 bg-gray-200 rounded-sm max-h-30 scroll-smooth'
+                dangerouslySetInnerHTML={{
+                  __html: `${animeInfo.data?.animeInfo?.Overview.substring(0, 150)}...[click to show more]`,
+                }}
+                onClick={toggleDescription}
+              />
+            )}
 
             <div className='flex gap-2 justify-center items-center'>
               {animeInfo.data?.anilistId && (
