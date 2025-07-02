@@ -16,7 +16,12 @@ export const SideBar: FC<{
       </div>
       <div className='flex relative flex-col gap-2 mt-2 rounded-lg'>
         {animeData.map((anime: recommendedAndRelatedData) => (
-          <Link className='' to={`/watch/${anime.id}`} key={anime.data_id}>
+          <Link
+            className=''
+            to={`/watch/${anime.id}`}
+            target='_blank'
+            key={anime.data_id}
+          >
             <div className='group relative aspect-[5/1] animate-slideUp min-h-28 max-h-28 w-full'>
               <div className='absolute right-0 w-3/4 h-full'>
                 <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-white to-85% group-hover:to-100% group-hover:from-75%'></div>
