@@ -392,21 +392,34 @@ const Watch: FC = () => {
 
         {animeInfo.seasons.length !== 0 && (
           <div className='flex flex-col gap-2 pt-1 pb-4 text-center bg-gray-300 rounded-sm h-fit'>
-            more seasons of this anime
+            <p className='mx-2 bg-gray-200 label'>Seasons</p>
             <div className='flex relative flex-wrap gap-2 justify-center'>
               {animeInfo.seasons.map((item) => (
-                <Link to={`/watch/${item.id}`} target='_blank'>
-                  <div className='relative'>
-                    <img
-                      src={item.season_poster}
-                      alt=''
-                      className='object-cover relative w-40 rounded-sm brightness-75 aspect-[3/4]'
-                    />
-                    <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center text-white'>
-                      {item.season}
-                    </p>
-                  </div>
-                </Link>
+                <div className='relative cursor-pointer'>
+                  {item.title === animeInfo.data?.title ? (
+                    <>
+                      <img
+                        src={animeInfo.data?.poster}
+                        alt=''
+                        className='object-cover relative w-40 rounded-sm aspect-[3/4] brightness-75 scale-106'
+                      />
+                      <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center text-white'>
+                        {item.season}
+                      </p>
+                    </>
+                  ) : (
+                    <Link to={`/watch/${item.id}`} target='_blank'>
+                      <img
+                        src={item.season_poster}
+                        alt=''
+                        className='object-cover w-40 rounded-sm aspect-[3/4] brightness-50'
+                      />
+                      <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center text-gray-300 hover:text-white'>
+                        {item.season}
+                      </p>
+                    </Link>
+                  )}
+                </div>
               ))}
             </div>
           </div>
