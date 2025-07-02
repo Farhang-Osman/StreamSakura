@@ -295,14 +295,14 @@ const Watch: FC = () => {
 
       {/* Source and anime info */}
       <div className='flex flex-col col-span-7 gap-3 w-full max-xl:col-span-10 aspect-video'>
-        <div className='flex justify-evenly items-center p-2 bg-gray-300 rounded-sm'>
-          <p className='flex gap-1 p-1 px-4 bg-gray-100 rounded-sm'>
+        <div className='flex gap-2 justify-evenly items-center p-2 bg-gray-300 rounded-sm'>
+          <p className='flex flex-wrap gap-1 items-center p-1 px-4 bg-gray-100 rounded-sm'>
             you are watching Episode{' '}
             <p className='px-1 text-blue-500 bg-blue-100 rounded-sm border'>
               {episode?.episode_no}
             </p>
           </p>
-          <div className='flex gap-4'>
+          <div className='flex flex-wrap gap-4 max-sm:gap-2'>
             <button
               onClick={() => setIsSubOrDub('sub')}
               className={`flex gap-2 items-center p-1 px-4 rounded-sm ${isSubOrDub === 'sub' ? 'bg-blue-200 text-blue-500 border-2' : 'cursor-pointer bg-gray-100 hover:bg-blue-200'}`}
@@ -319,10 +319,10 @@ const Watch: FC = () => {
         </div>
 
         <div className='flex w-full bg-gray-300 rounded-sm'>
-          <div className='w-1/4'>
+          <div className='w-1/4 max-md:w-2/5'>
             <img src={animeInfo.data?.poster} alt='' className='rounded-sm' />
           </div>
-          <div className='flex flex-col gap-1 p-2 w-3/4'>
+          <div className='flex flex-col gap-4 items-center p-2 w-3/4 max-sm:w-3/5 max-sm:gap-2'>
             <p className='px-1 text-xl text-blue-500 bg-gray-100 rounded-sm w-fit'>
               {animeInfo.data?.title || animeInfo.data?.japanese_title}
             </p>
@@ -330,7 +330,7 @@ const Watch: FC = () => {
               {animeInfo.data?.animeInfo?.Japanese}
             </p>
 
-            <div className='flex gap-1 justify-center text-nowrap'>
+            <div className='flex flex-wrap gap-1 justify-center text-nowrap'>
               {animeInfo.data?.animeInfo.Genres && (
                 <>
                   {animeInfo.data?.animeInfo.Genres.map((item) => (
@@ -380,7 +380,7 @@ const Watch: FC = () => {
               )}
             </div>
 
-            <div className='flex gap-2 justify-center'>
+            <div className='flex flex-wrap gap-2 justify-center'>
               <p className='px-1 text-sm bg-gray-100 rounded-sm'>
                 {animeInfo.data?.showType}
               </p>
@@ -417,7 +417,7 @@ const Watch: FC = () => {
                       <img
                         src={animeInfo.data?.poster}
                         alt=''
-                        className='object-cover relative w-40 rounded-sm aspect-[3/4] brightness-75 scale-106'
+                        className='object-cover relative w-40 max-sm:w-30 rounded-sm aspect-[3/4] brightness-75 scale-106'
                       />
                       <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center text-white'>
                         {item.season}
@@ -428,7 +428,7 @@ const Watch: FC = () => {
                       <img
                         src={item.season_poster}
                         alt=''
-                        className='object-cover w-40 rounded-sm aspect-[3/4] brightness-50'
+                        className='object-cover w-40 max-sm:w-30 rounded-sm aspect-[3/4] brightness-50'
                       />
                       <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center text-gray-300 hover:text-white'>
                         {item.season}
