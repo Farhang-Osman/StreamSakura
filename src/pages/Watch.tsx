@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import punch_screen from '/src/assets/punch_screen.webp';
 import { FC, useEffect, useState, useRef } from 'react';
 import axios from 'axios';
@@ -390,7 +390,27 @@ const Watch: FC = () => {
           </div>
         </div>
 
-        <div>to display seasons</div>
+        {animeInfo.seasons.length !== 0 && (
+          <div className='flex flex-col gap-2 pt-1 pb-4 text-center bg-gray-300 rounded-sm h-fit'>
+            more seasons of this anime
+            <div className='flex relative flex-wrap gap-2 justify-center'>
+              {animeInfo.seasons.map((item) => (
+                <Link to={`/watch/${item.id}`} target='_blank'>
+                  <div className='relative'>
+                    <img
+                      src={item.season_poster}
+                      alt=''
+                      className='object-cover relative w-40 rounded-sm brightness-75 aspect-[3/4]'
+                    />
+                    <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center text-white'>
+                      {item.season}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       {/* related and recommendations */}
       <div className='grid grid-cols-1 col-span-3 gap-10 max-xl:gap-4 max-md:gap-10 max-xl:col-span-10 max-xl:grid-cols-2 max-md:grid-cols-1 h-fit'>
