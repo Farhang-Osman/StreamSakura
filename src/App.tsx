@@ -10,6 +10,8 @@ import Search from './pages/Search';
 import TOS from './pages/TOS-and-privacy-policy';
 import Watch from './pages/Watch';
 import { AuthProvider } from './client/useAuth';
+import SideNavBar from './components/navigation/SideNavBar';
+import TopNavBar from './components/navigation/TopNavBar';
 
 register();
 
@@ -17,7 +19,10 @@ function App() {
   return (
     <Router>
       <AuthProvider>
+        <TopNavBar />
+        <SideNavBar />
         <Routes>
+          {/* <Route path='/dfj' element={<sideBarNav />} /> */}
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
           <Route path='/about' element={<About />} />
