@@ -32,6 +32,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/TOS' element={<TOS />} />
           <Route path='/search' element={<Search />} />
+          <Route path='/search?query' element={<Search />} />
           <Route path='/watch/:animeTitleAndId' element={<Watch />} />
           <Route
             path='/watch/:animeTitleAndId?episodeNumber'
