@@ -14,7 +14,8 @@ const TopNavBar = () => {
 
   const handleKeyDownOnInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      navigate(`/search?${search}`);
+      e.preventDefault();
+      navigate(`/search?q=${search}`);
     }
   };
 
