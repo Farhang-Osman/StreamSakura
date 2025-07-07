@@ -18,6 +18,51 @@ interface searchResults {
   totalPage: number;
 }
 
+const genres = {
+  // 12, 33, 34 <<< unknown genres
+  1: 'Action',
+  2: 'Adventure',
+  3: 'Cars',
+  4: 'Comedy',
+  5: 'Dementia',
+  6: 'Demons',
+  7: 'Mystery',
+  8: 'Drama',
+  9: 'Ecchi', //
+  10: 'Fantasy',
+  11: 'Game',
+  13: 'Historical',
+  14: 'Horror',
+  15: 'Kids',
+  16: 'Magic',
+  17: 'Martial arts',
+  18: 'Mecha',
+  19: 'Music', //
+  20: 'Parody',
+  21: 'Samurai',
+  22: 'Romance',
+  23: 'School',
+  24: 'Sci-Fi',
+  25: 'Shoujo',
+  26: 'Shoujo Ai', //
+  27: 'Shounen',
+  28: 'Shounen Ai', //
+  29: 'Space',
+  30: 'Sports',
+  31: 'Super Power',
+  32: 'Vampire',
+  35: 'Harem', //
+  36: 'Slice of Life',
+  37: 'Supernatural',
+  38: 'Military',
+  39: 'Police',
+  40: 'Psychological',
+  41: 'Thriller',
+  42: 'Seinen',
+  43: 'Josei',
+  44: 'Isekai',
+};
+
 const Search: FC = () => {
   const location = useLocation();
 
@@ -61,9 +106,9 @@ const Search: FC = () => {
   }, [location]);
 
   return (
-    <div>
-      <p>totalPage: {resp?.totalPage}</p>
+    <div className='flex'>
       <div className='relative transition card-grid-layout duration-0'>
+        <p>totalPage: {resp?.totalPage}</p>
         {resp?.data.map((anime) => (
           <CardItem2
             key={anime.id}
@@ -76,6 +121,17 @@ const Search: FC = () => {
             }}
           />
         ))}
+      </div>
+      <div className='flex flex-col gap-2 p-1 w-1/5 h-full bg-gray-300 rounded-sm'>
+        <h3 className='text-center label'>Genres</h3>
+
+        <div className='flex flex-wrap gap-2 justify-center'>
+          {Object.entries(genres).map(([id, name]) => (
+            <p key={id} className='px-1 bg-gray-200 rounded-sm border w-fit'>
+              {name}
+            </p>
+          ))}
+        </div>
       </div>
     </div>
   );
