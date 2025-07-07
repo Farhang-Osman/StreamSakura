@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { tvInfo } from './Watch';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { CardItem2 } from '../components/shared/CardItem2';
 
 interface searchResults {
   data: [
@@ -59,30 +60,23 @@ const Search: FC = () => {
     fetchResults();
   }, [location]);
 
-  // const params = new URLSearchParams(location.search);
-  // console.log(params.get('q'));
-
-  // const test = async () => {
-  //   return await fetchSearchResults(params.get('q') as string);
-  // };
-  // console.log(test());
-
-  console.log(resp);
-
   return (
     <div>
-      <p className='text-6xl'>search page</p>
-      <div className='flex gap-4'>
-        {resp?.data.map((item) => (
-          <div>
-            <p>id: {item.id}</p>
-            <p className='text-2xl'>{item.japanese_title}</p>
-            <img src={item.poster} alt='' />
-          </div>
+      <p>totalPage: {resp?.totalPage}</p>
+      <div className='relative transition card-grid-layout duration-0'>
+        {resp?.data.map((anime) => (
+          <CardItem2
+            key={anime.id}
+            anime={{
+              id: anime.id,
+              image: anime.poster,
+              englishTitle: anime.title,
+              japaneseTitle: anime.japanese_title,
+              type: anime.tvInfo.showType,
+            }}
+          />
         ))}
       </div>
-
-      <p>totalPage: {resp?.totalPage}</p>
     </div>
   );
 };
