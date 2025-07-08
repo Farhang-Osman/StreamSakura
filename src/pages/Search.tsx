@@ -18,6 +18,25 @@ interface searchResults {
   totalPage: number;
 }
 
+interface filters {
+  type: string;
+  status: string;
+  rated: string;
+  score: string;
+  season: string;
+  language: string;
+  genres: string;
+  sort: string;
+  page: number;
+  sy: number;
+  sm: number;
+  sd: number;
+  ey: number;
+  em: number;
+  ed: number;
+  keyword: string;
+}
+
 const genres = {
   // 12, 33, 34 <<< unknown genres
   1: 'Action',
@@ -107,8 +126,48 @@ const Search: FC = () => {
 
   return (
     <div className='flex'>
-      <div className='relative transition card-grid-layout duration-0'>
-        <p>totalPage: {resp?.totalPage}</p>
+      <div className='flex flex-col w-1/5 h-full bg-gray-300 rounded-sm'>
+        <h3 className='text-center label'>Filters</h3>
+        <div>
+          <div className='flex'>
+            <p>type: </p>
+            <p>all</p>
+          </div>
+          <div className='flex'>
+            <p>status: </p>
+            <p>all</p>
+          </div>
+          <div className='flex'>
+            <p>rated: </p>
+            <p>all</p>
+          </div>
+          <div className='flex'>
+            <p>score: </p>
+            <p>all</p>
+          </div>
+          <div className='flex'>
+            <p>season: </p>
+            <p>all</p>
+          </div>
+          <div className='flex'>
+            <p>language: </p>
+            <p>all</p>
+          </div>
+          <div className='flex'>
+            <p>start date: </p>
+            <p>all</p>
+          </div>
+          <div className='flex'>
+            <p>end date: </p>
+            <p>all</p>
+          </div>
+          <div className='flex'>
+            <p>sort: </p>
+            <p>all</p>
+          </div>
+        </div>
+      </div>
+      <div className='relative w-3/5 transition card-grid-layout duration-0'>
         {resp?.data.map((anime) => (
           <CardItem2
             key={anime.id}
