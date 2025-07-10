@@ -97,10 +97,10 @@ const Search: FC = () => {
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   const [resp, setResp] = useState<searchResults>();
-  const [filterParams, setFilterParams] = useState<filters>();
+  const [filterParams, setFilterParams] = useState<filters | undefined>();
   const [selectedgGenres, setSelectedgGenres] = useState<string>();
 
-  async function fetchFilterResults(filterParams: filters) {
+  async function fetchFilterResults(filterParams: filters | undefined) {
     try {
       const res = await axios.get(`${BASE_URL}/api/filter`, {
         params: filterParams,
@@ -163,19 +163,24 @@ const Search: FC = () => {
 
       if (genreIndex !== -1) {
         genresList.splice(genreIndex, 1);
-        console.log('genresList.splice(genreIndex, 1)');
         setSelectedgGenres(genresList.join(','));
       } else {
         genresList.push(genreNumber);
-        console.log('>>>  genresList.push(genreNumber)  <<<');
         setSelectedgGenres(genresList.join(','));
       }
     }
     // setSelectedgGenres(selectedgGenres ? [selectedgGenres, g].join(',') : g);
   };
+
   useEffect(() => {
+    setFilterParams({ genres: selectedgGenres });
     console.log('genres', selectedgGenres);
+    console.log('filterParams', filterParams);
   }, [selectedgGenres]);
+
+  useEffect(() => {
+    console.log('2nd filterParams', filterParams);
+  }, [filterParams]);
 
   // console.log('genres ', selectedgGenres);
 
@@ -244,13 +249,21 @@ const Search: FC = () => {
             <li
               onClick={() => handleGenres(id)}
               key={id}
-              className='px-1 hover:cursor-pointer bg-gray-200 rounded-sm border w-fit'
+              className='px-1 bg-gray-200 rounded-sm border hover:cursor-pointer w-fit'
             >
               {name}
             </li>
           ))}
         </ul>
       </div>
+      <button
+        className='bg-red-300 hover:cursor-pointer'
+        onClick={() => {
+          if (filterParams) fetchFilterResults(filterParams);
+        }}
+      >
+        apply
+      </button>
     </div>
   );
 };
