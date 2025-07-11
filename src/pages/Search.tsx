@@ -28,7 +28,6 @@ interface filters {
   genres?: string;
   sort?:
     | 'default'
-    | 'name_az'
     | 'recently_added'
     | 'recently_updated'
     | 'score'
@@ -36,12 +35,12 @@ interface filters {
     | 'released_date'
     | 'most_watched';
   page?: number;
-  sy?: number;
-  sm?: number;
-  sd?: number;
-  ey?: number;
-  em?: number;
-  ed?: number;
+  sy?: 'Year' | number;
+  sm?: 'Month' | number;
+  sd?: 'Day' | number;
+  ey?: 'Year' | number;
+  em?: 'Month' | number;
+  ed?: 'Day' | number;
   keyword?: string;
 }
 
@@ -173,16 +172,81 @@ const Search: FC = () => {
   };
 
   useEffect(() => {
-    setFilterParams({ genres: selectedgGenres });
+    setFilterParams({ ...filterParams, genres: selectedgGenres });
     console.log('genres', selectedgGenres);
     console.log('filterParams', filterParams);
   }, [selectedgGenres]);
 
   useEffect(() => {
     console.log('2nd filterParams', filterParams);
+    console.log('filterParams?.type ', filterParams?.type);
   }, [filterParams]);
 
-  // console.log('genres ', selectedgGenres);
+  const handleFilters = (type: string, value: any) => {
+    if (type === 'type') {
+      if (value === 'all') {
+        setFilterParams({ ...filterParams, type: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else if (value === 'default') {
+        setFilterParams({ ...filterParams, type: undefined });
+        console.log(`else if (value === 'default'`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, type: value });
+      }
+    } else if (type === 'status') {
+      if (value === 'all') {
+        setFilterParams({ ...filterParams, status: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else if (value === 'default') {
+        setFilterParams({ ...filterParams, status: undefined });
+        console.log(`else if (value === 'default'`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, status: value });
+      }
+    } else if (type === 'score') {
+      if (value === 'all') {
+        setFilterParams({ ...filterParams, score: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else if (value === 'default') {
+        setFilterParams({ ...filterParams, score: undefined });
+        console.log(`else if (value === 'default'`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, score: value });
+      }
+    } else if (type === 'season') {
+      if (value === 'all') {
+        setFilterParams({ ...filterParams, season: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else if (value === 'default') {
+        setFilterParams({ ...filterParams, season: undefined });
+        console.log(`else if (value === 'default'`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, season: value });
+      }
+    } else if (type === 'language') {
+      if (value === 'all') {
+        setFilterParams({ ...filterParams, language: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else if (value === 'default') {
+        setFilterParams({ ...filterParams, language: undefined });
+        console.log(`else if (value === 'default'`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, language: value });
+      }
+    } else if (type === 'sort') {
+      if (value === 'all') {
+        setFilterParams({ ...filterParams, sort: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else if (value === 'default') {
+        setFilterParams({ ...filterParams, sort: undefined });
+        console.log(`else if (value === 'default'`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, sort: value });
+      }
+    }
+
+    // for Start Date and End Date
+  };
 
   return (
     <div className='flex'>
@@ -191,39 +255,124 @@ const Search: FC = () => {
         <div>
           <div className='flex'>
             <p>type: </p>
-            <p>all</p>
+            {/* {filterParams?.type === undefined ? <p>all</p> : <p>any</p>} */}
+            <select
+              name='type'
+              id='type'
+              onChange={(e) => handleFilters('type', e.target.value)}
+            >
+              <option value='all'>all</option>
+              <option value='movie'>movie</option>
+              <option value='tv'>tv</option>
+              <option value='ova'>ova</option>
+              <option value='ona'>ona</option>
+              <option value='special'>special</option>
+              <option value='music'>music</option>
+            </select>
           </div>
           <div className='flex'>
             <p>status: </p>
-            <p>all</p>
+            <select
+              name='status'
+              id='status'
+              onChange={(e) => handleFilters('status', e.target.value)}
+            >
+              <option value='all'>all</option>
+              <option value='finished_airing'>finished_airing</option>
+              <option value='currently_airing'>currently_airing</option>
+              <option value='not_yet_aired'>not_yet_aired</option>
+            </select>
           </div>
           <div className='flex'>
             <p>rated: </p>
-            <p>all</p>
+            <select
+              name='rated'
+              id='rated'
+              onChange={(e) => handleFilters('rated', e.target.value)}
+            >
+              <option value='all'>all</option>
+              <option value='G'>G</option>
+              <option value='PG'>PG</option>
+              <option value='PG_13'>PG_13</option>
+              <option value='R'>R</option>
+              <option value='r_plus'>r_plus</option>
+              <option value='RX'>RX</option>
+            </select>
           </div>
           <div className='flex'>
             <p>score: </p>
-            <p>all</p>
+            <select
+              name='score'
+              id='score'
+              onChange={(e) => handleFilters('score', e.target.value)}
+            >
+              <option value='all'>all</option>
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
+              <option value='6'>6</option>
+              <option value='7'>7</option>
+              <option value='8'>8</option>
+              <option value='9'>9</option>
+              <option value='10'>10</option>
+            </select>
           </div>
           <div className='flex'>
             <p>season: </p>
-            <p>all</p>
+            <select
+              name='season'
+              id='season'
+              onChange={(e) => handleFilters('season', e.target.value)}
+            >
+              <option value='all'>all</option>
+              <option value='spring'>spring</option>
+              <option value='summer'>summer</option>
+              <option value='fall'>fall</option>
+              <option value='winter'>winter</option>
+            </select>
           </div>
           <div className='flex'>
             <p>language: </p>
-            <p>all</p>
+            <select
+              name='language'
+              id='language'
+              onChange={(e) => handleFilters('language', e.target.value)}
+            >
+              <option value='all'>all</option>
+              <option value='sub'>sub</option>
+              <option value='dub'>dub</option>
+              <option value='sub_dub'>sub_dub</option>
+            </select>
           </div>
           <div className='flex'>
             <p>start date: </p>
-            <p>all</p>
+            <p>year </p>
+            <p>month</p>
+            <p>day</p>
           </div>
           <div className='flex'>
             <p>end date: </p>
-            <p>all</p>
+            <p>year </p>
+            <p>month</p>
+            <p>day</p>
           </div>
           <div className='flex'>
             <p>sort: </p>
-            <p>all</p>
+            <select
+              name='sort'
+              id='sort'
+              onChange={(e) => handleFilters('sort', e.target.value)}
+            >
+              <option value='default'>default</option>
+              <option value='recently_added'>recently_added</option>
+              <option value='recently_updated'>recently_updated</option>
+              <option value='score'>score</option>
+              <option value='name_az'>name_az</option>
+              <option value='released_date'>released_date</option>
+              <option value='most_watched'>most_watched</option>
+            </select>
           </div>
         </div>
       </div>
