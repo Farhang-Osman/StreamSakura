@@ -246,6 +246,49 @@ const Search: FC = () => {
     }
 
     // for Start Date and End Date
+    if (type === 'sy') {
+      if (value === 'Year') {
+        setFilterParams({ ...filterParams, sy: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, sy: value });
+      }
+    } else if (type === 'sm') {
+      if (value === 'Month') {
+        setFilterParams({ ...filterParams, sm: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, sm: value });
+      }
+    } else if (type === 'sd') {
+      if (value === 'Day') {
+        setFilterParams({ ...filterParams, sd: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, sd: value });
+      }
+    } else if (type === 'ey') {
+      if (value === 'Year') {
+        setFilterParams({ ...filterParams, ey: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, ey: value });
+      }
+    } else if (type === 'em') {
+      if (value === 'Month') {
+        setFilterParams({ ...filterParams, em: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, em: value });
+      }
+    } else if (type === 'ed') {
+      if (value === 'Day') {
+        setFilterParams({ ...filterParams, ed: undefined });
+        console.log(`if (value === 'all')`, 'the value is ', value);
+      } else {
+        setFilterParams({ ...filterParams, ed: value });
+      }
+    }
   };
 
   return (
@@ -348,15 +391,100 @@ const Search: FC = () => {
           </div>
           <div className='flex'>
             <p>start date: </p>
-            <p>year </p>
-            <p>month</p>
-            <p>day</p>
+
+            <select
+              name='sy'
+              id='sy'
+              onChange={(e) => handleFilters('sy', e.target.value)}
+            >
+              <option key='Year' value='Year'>
+                Year
+              </option>
+              {Array.from(
+                { length: new Date().getFullYear() - 1916 },
+                (_, i) => new Date().getFullYear() - i,
+              ).map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+            <select
+              name='sm'
+              id='sm'
+              onChange={(e) => handleFilters('sm', e.target.value)}
+            >
+              <option key='Month' value='Month'>
+                Month
+              </option>
+              {Array.from({ length: 12 }, (_, i) => i + 1).map((Month) => (
+                <option key={Month} value={Month}>
+                  {Month}
+                </option>
+              ))}
+            </select>
+            <select
+              name='sd'
+              id='sd'
+              onChange={(e) => handleFilters('sd', e.target.value)}
+            >
+              <option key='Day' value='Day'>
+                Day
+              </option>
+              {Array.from({ length: 31 }, (_, i) => i + 1).map((Day) => (
+                <option key={Day} value={Day}>
+                  {Day}
+                </option>
+              ))}
+            </select>
           </div>
           <div className='flex'>
             <p>end date: </p>
-            <p>year </p>
-            <p>month</p>
-            <p>day</p>
+            <select
+              name='ey'
+              id='ey'
+              onChange={(e) => handleFilters('ey', e.target.value)}
+            >
+              <option key='Year' value='Year'>
+                Year
+              </option>
+              {Array.from(
+                { length: new Date().getFullYear() - 1916 },
+                (_, i) => new Date().getFullYear() - i,
+              ).map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+            <select
+              name='em'
+              id='em'
+              onChange={(e) => handleFilters('em', e.target.value)}
+            >
+              <option key='Month' value='Month'>
+                Month
+              </option>
+              {Array.from({ length: 12 }, (_, i) => i + 1).map((Month) => (
+                <option key={Month} value={Month}>
+                  {Month}
+                </option>
+              ))}
+            </select>
+            <select
+              name='ed'
+              id='ed'
+              onChange={(e) => handleFilters('ed', e.target.value)}
+            >
+              <option key='Day' value='Day'>
+                Day
+              </option>
+              {Array.from({ length: 31 }, (_, i) => i + 1).map((Day) => (
+                <option key={Day} value={Day}>
+                  {Day}
+                </option>
+              ))}
+            </select>
           </div>
           <div className='flex'>
             <p>sort: </p>
