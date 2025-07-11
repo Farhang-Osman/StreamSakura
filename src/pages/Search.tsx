@@ -113,25 +113,7 @@ const Search: FC = () => {
         navigate('/404');
       }
 
-      return res.data.results;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function fetchSearchResults(query: string) {
-    try {
-      const res = await axios.get(`${BASE_URL}/api/search`, {
-        params: { keyword: query },
-      });
-
-      if (res.status !== 200 || res.status >= 400) {
-        throw new Error(`Server Error: ${res.status}`);
-      } else if (Object.keys(res.data.results).length === 0) {
-        navigate('/404');
-      }
-
-      return res.data.results;
+      setResp(res.data.results);
     } catch (error) {
       console.log(error);
     }
@@ -143,11 +125,9 @@ const Search: FC = () => {
 
     const fetchResults = async () => {
       if (q === '') {
-        const res = await fetchSearchResults('a');
-        setResp(res);
+        fetchFilterResults({ keyword: undefined });
       } else {
-        const res = await fetchSearchResults(q as string);
-        setResp(res);
+        fetchFilterResults({ keyword: q as string });
       }
     };
     fetchResults();
@@ -186,7 +166,6 @@ const Search: FC = () => {
     if (type === 'type') {
       if (value === 'all') {
         setFilterParams({ ...filterParams, type: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else if (value === 'default') {
         setFilterParams({ ...filterParams, type: undefined });
         console.log(`else if (value === 'default'`, 'the value is ', value);
@@ -196,7 +175,6 @@ const Search: FC = () => {
     } else if (type === 'status') {
       if (value === 'all') {
         setFilterParams({ ...filterParams, status: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else if (value === 'default') {
         setFilterParams({ ...filterParams, status: undefined });
         console.log(`else if (value === 'default'`, 'the value is ', value);
@@ -206,7 +184,6 @@ const Search: FC = () => {
     } else if (type === 'score') {
       if (value === 'all') {
         setFilterParams({ ...filterParams, score: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else if (value === 'default') {
         setFilterParams({ ...filterParams, score: undefined });
         console.log(`else if (value === 'default'`, 'the value is ', value);
@@ -216,7 +193,6 @@ const Search: FC = () => {
     } else if (type === 'season') {
       if (value === 'all') {
         setFilterParams({ ...filterParams, season: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else if (value === 'default') {
         setFilterParams({ ...filterParams, season: undefined });
         console.log(`else if (value === 'default'`, 'the value is ', value);
@@ -226,7 +202,6 @@ const Search: FC = () => {
     } else if (type === 'language') {
       if (value === 'all') {
         setFilterParams({ ...filterParams, language: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else if (value === 'default') {
         setFilterParams({ ...filterParams, language: undefined });
         console.log(`else if (value === 'default'`, 'the value is ', value);
@@ -236,7 +211,6 @@ const Search: FC = () => {
     } else if (type === 'sort') {
       if (value === 'all') {
         setFilterParams({ ...filterParams, sort: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else if (value === 'default') {
         setFilterParams({ ...filterParams, sort: undefined });
         console.log(`else if (value === 'default'`, 'the value is ', value);
@@ -249,42 +223,36 @@ const Search: FC = () => {
     if (type === 'sy') {
       if (value === 'Year') {
         setFilterParams({ ...filterParams, sy: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else {
         setFilterParams({ ...filterParams, sy: value });
       }
     } else if (type === 'sm') {
       if (value === 'Month') {
         setFilterParams({ ...filterParams, sm: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else {
         setFilterParams({ ...filterParams, sm: value });
       }
     } else if (type === 'sd') {
       if (value === 'Day') {
         setFilterParams({ ...filterParams, sd: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else {
         setFilterParams({ ...filterParams, sd: value });
       }
     } else if (type === 'ey') {
       if (value === 'Year') {
         setFilterParams({ ...filterParams, ey: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else {
         setFilterParams({ ...filterParams, ey: value });
       }
     } else if (type === 'em') {
       if (value === 'Month') {
         setFilterParams({ ...filterParams, em: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else {
         setFilterParams({ ...filterParams, em: value });
       }
     } else if (type === 'ed') {
       if (value === 'Day') {
         setFilterParams({ ...filterParams, ed: undefined });
-        console.log(`if (value === 'all')`, 'the value is ', value);
       } else {
         setFilterParams({ ...filterParams, ed: value });
       }
@@ -391,7 +359,6 @@ const Search: FC = () => {
           </div>
           <div className='flex'>
             <p>start date: </p>
-
             <select
               name='sy'
               id='sy'
