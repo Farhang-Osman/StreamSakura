@@ -105,8 +105,6 @@ const Search: FC = () => {
         params: filterParams,
       });
 
-      console.log(res.data.results);
-
       if (res.status !== 200 || res.status >= 400) {
         throw new Error(`Server Error: ${res.status}`);
       } else if (Object.keys(res.data.results).length === 0) {
@@ -148,19 +146,11 @@ const Search: FC = () => {
         setSelectedgGenres(genresList.join(','));
       }
     }
-    // setSelectedgGenres(selectedgGenres ? [selectedgGenres, g].join(',') : g);
   };
 
   useEffect(() => {
     setFilterParams({ ...filterParams, genres: selectedgGenres });
-    console.log('genres', selectedgGenres);
-    console.log('filterParams', filterParams);
   }, [selectedgGenres]);
-
-  useEffect(() => {
-    console.log('2nd filterParams', filterParams);
-    console.log('filterParams?.type ', filterParams?.type);
-  }, [filterParams]);
 
   const handleFilters = (type: string, value: any) => {
     if (type === 'type') {
@@ -260,230 +250,226 @@ const Search: FC = () => {
   };
 
   return (
-    <div className='flex'>
-      <div className='flex flex-col w-1/5 h-full bg-gray-300 rounded-sm'>
-        <h3 className='text-center label'>Filters</h3>
-        <div>
-          <div className='flex'>
-            <p>type: </p>
-            {/* {filterParams?.type === undefined ? <p>all</p> : <p>any</p>} */}
-            <select
-              name='type'
-              id='type'
-              onChange={(e) => handleFilters('type', e.target.value)}
-            >
-              <option value='all'>all</option>
-              <option value='movie'>movie</option>
-              <option value='tv'>tv</option>
-              <option value='ova'>ova</option>
-              <option value='ona'>ona</option>
-              <option value='special'>special</option>
-              <option value='music'>music</option>
-            </select>
-          </div>
-          <div className='flex'>
-            <p>status: </p>
-            <select
-              name='status'
-              id='status'
-              onChange={(e) => handleFilters('status', e.target.value)}
-            >
-              <option value='all'>all</option>
-              <option value='finished_airing'>finished_airing</option>
-              <option value='currently_airing'>currently_airing</option>
-              <option value='not_yet_aired'>not_yet_aired</option>
-            </select>
-          </div>
-          <div className='flex'>
-            <p>rated: </p>
-            <select
-              name='rated'
-              id='rated'
-              onChange={(e) => handleFilters('rated', e.target.value)}
-            >
-              <option value='all'>all</option>
-              <option value='G'>G</option>
-              <option value='PG'>PG</option>
-              <option value='PG_13'>PG_13</option>
-              <option value='R'>R</option>
-              <option value='r_plus'>r_plus</option>
-              <option value='RX'>RX</option>
-            </select>
-          </div>
-          <div className='flex'>
-            <p>score: </p>
-            <select
-              name='score'
-              id='score'
-              onChange={(e) => handleFilters('score', e.target.value)}
-            >
-              <option value='all'>all</option>
-              <option value='1'>1</option>
-              <option value='2'>2</option>
-              <option value='3'>3</option>
-              <option value='4'>4</option>
-              <option value='5'>5</option>
-              <option value='6'>6</option>
-              <option value='7'>7</option>
-              <option value='8'>8</option>
-              <option value='9'>9</option>
-              <option value='10'>10</option>
-            </select>
-          </div>
-          <div className='flex'>
-            <p>season: </p>
-            <select
-              name='season'
-              id='season'
-              onChange={(e) => handleFilters('season', e.target.value)}
-            >
-              <option value='all'>all</option>
-              <option value='spring'>spring</option>
-              <option value='summer'>summer</option>
-              <option value='fall'>fall</option>
-              <option value='winter'>winter</option>
-            </select>
-          </div>
-          <div className='flex'>
-            <p>language: </p>
-            <select
-              name='language'
-              id='language'
-              onChange={(e) => handleFilters('language', e.target.value)}
-            >
-              <option value='all'>all</option>
-              <option value='sub'>sub</option>
-              <option value='dub'>dub</option>
-              <option value='sub_dub'>sub_dub</option>
-            </select>
-          </div>
-          <div className='flex'>
-            <p>start date: </p>
-            <select
-              name='sy'
-              id='sy'
-              onChange={(e) => handleFilters('sy', e.target.value)}
-            >
-              <option key='Year' value='Year'>
-                Year
-              </option>
-              {Array.from(
-                { length: new Date().getFullYear() - 1916 },
-                (_, i) => new Date().getFullYear() - i,
-              ).map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
-            <select
-              name='sm'
-              id='sm'
-              onChange={(e) => handleFilters('sm', e.target.value)}
-            >
-              <option key='Month' value='Month'>
-                Month
-              </option>
-              {Array.from({ length: 12 }, (_, i) => i + 1).map((Month) => (
-                <option key={Month} value={Month}>
-                  {Month}
-                </option>
-              ))}
-            </select>
-            <select
-              name='sd'
-              id='sd'
-              onChange={(e) => handleFilters('sd', e.target.value)}
-            >
-              <option key='Day' value='Day'>
-                Day
-              </option>
-              {Array.from({ length: 31 }, (_, i) => i + 1).map((Day) => (
-                <option key={Day} value={Day}>
-                  {Day}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className='flex'>
-            <p>end date: </p>
-            <select
-              name='ey'
-              id='ey'
-              onChange={(e) => handleFilters('ey', e.target.value)}
-            >
-              <option key='Year' value='Year'>
-                Year
-              </option>
-              {Array.from(
-                { length: new Date().getFullYear() - 1916 },
-                (_, i) => new Date().getFullYear() - i,
-              ).map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
-            <select
-              name='em'
-              id='em'
-              onChange={(e) => handleFilters('em', e.target.value)}
-            >
-              <option key='Month' value='Month'>
-                Month
-              </option>
-              {Array.from({ length: 12 }, (_, i) => i + 1).map((Month) => (
-                <option key={Month} value={Month}>
-                  {Month}
-                </option>
-              ))}
-            </select>
-            <select
-              name='ed'
-              id='ed'
-              onChange={(e) => handleFilters('ed', e.target.value)}
-            >
-              <option key='Day' value='Day'>
-                Day
-              </option>
-              {Array.from({ length: 31 }, (_, i) => i + 1).map((Day) => (
-                <option key={Day} value={Day}>
-                  {Day}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className='flex'>
-            <p>sort: </p>
-            <select
-              name='sort'
-              id='sort'
-              onChange={(e) => handleFilters('sort', e.target.value)}
-            >
-              <option value='default'>default</option>
-              <option value='recently_added'>recently_added</option>
-              <option value='recently_updated'>recently_updated</option>
-              <option value='score'>score</option>
-              <option value='name_az'>name_az</option>
-              <option value='released_date'>released_date</option>
-              <option value='most_watched'>most_watched</option>
-            </select>
-          </div>
+    <div className='flex flex-col'>
+      <div className='flex flex-wrap gap-2 justify-center p-2 w-full bg-gray-300 rounded-sm'>
+        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+          <p>Type </p>
+          {/* {filterParams?.type === undefined ? <p>all</p> : <p>any</p>} */}
+          <select
+            name='type'
+            id='type'
+            onChange={(e) => handleFilters('type', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option value='all'>all</option>
+            <option value='movie'>movie</option>
+            <option value='tv'>tv</option>
+            <option value='ova'>ova</option>
+            <option value='ona'>ona</option>
+            <option value='special'>special</option>
+            <option value='music'>music</option>
+          </select>
         </div>
-      </div>
-      <div className='relative w-3/5 transition card-grid-layout duration-0'>
-        {resp?.data.map((anime) => (
-          <CardItem2
-            key={anime.id}
-            anime={{
-              id: anime.id,
-              image: anime.poster,
-              englishTitle: anime.title,
-              japaneseTitle: anime.japanese_title,
-              type: anime.tvInfo.showType,
-            }}
-          />
-        ))}
+        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+          <p>Status </p>
+          <select
+            name='status'
+            id='status'
+            onChange={(e) => handleFilters('status', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option value='all'>all</option>
+            <option value='finished_airing'>finished_airing</option>
+            <option value='currently_airing'>currently_airing</option>
+            <option value='not_yet_aired'>not_yet_aired</option>
+          </select>
+        </div>
+        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+          <p>Rated </p>
+          <select
+            name='rated'
+            id='rated'
+            onChange={(e) => handleFilters('rated', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option value='all'>all</option>
+            <option value='G'>G</option>
+            <option value='PG'>PG</option>
+            <option value='PG_13'>PG_13</option>
+            <option value='R'>R</option>
+            <option value='r_plus'>r_plus</option>
+            <option value='RX'>RX</option>
+          </select>
+        </div>
+        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+          <p>Score </p>
+          <select
+            name='score'
+            id='score'
+            onChange={(e) => handleFilters('score', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option value='all'>all</option>
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
+            <option value='6'>6</option>
+            <option value='7'>7</option>
+            <option value='8'>8</option>
+            <option value='9'>9</option>
+            <option value='10'>10</option>
+          </select>
+        </div>
+        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+          <p>Season </p>
+          <select
+            name='season'
+            id='season'
+            onChange={(e) => handleFilters('season', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option value='all'>all</option>
+            <option value='spring'>spring</option>
+            <option value='summer'>summer</option>
+            <option value='fall'>fall</option>
+            <option value='winter'>winter</option>
+          </select>
+        </div>
+        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+          <p>Language </p>
+          <select
+            name='language'
+            id='language'
+            onChange={(e) => handleFilters('language', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option value='all'>all</option>
+            <option value='sub'>sub</option>
+            <option value='dub'>dub</option>
+            <option value='sub_dub'>sub_dub</option>
+          </select>
+        </div>
+        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+          <p>Start Date </p>
+          <select
+            name='sy'
+            id='sy'
+            onChange={(e) => handleFilters('sy', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option key='Year' value='Year'>
+              Year
+            </option>
+            {Array.from(
+              { length: new Date().getFullYear() - 1916 },
+              (_, i) => new Date().getFullYear() - i,
+            ).map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+          <select
+            name='sm'
+            id='sm'
+            onChange={(e) => handleFilters('sm', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option key='Month' value='Month'>
+              Month
+            </option>
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((Month) => (
+              <option key={Month} value={Month}>
+                {Month}
+              </option>
+            ))}
+          </select>
+          <select
+            name='sd'
+            id='sd'
+            onChange={(e) => handleFilters('sd', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option key='Day' value='Day'>
+              Day
+            </option>
+            {Array.from({ length: 31 }, (_, i) => i + 1).map((Day) => (
+              <option key={Day} value={Day}>
+                {Day}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+          <p>End Date </p>
+          <select
+            name='ey'
+            id='ey'
+            onChange={(e) => handleFilters('ey', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option key='Year' value='Year'>
+              Year
+            </option>
+            {Array.from(
+              { length: new Date().getFullYear() - 1916 },
+              (_, i) => new Date().getFullYear() - i,
+            ).map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+          <select
+            name='em'
+            id='em'
+            onChange={(e) => handleFilters('em', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option key='Month' value='Month'>
+              Month
+            </option>
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((Month) => (
+              <option key={Month} value={Month}>
+                {Month}
+              </option>
+            ))}
+          </select>
+          <select
+            name='ed'
+            id='ed'
+            onChange={(e) => handleFilters('ed', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option key='Day' value='Day'>
+              Day
+            </option>
+            {Array.from({ length: 31 }, (_, i) => i + 1).map((Day) => (
+              <option key={Day} value={Day}>
+                {Day}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+          <p>Sort </p>
+          <select
+            name='sort'
+            id='sort'
+            onChange={(e) => handleFilters('sort', e.target.value)}
+            className='text-center text-blue-700 appearance-none'
+          >
+            <option value='default'>default</option>
+            <option value='recently_added'>recently_added</option>
+            <option value='recently_updated'>recently_updated</option>
+            <option value='score'>score</option>
+            <option value='name_az'>name_az</option>
+            <option value='released_date'>released_date</option>
+            <option value='most_watched'>most_watched</option>
+          </select>
+        </div>
       </div>
       <div className='flex flex-col gap-2 p-1 w-1/5 h-full bg-gray-300 rounded-sm'>
         <h3 className='text-center label'>Genres</h3>
@@ -508,6 +494,20 @@ const Search: FC = () => {
       >
         apply
       </button>
+      <div className='relative w-3/5 transition card-grid-layout duration-0'>
+        {resp?.data.map((anime) => (
+          <CardItem2
+            key={anime.id}
+            anime={{
+              id: anime.id,
+              image: anime.poster,
+              englishTitle: anime.title,
+              japaneseTitle: anime.japanese_title,
+              type: anime.tvInfo.showType,
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 };
