@@ -141,6 +141,8 @@ const Search: FC = () => {
       if (genreIndex !== -1) {
         genresList.splice(genreIndex, 1);
         setSelectedgGenres(genresList.join(','));
+      } else if (selectedgGenres === '') {
+        setSelectedgGenres(genreNumber);
       } else {
         genresList.push(genreNumber);
         setSelectedgGenres(genresList.join(','));
