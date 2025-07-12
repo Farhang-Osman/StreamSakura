@@ -249,8 +249,12 @@ const Search: FC = () => {
     }
   };
 
+  const NumberOfGenres = filterParams?.genres
+    ? filterParams.genres.split(',').map(Number)
+    : [];
+
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-2'>
       <div className='flex flex-wrap gap-2 justify-center p-2 w-full bg-gray-300 rounded-sm'>
         <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
           <p>Type </p>
@@ -471,19 +475,23 @@ const Search: FC = () => {
           </select>
         </div>
       </div>
-      <div className='flex flex-col gap-2 p-1 w-1/5 h-full bg-gray-300 rounded-sm'>
-        <h3 className='text-center label'>Genres</h3>
 
+      <div className='flex flex-wrap gap-2 px-2 py-4 bg-gray-300 rounded-sm'>
         <ul className='flex flex-wrap gap-2 justify-center'>
-          {Object.entries(genres).map(([id, name]) => (
-            <li
-              onClick={() => handleGenres(id)}
-              key={id}
-              className='px-1 bg-gray-200 rounded-sm border hover:cursor-pointer w-fit'
-            >
-              {name}
-            </li>
-          ))}
+          {Object.entries(genres).map(([id, name]) => {
+            const numericKey = Number(id);
+            const isSelected = NumberOfGenres.includes(numericKey);
+
+            return (
+              <li
+                onClick={() => handleGenres(id)}
+                key={id}
+                className={`${isSelected ? 'text-blue-500' : 'text-black'} px-1 bg-gray-200 rounded-sm hover:cursor-pointer`}
+              >
+                {name}
+              </li>
+            );
+          })}
         </ul>
       </div>
       <button
