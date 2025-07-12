@@ -96,11 +96,13 @@ const Search: FC = () => {
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   const [resp, setResp] = useState<searchResults>();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [filterParams, setFilterParams] = useState<filters | undefined>();
   const [selectedgGenres, setSelectedgGenres] = useState<string>();
 
   async function fetchFilterResults(filterParams: filters | undefined) {
     try {
+      setIsLoading(true);
       const res = await axios.get(`${BASE_URL}/api/filter`, {
         params: filterParams,
       });
@@ -111,6 +113,7 @@ const Search: FC = () => {
         navigate('/404');
       }
 
+      setIsLoading(false);
       setResp(res.data.results);
     } catch (error) {
       console.log(error);
@@ -504,20 +507,24 @@ const Search: FC = () => {
       >
         apply
       </button>
-      <div className='relative w-3/5 transition card-grid-layout duration-0'>
-        {resp?.data.map((anime) => (
-          <CardItem2
-            key={anime.id}
-            anime={{
-              id: anime.id,
-              image: anime.poster,
-              englishTitle: anime.title,
-              japaneseTitle: anime.japanese_title,
-              type: anime.tvInfo.showType,
-            }}
-          />
-        ))}
-      </div>
+      {isLoading ? (
+        <p className='text-center text-2xl mt-5'>Laoding</p>
+      ) : (
+        <div className='relative w-3/5 transition card-grid-layout duration-0'>
+          {resp?.data.map((anime) => (
+            <CardItem2
+              key={anime.id}
+              anime={{
+                id: anime.id,
+                image: anime.poster,
+                englishTitle: anime.title,
+                japaneseTitle: anime.japanese_title,
+                type: anime.tvInfo.showType,
+              }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
