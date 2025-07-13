@@ -49,6 +49,10 @@ const TopNavBar = () => {
             // onClick={() => navigate(`/search/${search}`)}
             onKeyDown={handleKeyDownOnInput}
           />
+          <ImSearch
+            className='w-10 text-blue-500 size-6 hover:text-blue-700 hover:cursor-pointer'
+            onClick={() => navigate(`/search?q=${search}`)}
+          />
         </search>
       </div>
       <div className='flex gap-8 items-center'>
