@@ -101,6 +101,13 @@ body {
   max-lg:grid-cols-5
   max-wide:grid-cols-4;
 }
+.search-card-grid-layout {
+  @apply grid grid-cols-6 gap-x-6 gap-y-8
+  max-sm:grid-cols-2
+  max-[39rem]:grid-cols-3
+  max-md:grid-cols-4 max-md:gap-x-4 max-md:gap-y-6
+  max-lg:grid-cols-5;
+}
 .text-long {
   @apply overflow-hidden whitespace-nowrap text-ellipsis;
 }

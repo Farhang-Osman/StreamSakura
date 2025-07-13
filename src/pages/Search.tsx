@@ -510,7 +510,7 @@ const Search: FC = () => {
       {isLoading ? (
         <p className='text-center text-2xl mt-5'>Laoding</p>
       ) : (
-        <div className='relative w-3/5 transition card-grid-layout duration-0'>
+        <div className='relative transition search-card-grid-layout duration-0'>
           {resp?.data.map((anime) => (
             <CardItem2
               key={anime.id}
