@@ -28,22 +28,24 @@ const TopNavBar = () => {
   return (
     <div className='flex fixed top-0 right-0 bottom-0 left-0 justify-around w-full h-16 bg-gray-300'>
       <div className='flex gap-2 items-center h-full'>
-        <div className='flex items-center bg-[#bf0477] px-4 rounded-sm'>
+        <a
+          href='/home'
+          className='flex h-full items-center bg-[#bf0477] px-4 rounded-sm'
+        >
           <div className='h-full text-xl'>
-            <p className='text-[#ffbcd8]'>stream</p>
+            <p className='text-[#ffbcd8] border-b-2 border-dotted'>stream</p>
             <p className='text-[#fdd0b1]'>sakura</p>
           </div>
           <img src={blossomSvg} className='size-15' />
-        </div>
+        </a>
         <p>theme</p>
       </div>
       <div className='flex justify-center justify-self-center items-center'>
-        <search className='flex gap-2 justify-center items-center px-1 text-xl bg-gray-200 rounded-sm appearance-none'>
-          <ImSearch className='text-blue-500 size-6 hover:text-blue-700' />
+        <search className='flex justify-center items-center px-1 text-xl bg-gray-200 rounded-md appearance-none'>
           <input
             type='text'
             placeholder='search anime'
-            className='py-1 placeholder-blue-300 focus:outline-none'
+            className='px-1 py-1 placeholder-blue-300 border-r-2 border-gray-300 focus:outline-none'
             value={search}
             onChange={handleInputChange}
             // onClick={() => navigate(`/search/${search}`)}
@@ -56,20 +58,20 @@ const TopNavBar = () => {
         </search>
       </div>
       <div className='flex gap-8 items-center'>
-        <div className='flex flex-col items-center hover:cursor-pointer'>
-          <GiPerspectiveDiceSixFacesRandom className='text-blue-500 size-9' />
-          <h3 className='text-sm'>Random</h3>
+        <div className='flex flex-col items-center px-1 h-full bg-gray-200 hover:bg-gray-100 group hover:cursor-pointer'>
+          <GiPerspectiveDiceSixFacesRandom className='text-blue-500 group-hover:text-blue-700 size-9' />
+          <h3>Random</h3>
         </div>
-        <div className='flex flex-col items-center hover:cursor-pointer'>
-          <RiVipDiamondFill className='text-blue-500 size-9' />
+        <div className='flex flex-col items-center px-1 h-full bg-gray-200 hover:bg-gray-100 group hover:cursor-pointer'>
+          <RiVipDiamondFill className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Special</p>
         </div>
-        <div className='flex flex-col items-center hover:cursor-pointer'>
-          <BiSolidCameraMovie className='text-blue-500 size-9' />
+        <div className='flex flex-col items-center px-1 h-full bg-gray-200 hover:bg-gray-100 group hover:cursor-pointer'>
+          <BiSolidCameraMovie className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Movie</p>
         </div>
-        <div className='flex flex-col items-center hover:cursor-pointer'>
-          <FaDiscord className='text-blue-500 size-9' />
+        <div className='flex flex-col items-center px-1 h-full bg-gray-200 hover:bg-gray-100 group hover:cursor-pointer'>
+          <FaDiscord className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Dicord</p>
         </div>
       </div>
