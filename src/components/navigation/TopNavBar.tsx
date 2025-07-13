@@ -26,7 +26,7 @@ const TopNavBar = () => {
   };
 
   return (
-    <div className='flex fixed top-0 right-0 bottom-0 left-0 justify-around w-full h-16 bg-gray-200'>
+    <div className='flex fixed top-0 right-0 bottom-0 left-0 justify-around w-full h-16 bg-gray-300'>
       <div className='flex gap-2 items-center h-full'>
         <div className='flex items-center bg-[#bf0477] px-4 rounded-sm'>
           <div className='h-full text-xl'>
@@ -38,17 +38,17 @@ const TopNavBar = () => {
         <p>theme</p>
       </div>
       <div className='flex justify-center justify-self-center items-center'>
-        <search className='flex justify-center items-center'>
+        <search className='flex gap-2 justify-center items-center px-1 text-xl bg-gray-200 rounded-sm appearance-none'>
+          <ImSearch className='text-blue-500 size-6 hover:text-blue-700' />
           <input
             type='text'
             placeholder='search anime'
-            className='p-1 px-2 rounded-sm border'
+            className='py-1 placeholder-blue-300 focus:outline-none'
             value={search}
             onChange={handleInputChange}
             // onClick={() => navigate(`/search/${search}`)}
             onKeyDown={handleKeyDownOnInput}
           />
-          <ImSearch />
         </search>
       </div>
       <div className='flex gap-8 items-center'>
