@@ -1,15 +1,23 @@
 import { FC, useEffect, useCallback } from 'react';
-import { Anime } from '../../hooks/animeInterface';
+// import { Anime } from '../../hooks/animeInterface';
 import { CardItem } from './CardItem';
 
-interface CardGridProps {
-  animeData: Anime[];
+export interface CardGridProps {
+  id: string | undefined;
+  title?: string | undefined;
+  japanese_title?: string | undefined;
+  cover: string | undefined;
+  type?: string | undefined;
   hasNextPage: boolean;
   onLoadMore: () => void;
 }
 
 export const CardGrid: FC<CardGridProps> = ({
-  animeData,
+  id,
+  title,
+  japanese_title,
+  cover,
+  type,
   hasNextPage,
   onLoadMore,
 }) => {
@@ -44,9 +52,14 @@ export const CardGrid: FC<CardGridProps> = ({
 
   return (
     <div className='relative transition card-grid-layout duration-0'>
-      {animeData.map((anime: Anime) => (
-        <CardItem key={anime.id} anime={anime} />
-      ))}
+      <CardItem
+        key={id}
+        id={id}
+        title={title}
+        japanese_title={japanese_title}
+        cover={cover}
+        type={type}
+      />
     </div>
   );
 };

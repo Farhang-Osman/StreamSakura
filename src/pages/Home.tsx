@@ -9,11 +9,12 @@ import { useEffect, useState } from 'react';
 //   fetchTrendingAnime,
 //   fetchUpcomingSeason,
 // } from '../hooks/useApi';
-// import { CardGrid } from '../components/Cards/CardGrid';
+import { CardGrid, CardGridProps } from '../components/Cards/CardGrid';
 import { HomeCarousel } from '../components/Home/HomeCarousel';
 // import { HomeSideBar } from '../components/Home/HomeSideBar';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { tvInfo } from './Watch';
 // import { Anime } from '../hooks/animeInterface';
 
 interface spotlights {
@@ -30,6 +31,17 @@ interface spotlights {
     quality?: string;
     episodeInfo?: [object];
   };
+}
+
+interface HomeAnimeInfo {
+  id: string;
+  data_id?: number;
+  poster?: string;
+  title?: string;
+  japanese_title?: string;
+  description?: string;
+  tvInfo?: tvInfo;
+  adultContent?: boolean;
 }
 
 interface HomeInterface {
@@ -54,7 +66,7 @@ interface HomeInterface {
         title?: string;
         japanese_title?: string;
         poster?: string;
-        tvInfo?: [object];
+        tvInfo?: tvInfo;
       };
       week?: {
         id?: string;
@@ -63,7 +75,7 @@ interface HomeInterface {
         title?: string;
         japanese_title?: string;
         poster?: string;
-        tvInfo?: [object];
+        tvInfo?: tvInfo;
       };
       month?: {
         id?: string;
@@ -72,7 +84,7 @@ interface HomeInterface {
         title?: string;
         japanese_title?: string;
         poster?: string;
-        tvInfo?: [object];
+        tvInfo?: tvInfo;
       };
     };
     today?: [
@@ -88,90 +100,13 @@ interface HomeInterface {
         },
       ],
     ];
-    topAiring?: [
-      {
-        id?: string;
-        data_id?: number;
-        poster?: string;
-        title?: string;
-        japanese_title?: string;
-        description?: string;
-        tvInfo?: [object];
-        adultContent?: boolean;
-      },
-    ];
-    mostPopular?: [
-      {
-        id?: string;
-        data_id?: number;
-        poster?: string;
-        title?: string;
-        japanese_title?: string;
-        description?: string;
-        tvInfo?: [object];
-        adultContent?: boolean;
-      },
-    ];
-    mostFavorite?: [
-      {
-        id?: string;
-        data_id?: number;
-        poster?: string;
-        title?: string;
-        japanese_title?: string;
-        description?: string;
-        tvInfo?: [object];
-        adultContent?: boolean;
-      },
-    ];
-    latestCompleted?: [
-      {
-        id?: string;
-        data_id?: number;
-        poster?: string;
-        title?: string;
-        japanese_title?: string;
-        description?: string;
-        tvInfo?: [object];
-        adultContent?: boolean;
-      },
-    ];
-    latestEpisode?: [
-      {
-        id?: string;
-        data_id?: number;
-        poster?: string;
-        title?: string;
-        japanese_title?: string;
-        description?: string;
-        tvInfo?: [object];
-        adultContent?: boolean;
-      },
-    ];
-    topUpcoming?: [
-      {
-        id?: string;
-        data_id?: number;
-        poster?: string;
-        title?: string;
-        japanese_title?: string;
-        description?: string;
-        tvInfo?: [object];
-        adultContent?: boolean;
-      },
-    ];
-    recentlyAdded?: [
-      {
-        id?: string;
-        data_id?: number;
-        poster?: string;
-        title?: string;
-        japanese_title?: string;
-        description?: string;
-        tvInfo?: [object];
-        adultContent?: boolean;
-      },
-    ];
+    topAiring?: HomeAnimeInfo[];
+    mostPopular?: HomeAnimeInfo[];
+    mostFavorite?: HomeAnimeInfo[];
+    latestCompleted?: HomeAnimeInfo[];
+    latestEpisode?: HomeAnimeInfo[];
+    topUpcoming?: HomeAnimeInfo[];
+    recentlyAdded?: HomeAnimeInfo[];
     genres?: string[];
   };
 }
@@ -287,6 +222,7 @@ const Home = () => {
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [homeData, setHomeData] = useState<HomeInterface | undefined>();
+  const [activeTab, setActiveTab] = useState<string>();
 
   async function fetchHomeData(): Promise<void> {
     try {
@@ -312,6 +248,35 @@ const Home = () => {
 
   const HomeCarouselData = homeData?.results?.spotlights as spotlights[];
 
+  const mostPopularData = homeData?.results?.mostPopular as HomeAnimeInfo[];
+
+  const renderCardGrid = (
+    id: string | undefined,
+    title: string | undefined,
+    japanese_title: string | undefined,
+    cover: string | undefined,
+    type: string | undefined,
+    hasNextPage?: any,
+    onLoadMore?: any,
+  ) => (
+    <div>
+      {isLoading ? (
+        <div></div>
+      ) : (
+        <CardGrid
+          key={id}
+          id={id}
+          title={title}
+          japanese_title={japanese_title}
+          cover={cover}
+          type={type}
+          hasNextPage={false}
+          onLoadMore={() => {}}
+        />
+      )}
+    </div>
+  );
+
   return (
     <div className='flex flex-col gap-4 mx-auto my-0'>
       {isLoading !== true &&
@@ -330,54 +295,58 @@ const Home = () => {
         ))}
       {/* <EpisodeCard /> */}
       <div className='flex gap-8 max-lg:gap-12 max-lg:flex-col'>
-        {/* <div className='flex flex-col gap-4 min-lg:flex-4/5'>
+        <div className='flex flex-col gap-4 min-lg:flex-4/5'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
-            <h3
+            {/* <h3
               className={` label ${activeTab === 'trending' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
              transition-colors duration-100 ease-in-out cursor-pointer`}
               title='Trending Tab'
-              onClick={() => handleTabClick('trending')}
+              onClick={() => setActiveTab('trending')}
             >
               TRENDING
-            </h3>
+            </h3> */}
             <div
-              className={`${activeTab === 'popular' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
+              className={`${activeTab === 'MostPopular' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
             label transition-colors duration-100 ease-in-out cursor-pointer`}
               title='Popular Tab'
-              onClick={() => handleTabClick('popular')}
+              onClick={() => setActiveTab('MostPopular')}
             >
-              POPULAR
+              MostPopular
             </div>
             <div
-              className={`${activeTab === 'topRated' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
+              className={`${activeTab === 'MostFavorite' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
             label transition-colors duration-100 ease-in-out cursor-pointer`}
-              title='Top Rated Tab'
-              onClick={() => handleTabClick('topRated')}
+              title='Most Favorite Tab'
+              onClick={() => setActiveTab('MostFavorite')}
             >
-              TOP RATED
+              Most Favorite
             </div>
           </div>
           <div>
-            {activeTab === 'trending' &&
+            {/* {activeTab === 'trending' &&
               renderCardGrid(
                 state.trendingAnime,
                 state.loading.trending,
                 !!state.error,
+              )} */}
+            {activeTab === 'MostPopular' &&
+              mostPopularData.map((item) =>
+                renderCardGrid(
+                  item.id,
+                  item.title,
+                  item.japanese_title,
+                  item.poster,
+                  item.tvInfo?.showType,
+                ),
               )}
-            {activeTab === 'popular' &&
-              renderCardGrid(
-                state.popularAnime,
-                state.loading.popular,
-                !!state.error,
-              )}
-            {activeTab === 'topRated' &&
+            {/* {activeTab === 'MostFavorite' &&
               renderCardGrid(
                 state.topAnime,
-                state.loading.topRated,
+                state.loading.MostFavorite,
                 !!state.error,
-              )}
+              )} */}
           </div>
-        </div> */}
+        </div>
         <div className='grid grid-cols-1 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 h-fit'>
           {/* <HomeSideBar
             animeData={state.topAiring}

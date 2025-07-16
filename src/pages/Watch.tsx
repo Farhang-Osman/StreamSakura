@@ -23,11 +23,15 @@ interface totalEpisodes {
 export interface tvInfo {
   rating?: string | null;
   quality?: string;
-  showType: string;
-  duration: string;
-  sub: string | null;
+  showType?: string;
+  duration?: string;
+  sub?: string | null;
   dub?: string | null;
   eps?: string | null;
+  episodeInfo?: {
+    sub?: string;
+    dub?: string;
+  };
 }
 interface charactersVoiceActors {
   character: {
