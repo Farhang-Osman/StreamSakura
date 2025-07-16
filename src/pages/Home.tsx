@@ -249,6 +249,7 @@ const Home = () => {
   const HomeCarouselData = homeData?.results?.spotlights as spotlights[];
 
   const mostPopularData = homeData?.results?.mostPopular as HomeAnimeInfo[];
+  const mostFavoriteData = homeData?.results?.mostFavorite as HomeAnimeInfo[];
 
   const renderCardGrid = (
     id: string | undefined,
@@ -339,12 +340,16 @@ const Home = () => {
                   item.tvInfo?.showType,
                 ),
               )}
-            {/* {activeTab === 'MostFavorite' &&
-              renderCardGrid(
-                state.topAnime,
-                state.loading.MostFavorite,
-                !!state.error,
-              )} */}
+            {activeTab === 'MostFavorite' &&
+              mostFavoriteData.map((item) =>
+                renderCardGrid(
+                  item.id,
+                  item.title,
+                  item.japanese_title,
+                  item.poster,
+                  item.tvInfo?.showType,
+                ),
+              )}
           </div>
         </div>
         <div className='grid grid-cols-1 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 h-fit'>
