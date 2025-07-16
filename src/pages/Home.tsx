@@ -250,6 +250,7 @@ const Home = () => {
 
   const mostPopularData = homeData?.results?.mostPopular as HomeAnimeInfo[];
   const mostFavoriteData = homeData?.results?.mostFavorite as HomeAnimeInfo[];
+  const topUpcomingData = homeData?.results?.topUpcoming as HomeAnimeInfo[];
 
   const renderCardGrid = (
     id: string | undefined,
@@ -298,14 +299,14 @@ const Home = () => {
       <div className='flex gap-8 max-lg:gap-12 max-lg:flex-col'>
         <div className='flex flex-col gap-4 min-lg:flex-4/5'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
-            {/* <h3
-              className={` label ${activeTab === 'trending' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
+            <h3
+              className={` label ${activeTab === 'topUpcoming' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
              transition-colors duration-100 ease-in-out cursor-pointer`}
-              title='Trending Tab'
-              onClick={() => setActiveTab('trending')}
+              title='topUpcoming Tab'
+              onClick={() => setActiveTab('topUpcoming')}
             >
-              TRENDING
-            </h3> */}
+              Top Upcoming
+            </h3>
             <div
               className={`${activeTab === 'MostPopular' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
             label transition-colors duration-100 ease-in-out cursor-pointer`}
@@ -324,12 +325,16 @@ const Home = () => {
             </div>
           </div>
           <div>
-            {/* {activeTab === 'trending' &&
-              renderCardGrid(
-                state.trendingAnime,
-                state.loading.trending,
-                !!state.error,
-              )} */}
+            {activeTab === 'topUpcoming' &&
+              topUpcomingData.map((item) =>
+                renderCardGrid(
+                  item.id,
+                  item.title,
+                  item.japanese_title,
+                  item.poster,
+                  item.tvInfo?.showType,
+                ),
+              )}
             {activeTab === 'MostPopular' &&
               mostPopularData.map((item) =>
                 renderCardGrid(
