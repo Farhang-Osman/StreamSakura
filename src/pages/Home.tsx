@@ -9,12 +9,13 @@ import { useEffect, useState } from 'react';
 //   fetchTrendingAnime,
 //   fetchUpcomingSeason,
 // } from '../hooks/useApi';
-import { CardGrid, CardGridProps } from '../components/Cards/CardGrid';
+import { CardGrid } from '../components/Cards/CardGrid';
 import { HomeCarousel } from '../components/Home/HomeCarousel';
 // import { HomeSideBar } from '../components/Home/HomeSideBar';
-import { data, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { tvInfo } from './Watch';
+import { HomeVerticalSlide } from '../components/Home/HomeVerticalSlides';
 // import { Anime } from '../hooks/animeInterface';
 
 export interface spotlights {
@@ -34,6 +35,7 @@ export interface HomeAnimeInfo {
   title?: string;
   japanese_title?: string;
   description?: string;
+  number?: number;
   tvInfo?: tvInfo;
   adultContent?: boolean;
 }
@@ -42,44 +44,11 @@ interface HomeInterface {
   success: true;
   results: {
     spotlights?: spotlights[];
-    trending?: [
-      {
-        id?: string;
-        data_id?: number;
-        number?: number;
-        poster?: string;
-        title?: string;
-        japanese_title?: string;
-      },
-    ];
+    trending?: HomeAnimeInfo[];
     topTen?: {
-      today?: {
-        id?: string;
-        data_id?: number;
-        number: string;
-        title?: string;
-        japanese_title?: string;
-        poster?: string;
-        tvInfo?: tvInfo;
-      };
-      week?: {
-        id?: string;
-        data_id?: number;
-        number: string;
-        title?: string;
-        japanese_title?: string;
-        poster?: string;
-        tvInfo?: tvInfo;
-      };
-      month?: {
-        id?: string;
-        data_id?: number;
-        number: string;
-        title?: string;
-        japanese_title?: string;
-        poster?: string;
-        tvInfo?: tvInfo;
-      };
+      today?: HomeAnimeInfo;
+      week?: HomeAnimeInfo;
+      month?: HomeAnimeInfo;
     };
     today?: [
       schedule?: [
@@ -258,6 +227,11 @@ const Home = () => {
     <div className='flex flex-col gap-4 mx-auto my-0'>
       <HomeCarousel
         data={homeData?.results?.spotlights}
+        loading={isLoading}
+        // error={state}
+      />
+      <HomeVerticalSlide
+        data={homeData?.results?.trending}
         loading={isLoading}
         // error={state}
       />
