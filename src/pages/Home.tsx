@@ -12,28 +12,22 @@ import { useEffect, useState } from 'react';
 import { CardGrid, CardGridProps } from '../components/Cards/CardGrid';
 import { HomeCarousel } from '../components/Home/HomeCarousel';
 // import { HomeSideBar } from '../components/Home/HomeSideBar';
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { tvInfo } from './Watch';
 // import { Anime } from '../hooks/animeInterface';
 
-interface spotlights {
+export interface spotlights {
   id: string;
   data_id?: number;
   poster: string;
   title?: string;
   japanese_title?: string;
   description?: string;
-  tvInfo?: {
-    showType?: string;
-    duration?: string;
-    releaseDate?: string;
-    quality?: string;
-    episodeInfo?: [object];
-  };
+  tvInfo?: tvInfo;
 }
 
-interface HomeAnimeInfo {
+export interface HomeAnimeInfo {
   id: string;
   data_id?: number;
   poster?: string;
@@ -246,55 +240,27 @@ const Home = () => {
     fetchHomeData();
   }, []);
 
-  const HomeCarouselData = homeData?.results?.spotlights as spotlights[];
-
-  const mostPopularData = homeData?.results?.mostPopular as HomeAnimeInfo[];
-  const mostFavoriteData = homeData?.results?.mostFavorite as HomeAnimeInfo[];
-  const topUpcomingData = homeData?.results?.topUpcoming as HomeAnimeInfo[];
-
   const renderCardGrid = (
-    id: string | undefined,
-    title: string | undefined,
-    japanese_title: string | undefined,
-    cover: string | undefined,
-    type: string | undefined,
-    hasNextPage?: any,
-    onLoadMore?: any,
+    data: HomeAnimeInfo[],
+    hasNextPage?: boolean,
+    onLoadMore?: void,
   ) => (
     <div>
       {isLoading ? (
         <div></div>
       ) : (
-        <CardGrid
-          key={id}
-          id={id}
-          title={title}
-          japanese_title={japanese_title}
-          cover={cover}
-          type={type}
-          hasNextPage={false}
-          onLoadMore={() => {}}
-        />
+        <CardGrid data={data} hasNextPage={false} onLoadMore={() => {}} />
       )}
     </div>
   );
 
   return (
     <div className='flex flex-col gap-4 mx-auto my-0'>
-      {isLoading !== true &&
-        HomeCarouselData.map((item) => (
-          <HomeCarousel
-            id={item.id}
-            title={item.title}
-            japanese_title={item.japanese_title}
-            cover={item.poster}
-            description={item.description}
-            duration={item.tvInfo?.duration}
-            type={item.tvInfo?.showType}
-            loading={isLoading}
-            // error={state}
-          />
-        ))}
+      <HomeCarousel
+        data={homeData?.results?.spotlights}
+        loading={isLoading}
+        // error={state}
+      />
       {/* <EpisodeCard /> */}
       <div className='flex gap-8 max-lg:gap-12 max-lg:flex-col'>
         <div className='flex flex-col gap-4 min-lg:flex-4/5'>
@@ -326,34 +292,12 @@ const Home = () => {
           </div>
           <div>
             {activeTab === 'topUpcoming' &&
-              topUpcomingData.map((item) =>
-                renderCardGrid(
-                  item.id,
-                  item.title,
-                  item.japanese_title,
-                  item.poster,
-                  item.tvInfo?.showType,
-                ),
-              )}
+              renderCardGrid(homeData?.results?.topUpcoming as HomeAnimeInfo[])}
             {activeTab === 'MostPopular' &&
-              mostPopularData.map((item) =>
-                renderCardGrid(
-                  item.id,
-                  item.title,
-                  item.japanese_title,
-                  item.poster,
-                  item.tvInfo?.showType,
-                ),
-              )}
+              renderCardGrid(homeData?.results?.mostPopular as HomeAnimeInfo[])}
             {activeTab === 'MostFavorite' &&
-              mostFavoriteData.map((item) =>
-                renderCardGrid(
-                  item.id,
-                  item.title,
-                  item.japanese_title,
-                  item.poster,
-                  item.tvInfo?.showType,
-                ),
+              renderCardGrid(
+                homeData?.results?.mostFavorite as HomeAnimeInfo[],
               )}
           </div>
         </div>

@@ -24,6 +24,7 @@ export interface tvInfo {
   rating?: string | null;
   quality?: string;
   showType?: string;
+  releaseDate?: string;
   duration?: string;
   sub?: string | null;
   dub?: string | null;
