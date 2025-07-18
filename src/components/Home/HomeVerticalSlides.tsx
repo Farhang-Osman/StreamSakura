@@ -8,6 +8,7 @@ import 'swiper/swiper-bundle.css';
 import { useNavigate } from 'react-router-dom';
 import { HomeAnimeInfo } from '../../pages/Home';
 import { TbPlayerPlayFilled } from 'react-icons/tb';
+import { ImFire } from 'react-icons/im';
 
 interface HomeVerticalSlide {
   data: HomeAnimeInfo[] | undefined;
@@ -20,21 +21,6 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
   // loading = true,
 }) => {
   const navigate = useNavigate();
-
-  const handlePlayButtonCllick = (id: string) => {
-    return navigate(`/watch/${id}`);
-  };
-
-  // const filteredData = data.filter(
-  //   (item) =>
-  //     item.title &&
-  //     item.description &&
-  //     item.cover !== item.image &&
-  //     !item.genres.includes('Ecchi') &&
-  //     !item.genres.includes('Hentai') &&
-  //     !item.genres.includes('Romance') &&
-  //     !item.genres.includes('Fantasy'),
-  // );
 
   const useAdjustSlidesPerView = (): number => {
     const [screenwidth, setScreenWidth] = useState<number>(window.innerWidth);
@@ -67,64 +53,44 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
   return (
     <>
       <div className='bg-gray-300 rounded-sm'>
-        <h2 className='mb-2 label'>trending</h2>
+        <div className='flex items-center gap-2 mb-2 label'>
+          <ImFire />
+          <h3>Trending</h3>
+          <ImFire />
+        </div>
         <Swiper
           className='relative rounded-lg cursor-grab active:cursor-grabbing'
           spaceBetween={5}
           slidesPerView={useAdjustSlidesPerView()}
-          // loop={true}
-          // autoplay={{
-          //   delay: 4000,
-          //   disableOnInteraction: false,
-          // }}
-          // breakpoints={{
-          //   1024: {
-          //     slidesPerView: 2,
-          //     spaceBetween: 20,
-          //   },
-          // }}
-          // navigation={{
-          //   nextEl: '.swiper-button-next',
-          //   prevEl: '.swiper-button-prev',
-          // }}
-          // pagination={{
-          //   el: '.swiper-pagination',
-          //   clickable: true,
-          //   dynamicBullets: true,
-          //   type: 'bullets',
-          // }}
-          // freeMode={false}
-          // virtual={true}
-          // grabCursor={true}
-          // keyboard={true}
-          // centeredSlides={false}
         >
           {data.map((i) => (
             <SwiperSlide
               className='flex relative justify-start items-center'
               key={i.id}
-              title={i.title || i.japanese_title}
+              title={'Play ' + (i.title || i.japanese_title)}
+              onClick={() => navigate(`/watch/${i.id}`)}
             >
-              <div className='w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer group/title'>
-                <div className='rounded-lg overflow-hidden relative aspect-[3/4] shadow-blue-900  transition duration-200 ease-in-out shadow-[2px_2px_10px] text-left'>
-                  <div className='whfull group'>
+              <div className='flex gap-1 px-1 group/title'>
+                <h3 className='font-serif text-2xl bg-gray-200 h-fit px-1 rounded-sm font-bold text-blue-800 group-hover/title:text-blue-500'>
+                  {i.number}
+                </h3>
+                <div className='grid gap-1 w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer'>
+                  <div className='rounded-lg whfull group overflow-hidden relative aspect-[3/4] shadow-blue-900  transition duration-200 ease-in-out shadow-[2px_2px_10px] text-left'>
                     <img
                       src={i.poster}
                       alt=''
                       className='whfull group-hover:brightness-60'
                     />
-                    <TbPlayerPlayFilled
-                      className='absolute inset-0 top-1/2 left-1/2 z-10 text-3xl text-blue-300 opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100'
-                      title={'Play ' + (i.title || i.japanese_title)}
-                    />
+                    <TbPlayerPlayFilled className='absolute inset-0 top-1/2 left-1/2 z-10 text-3xl text-blue-300 opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100' />
                   </div>
+
+                  <h5
+                    className='font-bold text-center text-blue-800 transition duration-300 ease-in-out text-long group-hover/title:text-blue-500'
+                    title={'Title: ' + (i.title || i.japanese_title)}
+                  >
+                    {i.title || i.japanese_title}
+                  </h5>
                 </div>
-                <h5
-                  className='text-sm font-bold text-center text-blue-800 transition duration-300 ease-in-out text-long group-hover/title:text-blue-500'
-                  title={'Title: ' + (i.title || i.japanese_title)}
-                >
-                  {i.title || i.japanese_title}
-                </h5>
               </div>
             </SwiperSlide>
           ))}
