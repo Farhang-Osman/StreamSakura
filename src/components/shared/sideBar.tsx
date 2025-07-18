@@ -15,7 +15,9 @@ export const SideBar: FC<{
         {icon}
         <h3 className='bg-gray-200 label'>{title}</h3>
       </div>
-      <div className='flex relative flex-col gap-2 mt-2 rounded-lg'>
+      <div
+        className={`flex overflow-x-hidden relative flex-col gap-2 mt-2 rounded-lg h-[1200px]`}
+      >
         {animeData.map((anime: recommendedAndRelatedData | HomeAnimeInfo) => (
           <Link
             className=''

@@ -29,8 +29,8 @@ const TopNavBar = () => {
     <div className='flex fixed top-0 right-0 bottom-0 left-0 justify-around w-full h-16 bg-gray-300'>
       <div className='flex gap-2 items-center h-full'>
         <a
-          href='/home'
-          className='flex h-full items-center bg-[#bf0477] px-4 rounded-sm'
+          onClick={() => navigate('/home')}
+          className='flex h-full cursor-pointer items-center bg-[#bf0477] px-4 rounded-sm'
         >
           <div className='h-full text-xl'>
             <p className='text-[#ffbcd8] border-b-2 border-dotted'>stream</p>
