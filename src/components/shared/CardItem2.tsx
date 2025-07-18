@@ -13,7 +13,7 @@ interface Anime {
   romajiTitle?: string;
   japaneseTitle?: string;
   image: string;
-  type: string;
+  type?: string;
   releaseDate?: number;
   rating?: number;
 }

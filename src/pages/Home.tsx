@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 // import { getNextSeason } from '../hooks/useTime';
 // import {
 //   fetchPopularAnime,
-//   fetchTopAiringAnime,
+//Anime,
 //   fetchTopAnime,
 //   fetchTrendingAnime,
 //   fetchUpcomingSeason,
@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { tvInfo } from './Watch';
 import { HomeVerticalSlide } from '../components/Home/HomeVerticalSlides';
+import { SideBar } from '../components/shared/sideBar';
+import { GiTv } from 'react-icons/gi';
 // import { Anime } from '../hooks/animeInterface';
 
 export interface spotlights {
@@ -253,7 +255,7 @@ const Home = () => {
               title='Popular Tab'
               onClick={() => setActiveTab('MostPopular')}
             >
-              MostPopular
+              Most Popular
             </div>
             <div
               className={`${activeTab === 'MostFavorite' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
@@ -276,16 +278,20 @@ const Home = () => {
           </div>
         </div>
         <div className='grid grid-cols-1 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 h-fit'>
-          {/* <HomeSideBar
-            animeData={state.topAiring}
-            title='TOP AIRING'
-            icon={<GiTv className='size-9' />}
-          />
-          <HomeSideBar
-            animeData={state.Upcoming}
-            title={`UPCOMING ${getNextSeason()}`}
-            icon={<GrAnnounce className='size-9' />}
-          /> */}
+          {homeData?.results?.topAiring && (
+            <SideBar
+              animeData={homeData?.results?.topAiring}
+              title='TOP AIRING'
+              icon={<GiTv className='size-9' />}
+            />
+          )}
+          {homeData?.results?.latestCompleted && (
+            <SideBar
+              animeData={homeData?.results?.latestCompleted}
+              title='Latest Completed'
+              // icon={<GrAnnounce className='size-9' />}
+            />
+          )}
         </div>
       </div>
       <p>window.innerWidth={window.innerWidth}</p>

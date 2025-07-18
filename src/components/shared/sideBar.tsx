@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import { recommendedAndRelatedData } from '../../pages/Watch';
 import { Link } from 'react-router-dom';
+import { HomeAnimeInfo } from '../../pages/Home';
 // import { TbStarFilled, TbStarHalfFilled } from 'react-icons/tb';
 
 export const SideBar: FC<{
-  animeData: recommendedAndRelatedData[];
+  animeData: recommendedAndRelatedData[] | HomeAnimeInfo[];
   title: string;
   icon?: React.ReactNode;
 }> = ({ animeData, title, icon }) => {
@@ -15,7 +16,7 @@ export const SideBar: FC<{
         <h3 className='bg-gray-200 label'>{title}</h3>
       </div>
       <div className='flex relative flex-col gap-2 mt-2 rounded-lg'>
-        {animeData.map((anime: recommendedAndRelatedData) => (
+        {animeData.map((anime: recommendedAndRelatedData | HomeAnimeInfo) => (
           <Link
             className=''
             to={`/watch/${anime.id}`}
@@ -43,9 +44,9 @@ export const SideBar: FC<{
                       {anime.title || anime.japanese_title}
                     </h5>
                     <div className='flex gap-1'>
-                      {anime.tvInfo.showType && (
+                      {anime.tvInfo?.showType && (
                         <p className='px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
-                          {anime.tvInfo.showType}
+                          {anime.tvInfo?.showType}
                         </p>
                       )}
                       {/* {anime.releaseDate && (
