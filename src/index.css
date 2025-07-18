@@ -33,7 +33,7 @@
 body {
   margin: 0 auto;
   max-width: 90rem;
-  padding: 4.5rem 0 2rem 90px;
+  padding: 4.5rem 0 2rem 16px;
 }
 
 @theme {
