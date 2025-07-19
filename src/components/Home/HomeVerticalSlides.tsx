@@ -62,6 +62,21 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
           className='relative rounded-lg cursor-grab active:cursor-grabbing'
           spaceBetween={5}
           slidesPerView={useAdjustSlidesPerView()}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }}
+          pagination={{
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+            type: 'bullets',
+          }}
+          freeMode={false}
+          virtual={true}
+          grabCursor={true}
+          keyboard={true}
+          // centeredSlides={true}
         >
           {data.map((i) => (
             <SwiperSlide

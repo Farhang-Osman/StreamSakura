@@ -74,7 +74,10 @@ const TopNavBar = () => {
           <FaDiscord className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Dicord</p>
         </div>
-        <div className='flex flex-col justify-center items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'>
+        <div
+          onClick={() => navigate('/history')}
+          className='flex flex-col justify-center items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'
+        >
           <FaHistory className='text-blue-500 group-hover:text-blue-700 size-7' />
           <h3>History</h3>
         </div>
