@@ -96,6 +96,14 @@ export interface animeInfo {
   };
   seasons: seasons[];
 }
+export interface watchedEpisodes {
+  animeName: string;
+  numberOfWatchedEpisodes: number[];
+  lastWatchedEpisode: {
+    episodeNumber: number;
+    episodeTitle: string;
+  };
+}
 
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 const STREAMING_URL = import.meta.env.VITE_STREAMING_URL;
@@ -209,6 +217,70 @@ const Watch: FC = () => {
       setIsStreamLoading(false);
     }, 500);
   };
+
+  useEffect(() => {
+    if (
+      selectedEpisode !== 0 &&
+      episode !== undefined &&
+      animeInfo.data?.title &&
+      animeInfo.data?.data_id
+    ) {
+      const animeId = animeInfo.data?.data_id;
+      const watchedEpisodes = localStorage.getItem(
+        `watchedEpisodes-${animeId}`,
+      );
+
+      if (watchedEpisodes) {
+        const localData: watchedEpisodes = JSON.parse(watchedEpisodes);
+
+        if (localData.numberOfWatchedEpisodes.includes(episode.episode_no)) {
+          const listOfWatchedEpisodes: watchedEpisodes = {
+            animeName: animeInfo.data.title,
+            numberOfWatchedEpisodes: [...localData.numberOfWatchedEpisodes],
+            lastWatchedEpisode: {
+              episodeNumber: episode.episode_no,
+              episodeTitle: episode.title,
+            },
+          };
+
+          localStorage.setItem(
+            `watchedEpisodes-${animeId}`,
+            JSON.stringify(listOfWatchedEpisodes),
+          );
+        } else {
+          const listOfWatchedEpisodes: watchedEpisodes = {
+            animeName: animeInfo.data.title,
+            numberOfWatchedEpisodes: [
+              ...localData.numberOfWatchedEpisodes,
+              episode.episode_no,
+            ],
+            lastWatchedEpisode: {
+              episodeNumber: episode.episode_no,
+              episodeTitle: episode.title,
+            },
+          };
+
+          localStorage.setItem(
+            `watchedEpisodes-${animeId}`,
+            JSON.stringify(listOfWatchedEpisodes),
+          );
+        }
+      } else {
+        const listOfWatchedEpisodes: watchedEpisodes = {
+          animeName: animeInfo.data.title,
+          numberOfWatchedEpisodes: [episode.episode_no],
+          lastWatchedEpisode: {
+            episodeNumber: episode.episode_no,
+            episodeTitle: episode.title,
+          },
+        };
+        localStorage.setItem(
+          `watchedEpisodes-${animeId}`,
+          JSON.stringify(listOfWatchedEpisodes),
+        );
+      }
+    }
+  }, [selectedEpisode, episode, animeInfo]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const onClickEp = (ep: Episode, element: HTMLElement) => {
