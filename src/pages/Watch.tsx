@@ -99,6 +99,7 @@ export interface animeInfo {
 export interface watchedEpisodes {
   animeName: string;
   numberOfWatchedEpisodes: number[];
+  image: string;
   lastWatchedEpisode: {
     episodeNumber: number;
     episodeTitle: string;
@@ -235,8 +236,7 @@ const Watch: FC = () => {
 
         if (localData.numberOfWatchedEpisodes.includes(episode.episode_no)) {
           const listOfWatchedEpisodes: watchedEpisodes = {
-            animeName: animeInfo.data.title,
-            numberOfWatchedEpisodes: [...localData.numberOfWatchedEpisodes],
+            ...localData,
             lastWatchedEpisode: {
               episodeNumber: episode.episode_no,
               episodeTitle: episode.title,
@@ -249,7 +249,7 @@ const Watch: FC = () => {
           );
         } else {
           const listOfWatchedEpisodes: watchedEpisodes = {
-            animeName: animeInfo.data.title,
+            ...localData,
             numberOfWatchedEpisodes: [
               ...localData.numberOfWatchedEpisodes,
               episode.episode_no,
@@ -269,6 +269,7 @@ const Watch: FC = () => {
         const listOfWatchedEpisodes: watchedEpisodes = {
           animeName: animeInfo.data.title,
           numberOfWatchedEpisodes: [episode.episode_no],
+          image: animeInfo.data?.poster,
           lastWatchedEpisode: {
             episodeNumber: episode.episode_no,
             episodeTitle: episode.title,
@@ -328,6 +329,7 @@ const Watch: FC = () => {
     </>
   ) : (
     <div className='grid grid-cols-10 gap-3 w-full'>
+      {/* watch screen */}
       <div className='relative col-span-7 mb-1 aspect-video max-xl:col-span-10'>
         {isStreamLoading && (
           <div className='flex absolute inset-0 justify-center items-center bg-black rounded-sm'>
@@ -341,6 +343,7 @@ const Watch: FC = () => {
           onLoad={handleLoad}
         ></iframe>
       </div>
+      {/* list of episodes container */}
       <div className='grid col-span-3 gap-1 content-start p-1 w-full h-full bg-gray-300 rounded-sm max-xl:col-span-10 max-xl:h-72 aspect-square'>
         <div className='px-1 text-gray-500 bg-gray-200 rounded-sm'>
           {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
@@ -367,9 +370,6 @@ const Watch: FC = () => {
           )}
         </div>
       </div>
-
-      {/* beyond watch and episodes list container */}
-
       {/* Source and anime info */}
       <div className='flex flex-col col-span-7 gap-3 w-full max-xl:col-span-10 aspect-video'>
         <div className='flex gap-2 justify-evenly items-center p-2 bg-gray-300 rounded-sm'>

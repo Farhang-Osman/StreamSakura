@@ -283,7 +283,6 @@ const Home = () => {
               animeData={homeData?.results?.topAiring}
               title='TOP AIRING'
               icon={<GiTv className='size-9' />}
-              displayNumber={4}
             />
           )}
           {homeData?.results?.latestCompleted && (
@@ -291,7 +290,6 @@ const Home = () => {
               animeData={homeData?.results?.latestCompleted}
               title='Latest Completed'
               // icon={<GrAnnounce className='size-9' />}
-              displayNumber={4}
             />
           )}
         </div>
