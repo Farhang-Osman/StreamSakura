@@ -103,6 +103,7 @@ export interface watchedEpisodes {
   lastWatchedEpisode: {
     episodeNumber: number;
     episodeTitle: string;
+    episodeUrl: string;
   };
 }
 
@@ -240,6 +241,7 @@ const Watch: FC = () => {
             lastWatchedEpisode: {
               episodeNumber: episode.episode_no,
               episodeTitle: episode.title,
+              episodeUrl: episode.id,
             },
           };
 
@@ -257,6 +259,7 @@ const Watch: FC = () => {
             lastWatchedEpisode: {
               episodeNumber: episode.episode_no,
               episodeTitle: episode.title,
+              episodeUrl: episode.id,
             },
           };
 
@@ -273,6 +276,7 @@ const Watch: FC = () => {
           lastWatchedEpisode: {
             episodeNumber: episode.episode_no,
             episodeTitle: episode.title,
+            episodeUrl: episode.id,
           },
         };
         localStorage.setItem(
