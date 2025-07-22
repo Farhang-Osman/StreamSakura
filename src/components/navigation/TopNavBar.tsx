@@ -4,12 +4,16 @@ import { FaDiscord, FaHistory } from 'react-icons/fa';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 import { ImSearch } from 'react-icons/im';
 import { RiVipDiamondFill } from 'react-icons/ri';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import blossomSvg from '/cherry-blossom-svgrepo-com-optimized.svg';
+import axios from 'axios';
 
 const TopNavBar = () => {
   const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
+  const locationn = useLocation();
 
   const [search, setSearch] = useState('');
 
@@ -22,6 +26,17 @@ const TopNavBar = () => {
     if (e.key === 'Enter') {
       e.preventDefault();
       navigate(`/search?q=${search}`);
+    }
+  };
+
+  const handleRandomAnime = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/api/random`);
+      console.log(JSON.stringify(res.data.results.id));
+
+      window.location.pathname = `/watch/${res.data.results.id}`;
+    } catch (error) {
+      return error;
     }
   };
 
@@ -58,7 +73,10 @@ const TopNavBar = () => {
         </search>
       </div>
       <div className='flex gap-8 items-center'>
-        <div className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'>
+        <div
+          className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'
+          onClick={() => handleRandomAnime()}
+        >
           <GiPerspectiveDiceSixFacesRandom className='text-blue-500 group-hover:text-blue-700 size-9' />
           <h3>Random</h3>
         </div>
