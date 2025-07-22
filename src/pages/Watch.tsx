@@ -98,6 +98,7 @@ export interface animeInfo {
 }
 export interface watchedEpisodes {
   animeName: string;
+  animeId: number;
   numberOfWatchedEpisodes: number[];
   image: string;
   lastWatchedEpisode: {
@@ -271,6 +272,7 @@ const Watch: FC = () => {
       } else {
         const listOfWatchedEpisodes: watchedEpisodes = {
           animeName: animeInfo.data.title,
+          animeId: animeId,
           numberOfWatchedEpisodes: [episode.episode_no],
           image: animeInfo.data?.poster,
           lastWatchedEpisode: {

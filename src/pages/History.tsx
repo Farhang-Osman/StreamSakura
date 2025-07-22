@@ -1,8 +1,11 @@
-import { TbPlayerPlayFilled } from 'react-icons/tb';
 import { watchedEpisodes } from './Watch';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { TiDelete } from 'react-icons/ti';
+import { FaPlayCircle } from 'react-icons/fa';
 
 const History = () => {
+  const navigate = useNavigate();
+
   function getParsedLocalStorageValues(partialKey: string) {
     try {
       return Object.keys(localStorage)
@@ -24,36 +27,47 @@ const History = () => {
 
   console.log(localData);
 
-  return (
-    <div className='grid grid-cols-4 gap-2 pr-2'>
-      {localData.map((i) => (
-        <Link
-          to={`/watch/${i.lastWatchedEpisode.episodeUrl}`}
-          className='w-full bg-gray-200 rounded-sm transition duration-200 ease-in-out group'
-          title={`Eps ${i.lastWatchedEpisode.episodeNumber}
-${i.lastWatchedEpisode.episodeTitle}`}
-        >
-          <div className='text-center text-long'>{i.animeName}</div>
-          <div className='overflow-hidden relative'>
-            <img
-              className='object-cover w-full transition duration-200 ease-in group-hover:scale-105 aspect-video group-hover:brightness-60'
-              src={i.image}
-              alt=''
-            />
-            <p className='flex absolute bottom-1 left-2 gap-2 items-center px-1 bg-gray-200 rounded-sm'>
-              <p className='text-gray-500'>Eps</p>
-              <p className='text-lg'>{i.lastWatchedEpisode.episodeNumber}</p>
-            </p>
-            <TbPlayerPlayFilled
-              className='absolute top-1/2 left-1/2 z-10 text-3xl text-blue-300 opacity-0 transition-opacity duration-200 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100'
-              title={'Play ' + i.animeName}
-            />
-          </div>
+  const handleDelete = (animeId: number) => {
+    localStorage.removeItem(`watchedEpisodes-${animeId}`);
+    console.log(`watchedEpisodes-${animeId}`);
+    navigate(`/history`);
+  };
 
-          <div className='flex gap-4 px-1 text-gray-500 rounded-sm cursor-pointer'>
-            <p className='text-long'>{i.lastWatchedEpisode.episodeTitle}</p>
-          </div>
-        </Link>
+  return (
+    <div className='grid relative grid-cols-4 gap-2 pr-2'>
+      {localData.map((i) => (
+        <div className='relative w-full bg-gray-200 rounded-sm cursor-pointer group'>
+          <TiDelete
+            title='Delete from history ?'
+            className='absolute right-1 top-6 z-10 text-4xl text-gray-300 bg-transparent opacity-0 transition-opacity duration-200 ease-in group-hover:opacity-100'
+            onClick={() => handleDelete(i.animeId)}
+          />
+          <Link
+            to={`/watch/${i.lastWatchedEpisode.episodeUrl}`}
+            title={`Play ${i.animeName}
+Eps ${i.lastWatchedEpisode.episodeNumber}
+${i.lastWatchedEpisode.episodeTitle}`}
+            key={i.animeId}
+          >
+            <div className='text-center text-long'>{i.animeName}</div>
+            <div className='overflow-hidden relative'>
+              <img
+                className='object-cover w-full transition duration-200 ease-in group-hover:scale-105 aspect-video group-hover:brightness-60'
+                src={i.image}
+                alt=''
+              />
+              <p className='flex absolute bottom-1 left-2 gap-2 items-center px-1 bg-gray-200 rounded-sm'>
+                <p className='text-gray-500'>Eps</p>
+                <p className='text-lg'>{i.lastWatchedEpisode.episodeNumber}</p>
+              </p>
+              <FaPlayCircle className='absolute top-1/2 left-1/2 z-10 text-4xl text-blue-300 opacity-0 transition-opacity duration-200 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100' />
+            </div>
+
+            <div className='flex gap-4 px-1 text-gray-500 rounded-sm'>
+              <p className='text-long'>{i.lastWatchedEpisode.episodeTitle}</p>
+            </div>
+          </Link>
+        </div>
       ))}
     </div>
   );
