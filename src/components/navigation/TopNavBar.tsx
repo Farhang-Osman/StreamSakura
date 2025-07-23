@@ -4,7 +4,7 @@ import { FaDiscord, FaHistory } from 'react-icons/fa';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 import { ImSearch } from 'react-icons/im';
 import { RiVipDiamondFill } from 'react-icons/ri';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import blossomSvg from '/cherry-blossom-svgrepo-com-optimized.svg';
 import axios from 'axios';
@@ -39,11 +39,11 @@ const TopNavBar = () => {
   };
 
   return (
-    <div className='flex fixed top-0 right-0 bottom-0 left-0 z-50 justify-around w-full h-16 bg-gray-300'>
+    <div className='flex fixed top-0 right-0 bottom-0 left-0 z-50 justify-between w-full h-16 bg-gray-300'>
       <div className='flex gap-2 items-center h-full'>
         <a
           onClick={() => navigate('/home')}
-          className='flex h-full cursor-pointer items-center bg-[#bf0477] px-4 rounded-sm'
+          className='flex h-full cursor-pointer pl-10 pr-4 items-center bg-[#bf0477] rounded-sm'
         >
           <div className='h-full text-xl'>
             <p className='text-[#ffbcd8] border-b-2 border-dotted'>stream</p>
@@ -72,7 +72,7 @@ const TopNavBar = () => {
       </div>
       <div className='flex gap-8 items-center'>
         <div
-          className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'
+          className='flex flex-col items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'
           onClick={() => handleRandomAnime()}
         >
           <GiPerspectiveDiceSixFacesRandom className='text-blue-500 group-hover:text-blue-700 size-9' />
@@ -80,25 +80,25 @@ const TopNavBar = () => {
         </div>
         <div
           onClick={() => navigate('/special')}
-          className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'
+          className='flex flex-col items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'
         >
           <RiVipDiamondFill className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Special</p>
         </div>
         <div
           onClick={() => navigate('/movie')}
-          className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'
+          className='flex flex-col items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'
         >
           <BiSolidCameraMovie className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Movie</p>
         </div>
-        <div className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'>
+        <div className='flex flex-col items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'>
           <FaDiscord className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Dicord</p>
         </div>
         <div
           onClick={() => navigate('/history')}
-          className='flex flex-col justify-center items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'
+          className='flex flex-col justify-center items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'
         >
           <FaHistory className='text-blue-500 group-hover:text-blue-700 size-7' />
           <h3>History</h3>
