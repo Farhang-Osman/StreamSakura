@@ -3,6 +3,8 @@ import { tvInfo } from './Watch';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CardItem2 } from '../components/shared/CardItem2';
+import { HomeAnimeInfo } from './Home';
+import { CardItem } from '../components/shared/CardItem';
 
 interface searchResults {
   data: [
@@ -508,21 +510,10 @@ const Search: FC = () => {
         apply
       </button>
       {isLoading ? (
-        <p className='text-center text-2xl mt-5'>Laoding</p>
+        <p className='mt-5 text-2xl text-center'>Laoding</p>
       ) : (
         <div className='relative transition search-card-grid-layout duration-0'>
-          {resp?.data.map((anime) => (
-            <CardItem2
-              key={anime.id}
-              anime={{
-                id: anime.id,
-                image: anime.poster,
-                englishTitle: anime.title,
-                japaneseTitle: anime.japanese_title,
-                type: anime.tvInfo.showType,
-              }}
-            />
-          ))}
+          {resp?.data?.map((anime) => <CardItem data={anime} />)}
         </div>
       )}
     </div>

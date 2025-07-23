@@ -212,7 +212,6 @@ const Home = () => {
           )}
         </div>
       </div>
-      <p>window.innerWidth={window.innerWidth}</p>
     </div>
   );
 };
