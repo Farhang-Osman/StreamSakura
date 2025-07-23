@@ -13,8 +13,6 @@ const TopNavBar = () => {
   const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
-  const locationn = useLocation();
-
   const [search, setSearch] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +85,10 @@ const TopNavBar = () => {
           <RiVipDiamondFill className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Special</p>
         </div>
-        <div className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'>
+        <div
+          onClick={() => navigate('/movie')}
+          className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'
+        >
           <BiSolidCameraMovie className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Movie</p>
         </div>

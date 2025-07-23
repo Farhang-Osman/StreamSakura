@@ -13,6 +13,7 @@ import { AuthProvider } from './client/useAuth';
 // import SideNavBar from './components/navigation/SideNavBar';
 import TopNavBar from './components/navigation/TopNavBar';
 import Special from './pages/Special';
+import Movie from './pages/Movie';
 
 register();
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
           <Route path='/special' element={<Special />} />
+          <Route path='/movie' element={<Movie />} />
           <Route path='/about' element={<About />} />
           <Route path='*' element={<NotFound />} />
           <Route path='/callback' element={<Callback />} />
