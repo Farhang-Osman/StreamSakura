@@ -1,0 +1,57 @@
+import React, { useEffect, useState } from 'react';
+import { HomeAnimeInfo } from './Home';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+
+const Special = () => {
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [animeInfo, setAnimeInfo] = useState<HomeAnimeInfo[]>(
+    [] as HomeAnimeInfo[],
+  );
+
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
+  async function fetchHomeData(): Promise<void> {
+    try {
+      setIsLoading(true);
+      const res = await axios.get(`${BASE_URL}/api/special`);
+
+      if (res.status !== 200 || res.status >= 400) {
+        throw new Error(`Server Error: ${res.status}`);
+      } else if (Object.keys(res.data.results).length === 0) {
+        navigate('/404');
+      }
+
+      setIsLoading(false);
+      console.log(JSON.stringify(res.data.results.data));
+      // setHomeData(res.data);
+      setAnimeInfo(res.data.results.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchHomeData();
+  }, []);
+
+  return (
+    <div className='grid grid-cols-4'>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          {animeInfo.map((i) => (
+            <Link to={''}>
+              <img src={i.poster} alt='' />
+            </Link>
+          ))}
+        </>
+      )}
+    </div>
+  );
+};
+
+export default Special;

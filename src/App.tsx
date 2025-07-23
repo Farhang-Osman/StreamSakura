@@ -12,6 +12,7 @@ import Watch from './pages/Watch';
 import { AuthProvider } from './client/useAuth';
 // import SideNavBar from './components/navigation/SideNavBar';
 import TopNavBar from './components/navigation/TopNavBar';
+import Special from './pages/Special';
 
 register();
 
@@ -25,6 +26,7 @@ function App() {
           {/* <Route path='/dfj' element={<sideBarNav />} /> */}
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
+          <Route path='/special' element={<Special />} />
           <Route path='/about' element={<About />} />
           <Route path='*' element={<NotFound />} />
           <Route path='/callback' element={<Callback />} />

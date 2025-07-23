@@ -80,7 +80,10 @@ const TopNavBar = () => {
           <GiPerspectiveDiceSixFacesRandom className='text-blue-500 group-hover:text-blue-700 size-9' />
           <h3>Random</h3>
         </div>
-        <div className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'>
+        <div
+          onClick={() => navigate('/special')}
+          className='flex flex-col items-center px-1 h-full hover:bg-gray-100 group hover:cursor-pointer'
+        >
           <RiVipDiamondFill className='text-blue-500 group-hover:text-blue-700 size-9' />
           <p>Special</p>
         </div>
