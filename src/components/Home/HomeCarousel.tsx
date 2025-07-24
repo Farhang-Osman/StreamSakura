@@ -39,7 +39,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
     <>
       <div>
         <Swiper
-          className='relative max-w-full h-96 rounded-lg max-lg:h-80 max-sm:h-64 cursor-grab active:cursor-grabbing'
+          className='relative max-w-full h-[30rem] rounded-lg max-lg:h-80 max-sm:h-64 cursor-grab active:cursor-grabbing'
           spaceBetween={15}
           slidesPerView={1}
           loop={true}
