@@ -1,24 +1,12 @@
 import { useEffect, useState } from 'react';
-// import { GiTv } from 'react-icons/gi';
-// import { GrAnnounce } from 'react-icons/gr';
-// import { getNextSeason } from '../hooks/useTime';
-// import {
-//   fetchPopularAnime,
-//Anime,
-//   fetchTopAnime,
-//   fetchTrendingAnime,
-//   fetchUpcomingSeason,
-// } from '../hooks/useApi';
-import { CardGrid } from '../components/Cards/CardGrid';
 import { HomeCarousel } from '../components/Home/HomeCarousel';
-// import { HomeSideBar } from '../components/Home/HomeSideBar';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { tvInfo } from './Watch';
 import { HomeVerticalSlide } from '../components/Home/HomeVerticalSlides';
 import { SideBar } from '../components/shared/sideBar';
 import { GiTv } from 'react-icons/gi';
-// import { Anime } from '../hooks/animeInterface';
+import { CardGrid } from '../components/Cards/CardGrid';
 
 export interface spotlights {
   id: string;

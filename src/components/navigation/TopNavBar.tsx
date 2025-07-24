@@ -43,7 +43,7 @@ const TopNavBar = () => {
       <div className='flex gap-2 items-center h-full'>
         <a
           onClick={() => navigate('/home')}
-          className='flex h-full cursor-pointer pl-10 pr-4 items-center bg-[#bf0477] rounded-sm'
+          className='flex h-full cursor-pointer pl-10 pr-4 items-center bg-[#bf0477] rounded-r-sm'
         >
           <div className='h-full text-xl'>
             <p className='text-[#ffbcd8] border-b-2 border-dotted'>stream</p>
