@@ -101,7 +101,10 @@ body {
     transition: 0.2s ease-in-out;
   }
 }
-
+.home-carousel-layout {
+  @apply relative max-w-full h-[30rem] rounded-lg max-lg:h-80 max-sm:h-64
+  cursor-grab active:cursor-grabbing;
+}
 .card-grid-layout {
   @apply grid grid-cols-5 gap-x-6 gap-y-8
   max-sm:grid-cols-2
