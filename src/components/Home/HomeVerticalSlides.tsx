@@ -12,13 +12,13 @@ import { ImFire } from 'react-icons/im';
 
 interface HomeVerticalSlide {
   data: HomeAnimeInfo[] | undefined;
-  loading: boolean;
+  isLoading: boolean;
   error?: string | null;
 }
 
 export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
   data = [],
-  // loading = true,
+  isLoading = true,
 }) => {
   const navigate = useNavigate();
 
@@ -52,8 +52,24 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
 
   return (
     <>
+      {isLoading && (
+        <div className='flex overflow-hidden gap-2 p-1 w-full h-60 bg-gray-300 rounded-sm animate-pulse max-md:h-40'>
+          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
+          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
+          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
+          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
+          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
+          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
+          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
+          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
+          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
+          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
+          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
+          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
+        </div>
+      )}
       <div className='bg-gray-300 rounded-sm'>
-        <div className='flex items-center gap-2 mb-2 label'>
+        <div className='flex gap-2 items-center mb-2 label'>
           <ImFire />
           <h3>Trending</h3>
           <ImFire />
@@ -62,6 +78,10 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
           className='relative rounded-lg cursor-grab active:cursor-grabbing'
           spaceBetween={5}
           slidesPerView={useAdjustSlidesPerView()}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
           navigation={{
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -86,7 +106,7 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
               onClick={() => navigate(`/watch/${i.id}`)}
             >
               <div className='flex gap-1 px-1 group/title'>
-                <h3 className='font-serif text-2xl bg-gray-200 h-fit px-1 rounded-sm font-bold text-blue-800 group-hover/title:text-blue-500'>
+                <h3 className='px-1 font-serif text-2xl font-bold text-blue-800 bg-gray-200 rounded-sm h-fit group-hover/title:text-blue-500'>
                   {i.number}
                 </h3>
                 <div className='grid gap-1 w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer'>
