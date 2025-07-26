@@ -1,17 +1,20 @@
 import { FC, useEffect, useCallback } from 'react';
 // import { Anime } from '../../hooks/animeInterface';
-import { CardItem } from './CardItem';
+// import { CardItem } from './CardItem';
 import { HomeAnimeInfo } from '../../pages/Home';
+import { CardItem } from '../shared/CardItem';
 export interface CardGridProps {
   data: HomeAnimeInfo[];
   hasNextPage: boolean;
   onLoadMore: () => void;
+  isLoading: boolean;
 }
 
 export const CardGrid: FC<CardGridProps> = ({
   data,
   hasNextPage,
   onLoadMore,
+  isLoading,
 }) => {
   const handleLoadMore = useCallback(() => {
     if (hasNextPage) {
@@ -42,11 +45,19 @@ export const CardGrid: FC<CardGridProps> = ({
     };
   }, [handleLoadMore, hasNextPage]);
 
+  console.log(data);
+
   return (
-    <div className='relative transition card-grid-layout duration-0'>
-      {data.map((data) => (
-        <CardItem data={data} key={data.id} />
-      ))}
-    </div>
+    <>
+      {isLoading ? (
+        <div className='bg-gray-300 animate-pulse rounded-lg aspect-[3/4]'></div>
+      ) : (
+        <div className='relative transition card-grid-layout duration-0'>
+          {data.map((data) => (
+            <CardItem data={data} key={data.id} />
+          ))}
+        </div>
+      )}
+    </>
   );
 };

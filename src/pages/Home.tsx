@@ -119,15 +119,17 @@ const Home = () => {
 
   const renderCardGrid = (
     data: HomeAnimeInfo[],
-    hasNextPage?: boolean,
-    onLoadMore?: void,
+    // hasNextPage?: boolean,
+    // onLoadMore?: void,
+    isLoading: boolean,
   ) => (
     <div>
-      {isLoading ? (
-        <div></div>
-      ) : (
-        <CardGrid data={data} hasNextPage={false} onLoadMore={() => {}} />
-      )}
+      <CardGrid
+        data={data}
+        hasNextPage={false}
+        onLoadMore={() => {}}
+        isLoading={isLoading}
+      />
     </div>
   );
 
@@ -135,12 +137,12 @@ const Home = () => {
     <div className='flex flex-col gap-4 mx-auto my-0'>
       <HomeCarousel
         data={homeData?.results?.spotlights}
-        loading={isLoading}
+        isLoading={isLoading}
         // error={state}
       />
       <HomeVerticalSlide
         data={homeData?.results?.trending}
-        loading={isLoading}
+        isLoading={isLoading}
         // error={state}
       />
       {/* <EpisodeCard /> */}
@@ -174,12 +176,19 @@ const Home = () => {
           </div>
           <div>
             {activeTab === 'topUpcoming' &&
-              renderCardGrid(homeData?.results?.topUpcoming as HomeAnimeInfo[])}
+              renderCardGrid(
+                homeData?.results?.topUpcoming as HomeAnimeInfo[],
+                isLoading,
+              )}
             {activeTab === 'mostPopular' &&
-              renderCardGrid(homeData?.results?.mostPopular as HomeAnimeInfo[])}
+              renderCardGrid(
+                homeData?.results?.mostPopular as HomeAnimeInfo[],
+                isLoading,
+              )}
             {activeTab === 'mostFavorite' &&
               renderCardGrid(
                 homeData?.results?.mostFavorite as HomeAnimeInfo[],
+                isLoading,
               )}
           </div>
         </div>

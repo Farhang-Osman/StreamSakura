@@ -10,7 +10,6 @@ import { HomeAnimeInfo } from '../../pages/Home';
 
 interface CardItemProps {
   data: HomeAnimeInfo;
-  loading?: boolean;
 }
 
 export const CardItem: FC<CardItemProps> = ({ data }) => {
