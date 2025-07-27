@@ -193,20 +193,19 @@ const Home = () => {
           </div>
         </div>
         <div className='grid grid-cols-1 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 h-fit'>
-          {homeData?.results?.topAiring && (
-            <SideBar
-              animeData={homeData?.results?.topAiring}
-              title='TOP AIRING'
-              icon={<GiTv className='size-9' />}
-            />
-          )}
-          {homeData?.results?.latestCompleted && (
-            <SideBar
-              animeData={homeData?.results?.latestCompleted}
-              title='Latest Completed'
-              // icon={<GrAnnounce className='size-9' />}
-            />
-          )}
+          <SideBar
+            animeData={homeData?.results?.topAiring || []}
+            title='Top Airing'
+            icon={<GiTv className='size-9' />}
+            isLoading={isLoading}
+          />
+
+          <SideBar
+            animeData={homeData?.results?.latestCompleted || []}
+            title='Latest Completed'
+            // icon={<GrAnnounce className='size-9' />}
+            isLoading={isLoading}
+          />
         </div>
       </div>
     </div>

@@ -5,19 +5,31 @@ import { HomeAnimeInfo } from '../../pages/Home';
 // import { TbStarFilled, TbStarHalfFilled } from 'react-icons/tb';
 
 export const SideBar: FC<{
-  animeData: recommendedAndRelatedData[] | HomeAnimeInfo[];
+  animeData: recommendedAndRelatedData[] | HomeAnimeInfo[] | [];
   title: string;
   icon?: React.ReactNode;
-}> = ({ animeData, title, icon }) => {
+  isLoading?: boolean;
+}> = ({ animeData, title, icon, isLoading }) => {
   return (
     <div className='flex flex-col gap-2 h-fit'>
       <div className='flex gap-2 items-center text-blue-800'>
         {icon}
         <h3 className='bg-gray-200 label'>{title}</h3>
       </div>
-      <div
-        className={`flex overflow-x-hidden relative flex-col gap-2 mt-2 rounded-lg h-[1200px]`}
-      >
+      <div className='flex overflow-x-hidden relative flex-col gap-2 mt-2 rounded-lg h-[1200px]'>
+        {isLoading && (
+          <>
+            {Array.from({ length: 10 }).map((_, index) => (
+              <div
+                key={index}
+                className='aspect-[5/1] relative animate-pulse rounded-lg bg-gray-300 min-h-28 max-h-28 w-full'
+              >
+                <div className='absolute left-0 w-1/5 h-full bg-gray-400 rounded-lg'></div>
+              </div>
+            ))}
+          </>
+        )}
+
         {animeData.map((anime: recommendedAndRelatedData | HomeAnimeInfo) => (
           <Link
             className=''
