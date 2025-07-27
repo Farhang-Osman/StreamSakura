@@ -331,7 +331,42 @@ const Watch: FC = () => {
     </div>
   ) : episodesLoading ? (
     <>
-      <p className='w-full text-3xl text-center'>episodesLoading...</p>
+      <div className='grid grid-cols-10 gap-3 w-full animate-pulse'>
+        <div className='relative col-span-7 mb-1 bg-gray-300 rounded-sm aspect-video max-xl:col-span-10'></div>
+        <div className='grid col-span-3 gap-1 content-start p-1 w-full h-full bg-gray-300 rounded-sm max-xl:col-span-10 max-xl:h-72 aspect-square'>
+          <div className='grid overflow-auto gap-1 p-1 px-3 scroll-smooth max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'>
+            {Array.from({ length: 15 }).map((_, index) => (
+              <div
+                key={index}
+                className='flex gap-4 px-1 h-8 bg-gray-400 rounded-sm transition duration-100 ease-in-out'
+              ></div>
+            ))}
+          </div>
+        </div>
+        <div className='flex flex-col col-span-7 gap-3 w-full bg-gray-300 rounded-sm max-xl:col-span-10 aspect-video'></div>
+        <div className='grid grid-cols-1 col-span-3 gap-10 bg-gray-300 rounded-sm max-xl:gap-4 max-md:gap-10 max-xl:col-span-10 max-xl:grid-cols-2 max-md:grid-cols-1 h-fit'>
+          <div className='flex overflow-x-hidden relative flex-col gap-2 rounded-lg h-[1200px]'>
+            {Array.from({ length: 10 }).map((_, index) => (
+              <div
+                key={index}
+                className='aspect-[5/1] relative rounded-lg bg-gray-400 min-h-28 max-h-28 w-full'
+              >
+                <div className='absolute left-0 w-1/5 h-full bg-gray-500 rounded-lg'></div>
+              </div>
+            ))}
+          </div>
+          <div className='flex overflow-x-hidden relative flex-col gap-2 rounded-lg h-[1200px]'>
+            {Array.from({ length: 10 }).map((_, index) => (
+              <div
+                key={index}
+                className='aspect-[5/1] relative rounded-lg bg-gray-400 min-h-28 max-h-28 w-full'
+              >
+                <div className='absolute left-0 w-1/5 h-full bg-gray-500 rounded-lg'></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   ) : (
     <div className='grid grid-cols-10 gap-3 w-full'>
