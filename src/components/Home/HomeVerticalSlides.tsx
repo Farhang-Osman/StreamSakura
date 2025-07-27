@@ -18,7 +18,7 @@ interface HomeVerticalSlide {
 
 export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
   data = [],
-  isLoading = true,
+  isLoading,
 }) => {
   const navigate = useNavigate();
 
@@ -37,7 +37,6 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
       };
     }, []);
 
-    console.log('screenwidth >>> ', screenwidth);
     const slidePerView =
       screenwidth > 1250
         ? 6
@@ -52,28 +51,22 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
 
   return (
     <>
-      {isLoading && (
-        <div className='flex overflow-hidden gap-2 p-1 w-full h-60 bg-gray-300 rounded-sm animate-pulse max-md:h-40'>
-          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
-          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
-          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
-          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
-          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
-          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
-          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
-          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
-          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
-          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
-          <p className='w-8 bg-gray-400 rounded-sm aspect-square'></p>
-          <div className='aspect-[3/4] bg-gray-400 rounded-sm'></div>
-        </div>
-      )}
       <div className='bg-gray-300 rounded-sm'>
-        <div className='flex gap-2 items-center mb-2 label'>
+        <div className='flex gap-2 mb-2 label'>
           <ImFire />
           <h3>Trending</h3>
           <ImFire />
         </div>
+        {isLoading && (
+          <div className='flex overflow-hidden gap-4 w-full animate-pulse'>
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div key={index} className='flex gap-1 w-full h-60 max-md:h-40'>
+                <p className='w-8 bg-gray-400 rounded-lg aspect-square'></p>
+                <div className='aspect-[3/4] bg-gray-400 rounded-lg'></div>
+              </div>
+            ))}
+          </div>
+        )}
         <Swiper
           className='relative rounded-lg cursor-grab active:cursor-grabbing'
           spaceBetween={5}

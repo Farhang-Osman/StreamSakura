@@ -45,12 +45,17 @@ export const CardGrid: FC<CardGridProps> = ({
     };
   }, [handleLoadMore, hasNextPage]);
 
-  console.log(data);
-
   return (
     <>
       {isLoading ? (
-        <div className='bg-gray-300 animate-pulse rounded-lg aspect-[3/4]'></div>
+        <div className='card-grid-layout'>
+          {Array.from({ length: 30 }).map((_, index) => (
+            <div
+              key={index}
+              className='bg-gray-300 animate-pulse rounded-lg aspect-[3/4]'
+            ></div>
+          ))}
+        </div>
       ) : (
         <div className='relative transition card-grid-layout duration-0'>
           {data.map((data) => (
