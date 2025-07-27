@@ -2,8 +2,6 @@ import { FC, useEffect, useState } from 'react';
 import { tvInfo } from './Watch';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CardItem2 } from '../components/shared/CardItem2';
-import { HomeAnimeInfo } from './Home';
 import { CardItem } from '../components/shared/CardItem';
 
 interface searchResults {
@@ -510,9 +508,16 @@ const Search: FC = () => {
         apply
       </button>
       {isLoading ? (
-        <p className='mt-5 text-2xl text-center'>Laoding</p>
+        <div className='search-card-grid-layout'>
+          {Array.from({ length: 30 }).map((_, index) => (
+            <div
+              key={index}
+              className='bg-gray-300 animate-pulse rounded-lg aspect-[3/4]'
+            ></div>
+          ))}
+        </div>
       ) : (
-        <div className='relative transition search-card-grid-layout duration-0'>
+        <div className='relative search-card-grid-layout'>
           {resp?.data?.map((anime) => <CardItem data={anime} />)}
         </div>
       )}
