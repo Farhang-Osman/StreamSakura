@@ -24,23 +24,12 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
     return navigate(`/watch/${id}`);
   };
 
-  // const filteredData = data.filter(
-  //   (item) =>
-  //     item.title &&
-  //     item.description &&
-  //     item.cover !== item.image &&
-  //     !item.genres.includes('Ecchi') &&
-  //     !item.genres.includes('Hentai') &&
-  //     !item.genres.includes('Romance') &&
-  //     !item.genres.includes('Fantasy'),
-  // );
-
   return (
     <>
       {isLoading ? (
         <div className='bg-gray-300 animate-pulse home-carousel-layout'></div>
       ) : (
-        <div>
+        <div className='animate-fade'>
           <Swiper
             className='home-carousel-layout'
             spaceBetween={15}

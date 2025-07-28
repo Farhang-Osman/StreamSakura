@@ -52,7 +52,7 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
   return (
     <>
       <div className='bg-gray-300 rounded-sm'>
-        <div className='flex gap-2 mb-2 label'>
+        <div className='flex gap-4 justify-center items-center mb-2 label'>
           <ImFire />
           <h3>Trending</h3>
           <ImFire />
@@ -93,7 +93,7 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
         >
           {data.map((i) => (
             <SwiperSlide
-              className='flex relative justify-start items-center'
+              className='flex relative justify-start items-center animate-fade'
               key={i.id}
               title={'Play ' + (i.title || i.japanese_title)}
               onClick={() => navigate(`/watch/${i.id}`)}

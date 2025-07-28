@@ -17,13 +17,13 @@ export const CardItem: FC<CardItemProps> = ({ data }) => {
   return (
     <>
       <Link
-        className='no-underline animate-slideUp hover:z-20 focus:z-20 active:z-20'
+        className='no-underline animate-fade hover:z-20 focus:z-20 active:z-20'
         to={`/watch/${data.id}`}
         title={data.title || data.japanese_title}
       >
         <div className='w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer group/title'>
-          <div className='transition duration-200 ease-in-out hover:-translate-y-2.5'>
-            <div className='rounded-lg overflow-hidden relative aspect-[3/4] shadow-blue-900 animate-slideUp transition duration-200 ease-in-out shadow-[2px_2px_10px] text-left'>
+          <div className='transition duration-200 ease-in-out'>
+            <div className='rounded-lg overflow-hidden relative aspect-[3/4] shadow-blue-900  transition duration-200 ease-in-out shadow-[2px_2px_10px] text-left'>
               <div className='whfull group'>
                 <img
                   src={imageSrc}

@@ -11,12 +11,12 @@ export const SideBar: FC<{
   isLoading?: boolean;
 }> = ({ animeData, title, icon, isLoading }) => {
   return (
-    <div className='flex flex-col gap-2 h-fit'>
-      <div className='flex gap-2 items-center text-blue-800'>
+    <div className='flex flex-col rounded-lg border-4 border-gray-300 h-fit'>
+      <div className='flex gap-2 items-center p-2 text-blue-800 bg-gray-300'>
         {icon}
         <h3 className='bg-gray-200 label'>{title}</h3>
       </div>
-      <div className='flex overflow-x-hidden relative flex-col gap-2 mt-2 rounded-lg h-[1200px]'>
+      <div className='flex overflow-x-hidden relative flex-col gap-2 rounded-lg h-[1200px]'>
         {isLoading && (
           <>
             {Array.from({ length: 10 }).map((_, index) => (
@@ -37,7 +37,7 @@ export const SideBar: FC<{
             target='_blank'
             key={anime.data_id}
           >
-            <div className='group relative aspect-[5/1] animate-slideUp min-h-28 max-h-28 w-full'>
+            <div className='group relative aspect-[5/1] animate-fade min-h-28 max-h-28 w-full'>
               <div className='absolute right-0 w-3/4 h-full'>
                 <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-white to-85% group-hover:to-100% group-hover:from-75%'></div>
                 <img
@@ -48,7 +48,7 @@ export const SideBar: FC<{
               </div>
               <div className='flex overflow-hidden relative gap-4 h-full rounded-lg'>
                 <img
-                  className='rounded-lg transition duration-200 ease-in-out group-hover:translate-x-3'
+                  className='rounded-lg transition duration-200 ease-in-out group-hover:translate-x-2'
                   src={anime.poster}
                   alt=''
                 />

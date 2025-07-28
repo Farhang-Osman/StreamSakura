@@ -127,5 +127,5 @@ body {
   @apply w-full h-full;
 }
 .label {
-  @apply p-1 px-4 content-center text-blue-800 text-lg font-medium rounded-b-lg border-b-2;
+  @apply p-1 px-4 content-center text-blue-800 text-lg font-medium rounded-lg border-b-2;
 }
