@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { recommendedAndRelatedData } from '../../pages/Watch';
 import { Link } from 'react-router-dom';
 import { HomeAnimeInfo } from '../../pages/Home';
+import { BiSolidDownArrowCircle, BiSolidUpArrowCircle } from 'react-icons/bi';
 // import { TbStarFilled, TbStarHalfFilled } from 'react-icons/tb';
 
 export const SideBar: FC<{
@@ -10,13 +11,17 @@ export const SideBar: FC<{
   icon?: React.ReactNode;
   isLoading?: boolean;
 }> = ({ animeData, title, icon, isLoading }) => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
   return (
     <div className='flex flex-col rounded-lg border-4 border-gray-300 h-fit'>
       <div className='flex gap-2 items-center p-2 text-blue-800 bg-gray-300'>
         {icon}
         <h3 className='bg-gray-200 label'>{title}</h3>
       </div>
-      <div className='flex overflow-x-hidden relative flex-col gap-2 rounded-lg h-[1200px]'>
+      <div
+        className={`flex relative flex-col gap-2 ${isExpanded ? 'overflow-y-scroll h-[700px]' : 'overflow-hidden h-[500px]'}`}
+      >
         {isLoading && (
           <>
             {Array.from({ length: 10 }).map((_, index) => (
@@ -96,6 +101,23 @@ export const SideBar: FC<{
             </div>
           </Link>
         ))}
+      </div>
+      <div
+        className='flex justify-center bg-gray-300 rounded-sm cursor-pointer hover:text-blue-500 hover:bg-gray-200'
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        {!isExpanded && (
+          <button className='flex gap-1 items-center p-2 cursor-pointer'>
+            <BiSolidDownArrowCircle className='size-7' />
+            show more
+          </button>
+        )}
+        {isExpanded && (
+          <button className='flex gap-1 items-center p-2 cursor-pointer'>
+            <BiSolidUpArrowCircle className='size-7' />
+            show less
+          </button>
+        )}
       </div>
     </div>
   );
