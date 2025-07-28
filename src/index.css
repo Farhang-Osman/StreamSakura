@@ -129,3 +129,6 @@ body {
 .label {
   @apply p-1 px-4 content-center text-blue-800 text-lg font-medium rounded-lg border-b-2;
 }
+.shadow {
+  @apply shadow-blue-900 shadow-[2px_2px_10px];
+}

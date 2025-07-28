@@ -51,7 +51,7 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
 
   return (
     <>
-      <div className='bg-gray-300 rounded-sm'>
+      <div className='bg-gray-300 rounded-sm shadow'>
         <div className='flex gap-4 justify-center items-center mb-2 label'>
           <ImFire />
           <h3>Trending</h3>
@@ -103,7 +103,7 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
                   {i.number}
                 </h3>
                 <div className='grid gap-1 w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer'>
-                  <div className='rounded-lg whfull group overflow-hidden relative aspect-[3/4] shadow-blue-900  transition duration-200 ease-in-out shadow-[2px_2px_10px] text-left'>
+                  <div className='rounded-lg whfull group overflow-hidden relative aspect-[3/4] shadow transition duration-200 ease-in-out text-left'>
                     <img
                       src={i.poster}
                       alt=''

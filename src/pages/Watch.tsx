@@ -369,9 +369,9 @@ const Watch: FC = () => {
       </div>
     </>
   ) : (
-    <div className='grid grid-cols-10 gap-3 w-full'>
+    <div className='grid grid-cols-10 gap-4 w-full'>
       {/* watch screen */}
-      <div className='relative col-span-7 mb-1 aspect-video max-xl:col-span-10'>
+      <div className='relative col-span-7 mb-1 rounded-sm shadow aspect-video max-xl:col-span-10'>
         {isStreamLoading && (
           <div className='flex absolute inset-0 justify-center items-center bg-black rounded-sm'>
             <div className='w-12 h-12 rounded-full border-t-2 border-b-2 border-blue-500 animate-spin'></div>
@@ -385,7 +385,7 @@ const Watch: FC = () => {
         ></iframe>
       </div>
       {/* list of episodes container */}
-      <div className='grid col-span-3 gap-1 content-start p-1 w-full h-full bg-gray-300 rounded-sm max-xl:col-span-10 max-xl:h-72 aspect-square'>
+      <div className='grid col-span-3 gap-1 content-start p-1 w-full h-full bg-gray-300 rounded-sm shadow max-xl:col-span-10 max-xl:h-72 aspect-square'>
         <div className='px-1 text-gray-500 bg-gray-200 rounded-sm'>
           {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
         </div>
@@ -412,8 +412,8 @@ const Watch: FC = () => {
         </div>
       </div>
       {/* Source and anime info */}
-      <div className='flex flex-col col-span-7 gap-3 w-full max-xl:col-span-10 aspect-video'>
-        <div className='flex gap-2 justify-evenly items-center p-2 bg-gray-300 rounded-sm'>
+      <div className='flex flex-col col-span-7 gap-4 w-full max-xl:col-span-10 aspect-video'>
+        <div className='flex gap-2 justify-evenly items-center p-2 bg-gray-300 rounded-sm shadow'>
           <p className='flex flex-wrap gap-1 items-center p-1 px-4 bg-gray-100 rounded-sm'>
             you are watching Episode{' '}
             <p className='px-1 text-blue-500 bg-blue-100 rounded-sm border'>
@@ -436,7 +436,7 @@ const Watch: FC = () => {
           </div>
         </div>
 
-        <div className='flex w-full bg-gray-300 rounded-sm'>
+        <div className='flex w-full bg-gray-300 rounded-sm shadow'>
           <div className='w-1/4 max-md:w-2/5'>
             <img src={animeInfo.data?.poster} alt='' className='rounded-sm' />
           </div>
@@ -525,7 +525,7 @@ const Watch: FC = () => {
         </div>
 
         {animeInfo.seasons.length !== 0 && (
-          <div className='flex flex-col gap-2 pt-1 pb-4 text-center bg-gray-300 rounded-sm h-fit'>
+          <div className='flex flex-col gap-2 pt-1 pb-4 text-center bg-gray-300 rounded-sm shadow h-fit'>
             <p className='mx-2 bg-gray-200 label'>Seasons</p>
             <div className='flex relative flex-wrap gap-2 justify-center'>
               {animeInfo.seasons.map((item) => (
@@ -560,7 +560,7 @@ const Watch: FC = () => {
         )}
       </div>
       {/* related and recommendations */}
-      <div className='grid grid-cols-1 col-span-3 gap-10 max-xl:gap-4 max-md:gap-10 max-xl:col-span-10 max-xl:grid-cols-2 max-md:grid-cols-1 h-fit'>
+      <div className='grid grid-cols-1 col-span-3 gap-6 max-xl:gap-4 max-md:gap-6 max-xl:col-span-10 max-xl:grid-cols-2 max-md:grid-cols-1 h-fit'>
         <SideBar animeData={animeInfo.data?.related_data} title={'RELATED'} />
         <SideBar
           animeData={animeInfo.data?.recommended_data}

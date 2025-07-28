@@ -14,7 +14,7 @@ export const SideBar: FC<{
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   return (
-    <div className='flex flex-col rounded-lg border-4 border-gray-300 h-fit'>
+    <div className='flex flex-col bg-gray-300 rounded-lg border-4 border-gray-300 shadow h-fit'>
       <div className='flex gap-2 items-center p-2 text-blue-800 bg-gray-300'>
         {icon}
         <h3 className='bg-gray-200 label'>{title}</h3>
@@ -42,9 +42,9 @@ export const SideBar: FC<{
             target='_blank'
             key={anime.data_id}
           >
-            <div className='group relative aspect-[5/1] animate-fade min-h-28 max-h-28 w-full'>
+            <div className='group relative aspect-[5/1] animate-fade min-h-28 rounded-lg max-h-28 w-full'>
               <div className='absolute right-0 w-3/4 h-full'>
-                <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-white to-85% group-hover:to-100% group-hover:from-75%'></div>
+                <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-gray-300 to-85% group-hover:to-100% group-hover:from-75%'></div>
                 <img
                   className='object-cover w-full h-full rounded-lg'
                   src={anime.poster}
@@ -103,7 +103,7 @@ export const SideBar: FC<{
         ))}
       </div>
       <div
-        className='flex justify-center bg-gray-300 rounded-sm cursor-pointer hover:text-blue-500 hover:bg-gray-200'
+        className='flex justify-center bg-gray-200 rounded-sm cursor-pointer hover:text-blue-500 hover:bg-blue-200'
         onClick={() => setIsExpanded(!isExpanded)}
       >
         {!isExpanded && (

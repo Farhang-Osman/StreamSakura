@@ -23,7 +23,7 @@ export const CardItem: FC<CardItemProps> = ({ data }) => {
       >
         <div className='w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer group/title'>
           <div className='transition duration-200 ease-in-out'>
-            <div className='rounded-lg overflow-hidden relative aspect-[3/4] shadow-blue-900  transition duration-200 ease-in-out shadow-[2px_2px_10px] text-left'>
+            <div className='rounded-lg overflow-hidden relative aspect-[3/4] shadow transition duration-200 ease-in-out  text-left'>
               <div className='whfull group'>
                 <img
                   src={imageSrc}

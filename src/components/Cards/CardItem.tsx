@@ -24,7 +24,7 @@ export const CardItem: FC<CardItemProps> = ({ data }) => {
       >
         <div className='w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer group/title'>
           <div className='transition duration-200 ease-in-out hover:-translate-y-2.5'>
-            <div className='rounded-lg overflow-hidden relative aspect-[3/4] shadow-blue-900 animate-slideUp transition duration-200 ease-in-out shadow-[2px_2px_10px] text-left'>
+            <div className='rounded-lg overflow-hidden relative aspect-[3/4]  animate-slideUp transition duration-200 ease-in-out shadow text-left'>
               <div className='whfull group'>
                 <img
                   src={imageSrc}
@@ -40,7 +40,7 @@ export const CardItem: FC<CardItemProps> = ({ data }) => {
           </div>
           <div className='pt-1 pl-2'>
             <h5
-              className='text-sm text-blue-800 font-bold transition duration-300 ease-in-out text-long group-hover/title:text-blue-500'
+              className='text-sm font-bold text-blue-800 transition duration-300 ease-in-out text-long group-hover/title:text-blue-500'
               title={'Title: ' + (data.title || data.japanese_title)}
             >
               {data.title || data.japanese_title}
@@ -50,17 +50,17 @@ export const CardItem: FC<CardItemProps> = ({ data }) => {
             <div></div>
             <div className='flex justify-evenly'>
               {data.tvInfo?.showType && (
-                <p className='px-1 text-xs bg-gray-200 text-blue-800 rounded-sm'>
+                <p className='px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
                   {data.tvInfo?.showType}
                 </p>
               )}
               {/* {anime.releaseDate && (
-                <p className='px-1 text-xs bg-gray-200 text-blue-800 rounded-sm'>
+                <p className='px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
                   {anime.releaseDate}
                 </p>
               )}
               {anime.rating && (
-                <p className='flex items-center px-1 text-xs bg-gray-200 text-blue-800 rounded-sm'>
+                <p className='flex items-center px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
                   {anime.rating >= 75 ? <TbStarFilled /> : <TbStarHalfFilled />}
                   {anime.rating}
                 </p>
