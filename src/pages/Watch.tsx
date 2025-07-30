@@ -563,15 +563,10 @@ const Watch: FC = () => {
       </div>
       {/* related and recommendations */}
       <div className='grid grid-cols-1 col-span-3 gap-6 max-xl:gap-4 max-md:gap-6 max-xl:col-span-10 max-xl:grid-cols-2 max-md:grid-cols-1 h-fit'>
-        <SideBar
-          animeData={animeInfo.data?.related_data}
-          title={'RELATED'}
-          isWatchPage={true}
-        />
+        <SideBar animeData={animeInfo.data?.related_data} title={'RELATED'} />
         <SideBar
           animeData={animeInfo.data?.recommended_data}
           title={'RECOMMENDED'}
-          isWatchPage={true}
         />
       </div>
     </div>

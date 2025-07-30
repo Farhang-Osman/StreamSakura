@@ -39,7 +39,7 @@ const TopNavBar = () => {
   };
 
   return (
-    <div className='flex fixed top-0 right-0 bottom-0 left-0 z-50 justify-between w-full h-16 bg-gray-300'>
+    <div className='flex fixed top-0 shadow right-0 bottom-0 left-0 z-50 justify-between w-full h-16 bg-gray-300'>
       <div className='flex gap-2 items-center h-full'>
         <a
           onClick={() => navigate('/home')}

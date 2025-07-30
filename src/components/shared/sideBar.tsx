@@ -10,26 +10,25 @@ export const SideBar: FC<{
   title: string;
   icon?: React.ReactNode;
   isLoading?: boolean;
-  isWatchPage: boolean;
-}> = ({ animeData, title, icon, isLoading, isWatchPage }) => {
+}> = ({ animeData, title, icon, isLoading }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   return (
-    <div className='flex flex-col bg-gray-300 rounded-lg shadow h-fit'>
-      {isWatchPage ? (
+    <div className='flex flex-col p-2 bg-gray-300 rounded-lg shadow h-fit'>
+      {/* {isWatchPage ? (
         <div className='flex gap-2 items-center p-3 text-blue-800'>
           {icon}
           <h3 className='text-lg font-medium'>{title}</h3>
         </div>
-      ) : (
-        <div className='flex gap-2 items-center px-2 mb-3 text-blue-800'>
-          {icon}
-          <h3 className='text-lg font-medium'>{title}</h3>
-        </div>
-      )}
+      ) : ( */}
+      <div className='flex gap-2 justify-center items-center place-self-center py-1 mb-2 w-3/4 text-blue-800 rounded-lg shadow'>
+        {icon}
+        <h3 className='text-lg font-medium'>{title}</h3>
+      </div>
+      {/* )} */}
 
       <div
-        className={`flex relative flex-col gap-2 ${isExpanded ? 'overflow-y-scroll h-[700px]' : 'overflow-hidden h-[500px]'}`}
+        className={`flex relative flex-col gap-2 rounded-lg ${isExpanded ? 'overflow-y-scroll h-[700px]' : 'overflow-hidden h-[500px]'}`}
       >
         {isLoading && (
           <>
@@ -45,12 +44,7 @@ export const SideBar: FC<{
         )}
 
         {animeData.map((anime: recommendedAndRelatedData | HomeAnimeInfo) => (
-          <Link
-            className=''
-            to={`/watch/${anime.id}`}
-            target='_blank'
-            key={anime.data_id}
-          >
+          <Link to={`/watch/${anime.id}`} target='_blank' key={anime.data_id}>
             <div className='group relative aspect-[5/1] animate-fade min-h-28 rounded-lg max-h-28 w-full'>
               <div className='absolute right-0 w-3/4 h-full'>
                 <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-gray-300 to-85% group-hover:to-100% group-hover:from-75%'></div>
@@ -112,7 +106,7 @@ export const SideBar: FC<{
         ))}
       </div>
       <div
-        className='flex justify-center bg-gray-200 rounded-sm cursor-pointer hover:text-blue-500 hover:bg-blue-200'
+        className='flex justify-center rounded-lg shadow cursor-pointer hover:text-blue-500 hover:bg-blue-200'
         onClick={() => setIsExpanded(!isExpanded)}
       >
         {!isExpanded && (

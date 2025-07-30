@@ -34,9 +34,9 @@ const History = () => {
   };
 
   return (
-    <div className='grid relative grid-cols-4 gap-2 pr-2'>
+    <div className='grid relative grid-cols-4 gap-4 pr-2'>
       {localData.map((i) => (
-        <div className='relative w-full bg-gray-200 rounded-sm cursor-pointer animate-fade group'>
+        <div className='relative w-full bg-gray-200 rounded-sm shadow cursor-pointer animate-fade group'>
           <TiDelete
             title='Delete from history ?'
             className='absolute right-1 top-6 z-10 text-4xl text-gray-300 bg-transparent opacity-0 transition-opacity duration-200 ease-in group-hover:opacity-100'

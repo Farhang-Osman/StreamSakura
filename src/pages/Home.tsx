@@ -147,8 +147,8 @@ const Home = () => {
         // error={state}
       />
       {/* <EpisodeCard /> */}
-      <div className='flex gap-8 max-lg:gap-12 max-lg:flex-col'>
-        <div className='flex flex-col gap-4 min-lg:flex-4/5'>
+      <div className='flex gap-4 max-lg:flex-col'>
+        <div className='flex flex-col gap-4 min-lg:mt-3 min-lg:flex-4/5'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
             <h3
               className={`${activeTab === 'topUpcoming' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
@@ -193,13 +193,12 @@ const Home = () => {
               )}
           </div>
         </div>
-        <div className='grid grid-cols-1 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 h-fit'>
+        <div className='grid grid-cols-1 gap-8 max-lg:grid-cols-2 max-lg:gap-4 max-md:grid-cols-1 max-md:gap-8 h-fit'>
           <SideBar
             animeData={homeData?.results?.topAiring || []}
             title='Top Airing'
             icon={<GiTv className='size-9' />}
             isLoading={isLoading}
-            isWatchPage={false}
           />
 
           <SideBar
@@ -207,7 +206,6 @@ const Home = () => {
             title='Latest Completed'
             icon={<IoCheckmarkDoneCircle className='size-9' />}
             isLoading={isLoading}
-            isWatchPage={false}
           />
         </div>
       </div>
