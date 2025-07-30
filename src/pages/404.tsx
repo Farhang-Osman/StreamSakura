@@ -10,7 +10,7 @@ const NotFound = () => {
       <p className='text-5xl font-medium'>Not Found</p>
       <img src={punch_screen} alt='404 Error' />
       <button
-        className='bg-gray-200 rounded-lg cursor-pointer hover:bg-blue-200 label'
+        className='bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-blue-200 label'
         onClick={() => navigate('/home')}
       >
         <p className='text-2xl'>go to home</p>

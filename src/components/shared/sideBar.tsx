@@ -10,15 +10,24 @@ export const SideBar: FC<{
   title: string;
   icon?: React.ReactNode;
   isLoading?: boolean;
-}> = ({ animeData, title, icon, isLoading }) => {
+  isWatchPage: boolean;
+}> = ({ animeData, title, icon, isLoading, isWatchPage }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   return (
-    <div className='flex flex-col bg-gray-300 rounded-lg border-4 border-gray-300 shadow h-fit'>
-      <div className='flex gap-2 items-center p-2 text-blue-800 bg-gray-300'>
-        {icon}
-        <h3 className='bg-gray-200 label'>{title}</h3>
-      </div>
+    <div className='flex flex-col bg-gray-300 rounded-lg shadow h-fit'>
+      {isWatchPage ? (
+        <div className='flex gap-2 items-center p-3 text-blue-800'>
+          {icon}
+          <h3 className='text-lg font-medium'>{title}</h3>
+        </div>
+      ) : (
+        <div className='flex gap-2 items-center px-2 mb-3 text-blue-800'>
+          {icon}
+          <h3 className='text-lg font-medium'>{title}</h3>
+        </div>
+      )}
+
       <div
         className={`flex relative flex-col gap-2 ${isExpanded ? 'overflow-y-scroll h-[700px]' : 'overflow-hidden h-[500px]'}`}
       >

@@ -323,7 +323,7 @@ const Watch: FC = () => {
       <p className='text-xl font-medium'>No episodes found</p>
       <img src={punch_screen} alt='404 Error' />
       <button
-        className='bg-gray-200 rounded-lg cursor-pointer hover:bg-blue-200 label'
+        className='bg-gray-200 rounded-lg shadow cursor-pointer hover:bg-blue-200 label'
         onClick={() => navigate('/home')}
       >
         go to home
@@ -525,8 +525,10 @@ const Watch: FC = () => {
         </div>
 
         {animeInfo.seasons.length !== 0 && (
-          <div className='flex flex-col gap-2 pt-1 pb-4 text-center bg-gray-300 rounded-sm shadow h-fit'>
-            <p className='mx-2 bg-gray-200 label'>Seasons</p>
+          <div className='flex flex-col gap-4 pt-1 pb-4 text-center bg-gray-300 rounded-sm shadow h-fit'>
+            <p className='place-self-center w-3/4 bg-gray-200 shadow label'>
+              Seasons
+            </p>
             <div className='flex relative flex-wrap gap-2 justify-center'>
               {animeInfo.seasons.map((item) => (
                 <div className='relative cursor-pointer'>
@@ -561,10 +563,15 @@ const Watch: FC = () => {
       </div>
       {/* related and recommendations */}
       <div className='grid grid-cols-1 col-span-3 gap-6 max-xl:gap-4 max-md:gap-6 max-xl:col-span-10 max-xl:grid-cols-2 max-md:grid-cols-1 h-fit'>
-        <SideBar animeData={animeInfo.data?.related_data} title={'RELATED'} />
+        <SideBar
+          animeData={animeInfo.data?.related_data}
+          title={'RELATED'}
+          isWatchPage={true}
+        />
         <SideBar
           animeData={animeInfo.data?.recommended_data}
           title={'RECOMMENDED'}
+          isWatchPage={true}
         />
       </div>
     </div>

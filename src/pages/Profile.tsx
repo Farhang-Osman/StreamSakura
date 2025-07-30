@@ -33,7 +33,7 @@ const Profile = () => {
           </p>
           <a
             onClick={logout}
-            className='flex gap-2 items-center mt-2 bg-gray-200 rounded-t-lg cursor-pointer hover:bg-blue-200 label'
+            className='flex gap-2 items-center mt-2 bg-gray-200 rounded-t-lg shadow cursor-pointer hover:bg-blue-200 label'
           >
             <h3>Log out</h3>
             <IoLogOutOutline className='size-8' />
@@ -53,7 +53,7 @@ const Profile = () => {
             </p>
             <a
               onClick={login}
-              className='flex gap-2 items-center bg-gray-200 rounded-t-lg cursor-pointer hover:bg-blue-200 label'
+              className='flex gap-2 items-center bg-gray-200 rounded-t-lg shadow cursor-pointer hover:bg-blue-200 label'
             >
               <h3>Log in with</h3>
               <SiAnilist className='size-8' />

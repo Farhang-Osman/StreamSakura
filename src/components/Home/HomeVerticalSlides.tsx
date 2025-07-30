@@ -52,7 +52,7 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
   return (
     <>
       <div className='bg-gray-300 rounded-sm shadow'>
-        <div className='flex gap-4 justify-center items-center mb-2 label'>
+        <div className='flex gap-4 justify-center items-center mb-2 shadow label'>
           <ImFire />
           <h3>Trending</h3>
           <ImFire />

@@ -7,6 +7,7 @@ import { HomeVerticalSlide } from '../components/Home/HomeVerticalSlides';
 import { SideBar } from '../components/shared/sideBar';
 import { GiTv } from 'react-icons/gi';
 import { CardGrid } from '../components/Cards/CardGrid';
+import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 
 export interface spotlights {
   id: string;
@@ -150,8 +151,8 @@ const Home = () => {
         <div className='flex flex-col gap-4 min-lg:flex-4/5'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
             <h3
-              className={` label ${activeTab === 'topUpcoming' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
-             transition-colors duration-100 ease-in-out cursor-pointer`}
+              className={`${activeTab === 'topUpcoming' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
+             label shadow transition-colors duration-100 ease-in-out cursor-pointer`}
               title='Top Upcoming Tab'
               onClick={() => setActiveTab('topUpcoming')}
             >
@@ -159,7 +160,7 @@ const Home = () => {
             </h3>
             <div
               className={`${activeTab === 'mostPopular' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
-            label transition-colors duration-100 ease-in-out cursor-pointer`}
+            label shadow transition-colors duration-100 ease-in-out cursor-pointer`}
               title='Most Popular Tab'
               onClick={() => setActiveTab('mostPopular')}
             >
@@ -167,7 +168,7 @@ const Home = () => {
             </div>
             <div
               className={`${activeTab === 'mostFavorite' ? 'bg-blue-300' : 'bg-gray-200 hover:bg-blue-200'}
-            label transition-colors duration-100 ease-in-out cursor-pointer`}
+            label shadow transition-colors duration-100 ease-in-out cursor-pointer`}
               title='Most Favorite Tab'
               onClick={() => setActiveTab('mostFavorite')}
             >
@@ -198,13 +199,15 @@ const Home = () => {
             title='Top Airing'
             icon={<GiTv className='size-9' />}
             isLoading={isLoading}
+            isWatchPage={false}
           />
 
           <SideBar
             animeData={homeData?.results?.latestCompleted || []}
             title='Latest Completed'
-            // icon={<GrAnnounce className='size-9' />}
+            icon={<IoCheckmarkDoneCircle className='size-9' />}
             isLoading={isLoading}
+            isWatchPage={false}
           />
         </div>
       </div>
