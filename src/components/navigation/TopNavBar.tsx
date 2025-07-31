@@ -55,22 +55,6 @@ const TopNavBar = () => {
           </div>
           <img src={blossomSvg} className='size-15' />
         </a>
-        <div className='bg-background text-color p-6 rounded-lg shadow-lg'>
-          <h2 className='text-primary text-xl font-bold mb-4'>
-            Current Theme: {theme}
-          </h2>
-          <p className='mb-4'>
-            This component automatically adapts to the selected theme.
-          </p>
-          <div className='flex gap-4'>
-            <button className='bg-primary text-white px-4 py-2 rounded'>
-              Primary Button
-            </button>
-            <button className='border-2 border-accent text-primary px-4 py-2 rounded'>
-              Secondary Button
-            </button>
-          </div>
-        </div>
 
         <ThemeSwitcher />
       </div>

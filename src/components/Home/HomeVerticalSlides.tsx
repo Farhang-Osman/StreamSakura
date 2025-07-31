@@ -98,7 +98,7 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
               title={'Play ' + (i.title || i.japanese_title)}
               onClick={() => navigate(`/watch/${i.id}`)}
             >
-              <div className='flex gap-1 px-1 group/title'>
+              <div className='flex gap-1 pr-2 group/title'>
                 <h3 className='px-1 font-serif text-2xl font-bold text-blue-800 bg-gray-200 rounded-sm h-fit group-hover/title:text-blue-500'>
                   {i.number}
                 </h3>
