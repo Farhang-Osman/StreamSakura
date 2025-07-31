@@ -14,6 +14,7 @@ import { AuthProvider } from './client/useAuth';
 import TopNavBar from './components/navigation/TopNavBar';
 import Special from './pages/Special';
 import Movie from './pages/Movie';
+import { ThemeProvider } from './components/ThemeContext';
 
 register();
 
@@ -21,28 +22,30 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <TopNavBar />
-        {/* <SideNavBar /> */}
-        <Routes>
-          {/* <Route path='/dfj' element={<sideBarNav />} /> */}
-          <Route path='/' element={<Home />} />
-          <Route path='/home' element={<Home />} />
-          <Route path='/special' element={<Special />} />
-          <Route path='/movie' element={<Movie />} />
-          <Route path='/about' element={<About />} />
-          <Route path='*' element={<NotFound />} />
-          <Route path='/callback' element={<Callback />} />
-          <Route path='/history' element={<History />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/TOS' element={<TOS />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='/search?query' element={<Search />} />
-          <Route path='/watch/:animeTitleAndId' element={<Watch />} />
-          <Route
-            path='/watch/:animeTitleAndId?episodeNumber'
-            element={<Watch />}
-          />
-        </Routes>
+        <ThemeProvider>
+          <TopNavBar />
+          {/* <SideNavBar /> */}
+          <Routes>
+            {/* <Route path='/dfj' element={<sideBarNav />} /> */}
+            <Route path='/' element={<Home />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/special' element={<Special />} />
+            <Route path='/movie' element={<Movie />} />
+            <Route path='/about' element={<About />} />
+            <Route path='*' element={<NotFound />} />
+            <Route path='/callback' element={<Callback />} />
+            <Route path='/history' element={<History />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/TOS' element={<TOS />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='/search?query' element={<Search />} />
+            <Route path='/watch/:animeTitleAndId' element={<Watch />} />
+            <Route
+              path='/watch/:animeTitleAndId?episodeNumber'
+              element={<Watch />}
+            />
+          </Routes>
+        </ThemeProvider>
       </AuthProvider>
     </Router>
   );

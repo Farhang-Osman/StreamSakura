@@ -45,7 +45,7 @@ const Movie = () => {
           {Array.from({ length: 30 }).map((_, index) => (
             <div
               key={index}
-              className='bg-gray-300 animate-pulse rounded-lg aspect-[3/4]'
+              className='bg-gray-300 animate-pulse shadow rounded-lg aspect-[3/4]'
             ></div>
           ))}
         </div>

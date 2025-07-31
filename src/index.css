@@ -132,3 +132,79 @@ body {
 .shadow {
   @apply shadow-blue-800 shadow-[2px_2px_10px];
 }
+
+@layer base {
+  /* Default/light theme */
+  :root,
+  .theme-light {
+    --color-primary: 59 130 246;
+    --color-secondary: 16 185 129;
+    --color-background: 255 255 255;
+    --color-text: 17 24 39;
+    --color-accent: 236 72 153;
+  }
+
+  /* Dark theme */
+  .theme-dark {
+    --color-primary: 99 102 241;
+    --color-secondary: 16 185 129;
+    --color-background: 31 41 55;
+    --color-text: 249 250 251;
+    --color-accent: 244 114 182;
+  }
+
+  /* Blue theme */
+  .theme-blue {
+    --color-primary: 29 78 216;
+    --color-secondary: 14 165 233;
+    --color-background: 239 246 255;
+    --color-text: 30 58 138;
+    --color-accent: 59 130 246;
+  }
+
+  /* Custom theme examples */
+  .theme-rose {
+    --color-primary: 244 63 94;
+    --color-secondary: 251 113 133;
+    --color-background: 255 241 242;
+    --color-text: 190 18 60;
+    --color-accent: 244 63 94;
+  }
+
+  .theme-emerald {
+    --color-primary: 16 185 129;
+    --color-secondary: 5 150 105;
+    --color-background: 236 253 245;
+    --color-text: 6 95 70;
+    --color-accent: 16 185 129;
+  }
+
+  /* Utility classes that use these variables */
+  .bg-primary {
+    background-color: rgb(var(--color-primary));
+  }
+
+  .text-primary {
+    color: rgb(var(--color-primary));
+  }
+
+  .bg-background {
+    background-color: rgb(var(--color-background));
+  }
+
+  .text-color {
+    color: rgb(var(--color-text));
+  }
+
+  .border-accent {
+    border-color: rgb(var(--color-accent));
+  }
+}
+
+/* Smooth transitions between themes */
+@layer utilities {
+  .theme-transition *:not(.no-transition) {
+    transition-property: color, background-color, border-color;
+    transition-duration: 200ms;
+  }
+}

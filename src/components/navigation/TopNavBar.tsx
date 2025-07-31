@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiSolidCameraMovie } from 'react-icons/bi';
 import { FaDiscord, FaHistory } from 'react-icons/fa';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 
 import blossomSvg from '/cherry-blossom-svgrepo-com-optimized.svg';
 import axios from 'axios';
+import { useTheme } from '../ThemeContext';
+import ThemeSwitcher from '../ThemeSwitcher';
 
 const TopNavBar = () => {
   const navigate = useNavigate();
@@ -38,8 +40,10 @@ const TopNavBar = () => {
     }
   };
 
+  const { theme } = useTheme();
+
   return (
-    <div className='flex fixed top-0 shadow right-0 bottom-0 left-0 z-50 justify-between w-full h-16 bg-gray-300'>
+    <div className='flex fixed top-0 right-0 bottom-0 left-0 z-50 justify-between w-full h-16 bg-gray-300 shadow'>
       <div className='flex gap-2 items-center h-full'>
         <a
           onClick={() => navigate('/home')}
@@ -51,7 +55,24 @@ const TopNavBar = () => {
           </div>
           <img src={blossomSvg} className='size-15' />
         </a>
-        <p>theme</p>
+        <div className='bg-background text-color p-6 rounded-lg shadow-lg'>
+          <h2 className='text-primary text-xl font-bold mb-4'>
+            Current Theme: {theme}
+          </h2>
+          <p className='mb-4'>
+            This component automatically adapts to the selected theme.
+          </p>
+          <div className='flex gap-4'>
+            <button className='bg-primary text-white px-4 py-2 rounded'>
+              Primary Button
+            </button>
+            <button className='border-2 border-accent text-primary px-4 py-2 rounded'>
+              Secondary Button
+            </button>
+          </div>
+        </div>
+
+        <ThemeSwitcher />
       </div>
       <div className='flex justify-center justify-self-center items-center'>
         <search className='flex justify-center items-center px-1 text-xl bg-gray-200 rounded-md appearance-none'>
