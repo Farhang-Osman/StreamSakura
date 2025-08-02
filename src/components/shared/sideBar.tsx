@@ -21,7 +21,7 @@ export const SideBar: FC<{
           <h3 className='text-lg font-medium'>{title}</h3>
         </div>
       ) : ( */}
-      <div className='flex gap-2 justify-center items-center place-self-center py-1 mb-2 w-3/4 rounded-lg shadow text-primary'>
+      <div className='flex gap-2 justify-center items-center place-self-center py-1 mb-2 w-3/4 rounded-lg border1 text1'>
         {icon}
         <h3 className='text-lg font-medium'>{title}</h3>
       </div>
@@ -45,7 +45,7 @@ export const SideBar: FC<{
 
         {animeData.map((anime: recommendedAndRelatedData | HomeAnimeInfo) => (
           <Link to={`/watch/${anime.id}`} target='_blank' key={anime.data_id}>
-            <div className='group relative aspect-[5/1] animate-fade min-h-28 rounded-lg max-h-28 w-full'>
+            <div className='group relative aspect-[5/1] animate-fade min-h-28 rounded-lg text2 max-h-28 w-full'>
               <div className='absolute right-0 w-3/4 h-full'>
                 <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-[var(--color-bg1)] to-85% group-hover:to-100% group-hover:from-75%'></div>
                 <img
@@ -62,12 +62,12 @@ export const SideBar: FC<{
                 />
                 <div className='flex flex-col justify-between'>
                   <div className='flex flex-col justify-between py-1 h-full'>
-                    <h5 className='pr-1 font-medium rounded-lg backdrop-blur-3xl transition duration-200 ease-out text-primary group-hover:text-blue-500 w-fit'>
+                    <h5 className='pr-1 font-medium rounded-lg backdrop-blur-3xl transition duration-200 ease-out w-fit'>
                       {anime.title || anime.japanese_title}
                     </h5>
                     <div className='flex gap-1'>
                       {anime.tvInfo?.showType && (
-                        <p className='px-1 text-xs bg-gray-200 rounded-sm text-primary'>
+                        <p className='px-1 text-xs rounded-sm bg3'>
                           {anime.tvInfo?.showType}
                         </p>
                       )}
@@ -106,7 +106,7 @@ export const SideBar: FC<{
         ))}
       </div>
       <div
-        className='flex justify-center rounded-lg shadow cursor-pointer hover:text-blue-500 hover:bg-blue-200'
+        className='flex justify-center rounded-lg cursor-pointer border1 text2'
         onClick={() => setIsExpanded(!isExpanded)}
       >
         {!isExpanded && (

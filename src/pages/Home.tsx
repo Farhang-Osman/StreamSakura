@@ -151,24 +151,24 @@ const Home = () => {
         <div className='flex flex-col gap-4 min-lg:mt-3 min-lg:flex-4/5'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
             <h3
-              className={`${activeTab === 'topUpcoming' ? 'bg3' : 'border border-[var(--color-bg3)]'}
-             label  transition-colors duration-100 ease-in-out text1 cursor-pointer`}
+              className={`${activeTab === 'topUpcoming' ? 'bg3' : ''}
+             label  transition-colors duration-100 ease-in-out border1 text1 cursor-pointer`}
               title='Top Upcoming Tab'
               onClick={() => setActiveTab('topUpcoming')}
             >
               Top Upcoming
             </h3>
             <div
-              className={`${activeTab === 'mostPopular' ? 'bg3' : 'border border-[var(--color-bg3)]'}
-            label  transition-colors duration-100 ease-in-out text1 cursor-pointer`}
+              className={`${activeTab === 'mostPopular' ? 'bg3' : ''}
+            label  transition-colors duration-100 ease-in-out border1 text1 cursor-pointer`}
               title='Most Popular Tab'
               onClick={() => setActiveTab('mostPopular')}
             >
               Most Popular
             </div>
             <div
-              className={`${activeTab === 'mostFavorite' ? 'bg3' : 'border border-[var(--color-bg3)]'}
-            label  transition-colors duration-100 ease-in-out text1 cursor-pointer`}
+              className={`${activeTab === 'mostFavorite' ? 'bg3' : ''}
+            label  transition-colors duration-100 ease-in-out border1 text1 cursor-pointer`}
               title='Most Favorite Tab'
               onClick={() => setActiveTab('mostFavorite')}
             >

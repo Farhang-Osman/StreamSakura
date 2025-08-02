@@ -141,6 +141,9 @@ body {
 .text2 {
   @apply text-[var(--color-text2)] hover:text-[var(--color-text2-hover)];
 }
+.border1 {
+  @apply border-2 border-[var(--color-bg3)];
+}
 
 @layer base {
   /* Light theme (default) */
@@ -159,8 +162,10 @@ body {
   .theme-dark {
     --color-text1: white;
     --color-text1-hover: #8ec5ff;
-    --color-text2: #d1d5dc;
-    --color-text2-hover: #2b7fff;
+    /* text-gray-400 */
+    --color-text2: #99a1af;
+    /* text-gray-200 */
+    --color-text2-hover: #e5e7eb;
     --color-bg1: #191919;
     /* text-gray-400 */
     --color-bg2: #99a1af;

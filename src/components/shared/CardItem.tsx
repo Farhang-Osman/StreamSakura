@@ -44,7 +44,7 @@ export const CardItem: FC<CardItemProps> = ({ data }) => {
           </div>
           <div className='pt-1 pl-2'>
             <h5
-              className='text-sm font-bold opacity-75 transition duration-300 ease-in-out text-long'
+              className='text-sm font-bold transition duration-300 ease-in-out text-long'
               title={'Title: ' + (data.title || data.japanese_title)}
             >
               {data.title || data.japanese_title}
