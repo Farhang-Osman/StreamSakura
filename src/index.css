@@ -3,8 +3,8 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  --swiper-pagination-color: #155dfc;
-  --swiper-pagination-bullet-inactive-color: #000000;
+  --swiper-pagination-color: var(--color-text2-hover);
+  --swiper-pagination-bullet-inactive-color: var(--color-text2);
   --swiper-pagination-bottom: 12px;
   --swiper-pagination-bullet-inactive-opacity: 0.7;
   /* --swiper-pagination-fraction-color: #000;
@@ -167,8 +167,8 @@ body {
     /* text-gray-200 */
     --color-text2-hover: #e5e7eb;
     --color-bg1: #191919;
-    /* text-gray-400 */
-    --color-bg2: #99a1af;
+    /* text-gray-600 */
+    --color-bg2: #4a5565;
     /* text-gray-600 */
     --color-bg3: #4a5565;
   }

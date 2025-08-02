@@ -51,8 +51,8 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
 
   return (
     <>
-      <div className=' rounded-sm shadow'>
-        <div className='flex gap-4 justify-center items-center mb-2 shadow label'>
+      <div className='rounded-lg shadow'>
+        <div className='flex gap-4 justify-center items-center mb-2 label border1 text1'>
           <ImFire />
           <h3>Trending</h3>
           <ImFire />
@@ -68,7 +68,7 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
           </div>
         )}
         <Swiper
-          className='relative rounded-lg cursor-grab active:cursor-grabbing'
+          className='relative cursor-grab active:cursor-grabbing'
           spaceBetween={5}
           slidesPerView={useAdjustSlidesPerView()}
           autoplay={{
@@ -96,10 +96,9 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
               className='flex relative justify-start items-center mb-6 animate-fade'
               key={i.id}
               title={'Play ' + (i.title || i.japanese_title)}
-              onClick={() => navigate(`/watch/${i.id}`)}
             >
-              <div className='flex gap-1 pr-2 group/title'>
-                <h3 className='px-1 font-serif text-2xl font-bold text-blue-800 bg-gray-200 rounded-sm h-fit group-hover/title:text-blue-500'>
+              <div className='flex gap-1 pr-2 text2'>
+                <h3 className='px-1 font-serif text-2xl font-bold rounded-sm bg3 h-fit'>
                   {i.number}
                 </h3>
                 <div className='grid gap-1 w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer'>
@@ -107,13 +106,14 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
                     <img
                       src={i.poster}
                       alt=''
+                      onClick={() => navigate(`/watch/${i.id}`)}
                       className='whfull group-hover:brightness-60'
                     />
-                    <TbPlayerPlayFilled className='absolute inset-0 top-1/2 left-1/2 z-10 text-3xl text-blue-300 opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100' />
+                    <TbPlayerPlayFilled className='absolute inset-0 top-1/2 left-1/2 z-10 text-3xl opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100' />
                   </div>
 
                   <h5
-                    className='font-bold text-center text-blue-800 transition duration-300 ease-in-out text-long group-hover/title:text-blue-500'
+                    className='font-bold text-center transition duration-300 ease-in-out text-long'
                     title={'Title: ' + (i.title || i.japanese_title)}
                   >
                     {i.title || i.japanese_title}

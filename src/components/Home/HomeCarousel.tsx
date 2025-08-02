@@ -78,45 +78,45 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                       <h2 className='overflow-hidden m-auto max-w-full font-bold overflow-ellipsis animate-rainbow text-clamp-title min-sm:whitespace-nowrap'>
                         {i.title || i.japanese_title}
                       </h2>
-                      <div className='flex overflow-hidden gap-4 m-auto mt-0 text-sm text-white overflow-ellipsis max-lg:text-sm max-sm:gap-1.5'>
+                      <div className='flex overflow-hidden gap-4 m-auto mt-0 text-sm text2 text-white overflow-ellipsis max-lg:text-sm max-sm:gap-1.5'>
                         {i.tvInfo?.showType && (
-                          <p className='flex px-1 text-xs font-bold text-blue-800 bg-gray-200 rounded-sm'>
+                          <p className='flex px-1 text-xs font-bold rounded-sm bg3'>
                             {i.tvInfo?.showType}
                           </p>
                         )}
                         {/* {totalEpisodes && (
-                        <p className='flex gap-1 items-center px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
+                        <p className='flex gap-1 items-center px-1 text-xs bg-gray-200 rounded-sm'>
                           <TbCards />
                           {totalEpisodes}
                         </p>
                       )} */}
                         {/* {rating && (
-                        <p className='flex gap-1 items-center px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
+                        <p className='flex gap-1 items-center px-1 text-xs bg-gray-200 rounded-sm'>
                           <FaStar />
                           {rating}
                         </p>
                       )} */}
                         {i.tvInfo?.duration && (
-                          <p className='flex gap-1 items-center px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
+                          <p className='flex gap-1 items-center px-1 text-xs rounded-sm bg3'>
                             <FaClock />
                             {i.tvInfo?.duration}mins
                           </p>
                         )}
                       </div>
                       <p
-                        className='overflow-hidden overflow-y-auto max-h-16 text-xs text-blue-600 max-w-2/3'
+                        className='overflow-hidden overflow-y-auto max-h-16 text-xs text2 max-w-2/3'
                         dangerouslySetInnerHTML={{
                           __html: i.description as string,
                         }}
                       />
                     </div>
-                    <div className='absolute bottom-6 right-8 z-5 max-lg:right-6'>
+                    <div className='absolute bottom-6 right-8 text1 z-5 max-lg:right-6'>
                       <button
-                        className='flex p-6 bg-gray-200 rounded-full border-none transition-all duration-200 ease-in-out cursor-pointer max-sm:p-4 hover:bg-blue-200 active:bg-blue-200 focus:bg-blue-200 hover:scale-115 active:scale-115 focus:scale-115'
+                        className='flex p-6 rounded-full border-none transition-all duration-200 ease-in-out cursor-pointer bg3 max-sm:p-4 hover:scale-115 active:scale-115 focus:scale-115'
                         onClick={() => handlePlayButtonCllick(i.id)}
                         title={'Watch ' + (i.title || i.japanese_title)}
                       >
-                        <FaPlay className='text-2xl text-blue-500' />
+                        <FaPlay className='text-2xl' />
                       </button>
                     </div>
                   </div>
