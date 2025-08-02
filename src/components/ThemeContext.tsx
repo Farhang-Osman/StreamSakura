@@ -22,37 +22,32 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 const THEME_STORAGE_KEY = 'app-theme';
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<string>(() => {
-    // Initialize theme from localStorage or use default
-    if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-      return savedTheme || 'light';
-    }
-    return 'light';
-  });
+  const [theme, setTheme] = useState<string>('light');
 
   const themes: Theme[] = [
     { name: 'light', label: 'Light' },
     { name: 'dark', label: 'Dark' },
     { name: 'blue', label: 'Ocean' },
-    { name: 'rose', label: 'Rose' },
-    { name: 'emerald', label: 'Emerald' },
   ];
 
   useEffect(() => {
-    // Apply the theme class on initial load and when theme changes
-    const htmlClassList = document.documentElement.classList;
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    if (savedTheme && themes.some((t) => t.name === savedTheme)) {
+      setTheme(savedTheme);
+    }
+  }, []);
 
-    // Remove all theme classes
-    themes.forEach((t) => {
-      htmlClassList.remove(`theme-${t.name}`);
-    });
+  useEffect(() => {
+    const html = document.documentElement;
+
+    // Remove all existing theme classes
+    themes.forEach((t) => html.classList.remove(`theme-${t.name}`));
 
     // Add current theme class
-    htmlClassList.add(`theme-${theme}`);
-    // htmlClassList.add('theme-transition');
+    html.classList.add(`theme-${theme}`);
+    // html.classList.add('theme-transition');
 
-    // Save to localStorage
+    // Persist to localStorage
     localStorage.setItem(THEME_STORAGE_KEY, theme);
   }, [theme]);
 
@@ -69,7 +64,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;

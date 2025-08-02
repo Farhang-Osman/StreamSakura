@@ -120,8 +120,8 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                       </button>
                     </div>
                   </div>
-                  <div className='absolute inset-0 bg-gradient-to-b from-transparent to-white  from-50% rounded-lg z-1'></div>
-                  <div className='absolute inset-0 bg-gradient-to-bl from-transparent to-white from-50% z-1'></div>
+                  <div className='absolute inset-0 bg-gradient-to-b from-transparent to-[var(--color-bg1)]  from-50% rounded-lg z-1'></div>
+                  <div className='absolute inset-0 bg-gradient-to-bl from-transparent to-[var(--color-bg1)] from-50% z-1'></div>
                 </div>
               </SwiperSlide>
             ))}

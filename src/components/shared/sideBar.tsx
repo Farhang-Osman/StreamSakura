@@ -14,14 +14,14 @@ export const SideBar: FC<{
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   return (
-    <div className='flex flex-col p-2 bg-gray-300 rounded-lg shadow h-fit'>
+    <div className='flex flex-col p-2 rounded-lg shadow background h-fit'>
       {/* {isWatchPage ? (
         <div className='flex gap-2 items-center p-3 text-blue-800'>
           {icon}
           <h3 className='text-lg font-medium'>{title}</h3>
         </div>
       ) : ( */}
-      <div className='flex gap-2 justify-center items-center place-self-center py-1 mb-2 w-3/4 text-blue-800 rounded-lg shadow'>
+      <div className='flex gap-2 justify-center items-center place-self-center py-1 mb-2 w-3/4 rounded-lg shadow text-primary'>
         {icon}
         <h3 className='text-lg font-medium'>{title}</h3>
       </div>
@@ -47,7 +47,7 @@ export const SideBar: FC<{
           <Link to={`/watch/${anime.id}`} target='_blank' key={anime.data_id}>
             <div className='group relative aspect-[5/1] animate-fade min-h-28 rounded-lg max-h-28 w-full'>
               <div className='absolute right-0 w-3/4 h-full'>
-                <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-gray-300 to-85% group-hover:to-100% group-hover:from-75%'></div>
+                <div className='absolute w-full h-full bg-gradient-to-l from-transparent to-[var(--color-bg1)] to-85% group-hover:to-100% group-hover:from-75%'></div>
                 <img
                   className='object-cover w-full h-full rounded-lg'
                   src={anime.poster}
@@ -62,12 +62,12 @@ export const SideBar: FC<{
                 />
                 <div className='flex flex-col justify-between'>
                   <div className='flex flex-col justify-between py-1 h-full'>
-                    <h5 className='pr-1 font-medium text-blue-800 rounded-lg backdrop-blur-3xl transition duration-200 ease-out group-hover:text-blue-500 w-fit'>
+                    <h5 className='pr-1 font-medium rounded-lg backdrop-blur-3xl transition duration-200 ease-out text-primary group-hover:text-blue-500 w-fit'>
                       {anime.title || anime.japanese_title}
                     </h5>
                     <div className='flex gap-1'>
                       {anime.tvInfo?.showType && (
-                        <p className='px-1 text-xs text-blue-800 bg-gray-200 rounded-sm'>
+                        <p className='px-1 text-xs bg-gray-200 rounded-sm text-primary'>
                           {anime.tvInfo?.showType}
                         </p>
                       )}
