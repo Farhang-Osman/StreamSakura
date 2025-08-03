@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BiSolidCameraMovie } from 'react-icons/bi';
 import { FaDiscord, FaHistory } from 'react-icons/fa';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 import blossomSvg from '/cherry-blossom-svgrepo-com-optimized.svg';
 import axios from 'axios';
-import { useTheme } from '../ThemeContext';
 import ThemeSwitcher from '../ThemeSwitcher';
 
 const TopNavBar = () => {
@@ -40,10 +39,8 @@ const TopNavBar = () => {
     }
   };
 
-  const { theme } = useTheme();
-
   return (
-    <div className='flex fixed top-0 right-0 bottom-0 left-0 z-50 justify-between w-full h-16 bg-gray-300 shadow'>
+    <div className='flex fixed top-0 right-0 bottom-0 left-0 z-50 justify-between w-full h-16 backdrop-blur-sm bg-[var(--color-bg1)]/75'>
       <div className='flex gap-2 items-center h-full'>
         <a
           onClick={() => navigate('/home')}
@@ -59,53 +56,53 @@ const TopNavBar = () => {
         <ThemeSwitcher />
       </div>
       <div className='flex justify-center justify-self-center items-center'>
-        <search className='flex justify-center items-center px-1 text-xl bg-gray-200 rounded-md appearance-none'>
+        <search className='flex justify-center items-center px-1 text-xl rounded-md appearance-none bg2'>
           <input
             type='text'
             placeholder='search anime'
-            className='px-1 py-1 placeholder-blue-300 border-r-2 border-gray-300 focus:outline-none'
+            className='px-1 py-1 placeholder-[var(--color-bg1))] text2 border-r-2 border-[var(--color-bg1)] focus:outline-none'
             value={search}
             onChange={handleInputChange}
             // onClick={() => navigate(`/search/${search}`)}
             onKeyDown={handleKeyDownOnInput}
           />
           <ImSearch
-            className='w-10 text-blue-500 size-6 hover:text-blue-700 hover:cursor-pointer'
+            className='w-10 cursor-pointer size-6 text2'
             onClick={() => navigate(`/search?q=${search}`)}
           />
         </search>
       </div>
-      <div className='flex gap-8 items-center'>
+      <div className='flex gap-8 items-center pt-1'>
         <div
-          className='flex flex-col items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'
+          className='flex flex-col items-center px-1 h-full text2 group hover:cursor-pointer'
           onClick={() => handleRandomAnime()}
         >
-          <GiPerspectiveDiceSixFacesRandom className='text-blue-500 group-hover:text-blue-700 size-9' />
+          <GiPerspectiveDiceSixFacesRandom className='selected size-9' />
           <h3>Random</h3>
         </div>
         <div
           onClick={() => navigate('/special')}
-          className='flex flex-col items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'
+          className='flex flex-col items-center px-1 h-full text2 group hover:cursor-pointer'
         >
-          <RiVipDiamondFill className='text-blue-500 group-hover:text-blue-700 size-9' />
+          <RiVipDiamondFill className='selected size-9' />
           <p>Special</p>
         </div>
         <div
           onClick={() => navigate('/movie')}
-          className='flex flex-col items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'
+          className='flex flex-col items-center px-1 h-full text2 group hover:cursor-pointer'
         >
-          <BiSolidCameraMovie className='text-blue-500 group-hover:text-blue-700 size-9' />
+          <BiSolidCameraMovie className='selected size-9' />
           <p>Movie</p>
         </div>
-        <div className='flex flex-col items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'>
-          <FaDiscord className='text-blue-500 group-hover:text-blue-700 size-9' />
+        <div className='flex flex-col items-center px-1 h-full text2 group hover:cursor-pointer'>
+          <FaDiscord className='selected size-9' />
           <p>Dicord</p>
         </div>
         <div
           onClick={() => navigate('/history')}
-          className='flex flex-col justify-center items-center px-1 h-full hover:bg-gray-200 group hover:cursor-pointer'
+          className='flex flex-col justify-center items-center px-1 h-full text2 group hover:cursor-pointer'
         >
-          <FaHistory className='text-blue-500 group-hover:text-blue-700 size-7' />
+          <FaHistory className='selected size-8' />
           <h3>History</h3>
         </div>
       </div>

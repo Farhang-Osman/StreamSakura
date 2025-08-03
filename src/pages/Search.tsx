@@ -268,7 +268,7 @@ const Search: FC = () => {
             name='type'
             id='type'
             onChange={(e) => handleFilters('type', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option value='all'>all</option>
             <option value='movie'>movie</option>
@@ -285,7 +285,7 @@ const Search: FC = () => {
             name='status'
             id='status'
             onChange={(e) => handleFilters('status', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option value='all'>all</option>
             <option value='finished_airing'>finished_airing</option>
@@ -299,7 +299,7 @@ const Search: FC = () => {
             name='rated'
             id='rated'
             onChange={(e) => handleFilters('rated', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option value='all'>all</option>
             <option value='G'>G</option>
@@ -316,7 +316,7 @@ const Search: FC = () => {
             name='score'
             id='score'
             onChange={(e) => handleFilters('score', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option value='all'>all</option>
             <option value='1'>1</option>
@@ -337,7 +337,7 @@ const Search: FC = () => {
             name='season'
             id='season'
             onChange={(e) => handleFilters('season', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option value='all'>all</option>
             <option value='spring'>spring</option>
@@ -352,7 +352,7 @@ const Search: FC = () => {
             name='language'
             id='language'
             onChange={(e) => handleFilters('language', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option value='all'>all</option>
             <option value='sub'>sub</option>
@@ -366,7 +366,7 @@ const Search: FC = () => {
             name='sy'
             id='sy'
             onChange={(e) => handleFilters('sy', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option key='Year' value='Year'>
               Year
@@ -384,7 +384,7 @@ const Search: FC = () => {
             name='sm'
             id='sm'
             onChange={(e) => handleFilters('sm', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option key='Month' value='Month'>
               Month
@@ -399,7 +399,7 @@ const Search: FC = () => {
             name='sd'
             id='sd'
             onChange={(e) => handleFilters('sd', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option key='Day' value='Day'>
               Day
@@ -417,7 +417,7 @@ const Search: FC = () => {
             name='ey'
             id='ey'
             onChange={(e) => handleFilters('ey', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option key='Year' value='Year'>
               Year
@@ -435,7 +435,7 @@ const Search: FC = () => {
             name='em'
             id='em'
             onChange={(e) => handleFilters('em', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option key='Month' value='Month'>
               Month
@@ -450,7 +450,7 @@ const Search: FC = () => {
             name='ed'
             id='ed'
             onChange={(e) => handleFilters('ed', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option key='Day' value='Day'>
               Day
@@ -468,7 +468,7 @@ const Search: FC = () => {
             name='sort'
             id='sort'
             onChange={(e) => handleFilters('sort', e.target.value)}
-            className='text-center appearance-none cursor-pointer text1'
+            className='text-center appearance-none cursor-pointer selected'
           >
             <option value='default'>default</option>
             <option value='recently_added'>recently_added</option>
@@ -491,7 +491,7 @@ const Search: FC = () => {
               <li
                 onClick={() => handleGenres(id)}
                 key={id}
-                className={`${isSelected ? 'border2 bg3 text1' : 'text2 border1'} px-1 rounded-lg hover:cursor-pointer`}
+                className={`${isSelected ? 'border2 bg2 selected' : 'text2 border1'} px-1 rounded-lg hover:cursor-pointer`}
               >
                 {name}
               </li>

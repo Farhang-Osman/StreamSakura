@@ -51,8 +51,6 @@ body {
   --animate-slideUp: slideUp 0.4s ease;
   --animate-rainbow: rainbow 7s linear infinite;
 
-  --color-shadow-color: var(--color-bg2);
-
   @keyframes fade {
     from {
       opacity: 0;
@@ -133,13 +131,16 @@ body {
   @apply p-1 px-4 content-center text-lg font-medium rounded-lg;
 }
 .shadow {
-  @apply shadow-shadow-color  shadow-[0px_0px_10px];
+  box-shadow: 0 0px 10px var(--color-bg2);
 }
 .text1 {
   @apply text-[var(--color-text1)] hover:text-[var(--color-text1-hover)];
 }
 .text2 {
   @apply text-[var(--color-text2)] hover:text-[var(--color-text2-hover)];
+}
+.selected {
+  @apply text-[var(--color-text1-hover)];
 }
 .border1 {
   @apply border-3 border-[var(--color-bg2)];
@@ -158,7 +159,6 @@ body {
     --color-text2-hover: #059669;
     --color-bg1: #ffffff;
     --color-bg2: #111827;
-    --color-bg3: #ec4899;
   }
 
   /* Dark theme */
@@ -175,8 +175,6 @@ body {
     --color-bg1: #101828;
     /* gray-700 */
     --color-bg2: #364153;
-    /* gray-700 */
-    --color-bg3: #364153;
   }
 
   /* Blue theme */
@@ -187,7 +185,6 @@ body {
     --color-text2-hover: #0284c7;
     --color-bg1: #eff6ff;
     --color-bg2: #1e3a8a;
-    --color-bg3: #3b82f6;
   }
 }
 
@@ -215,9 +212,6 @@ body {
   }
   .bg2 {
     background-color: var(--color-bg2);
-  }
-  .bg3 {
-    background-color: var(--color-bg3);
   }
 
   .theme-transition * {

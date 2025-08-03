@@ -22,7 +22,15 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 const THEME_STORAGE_KEY = 'app-theme';
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<string>('light');
+  // Initialize state with a function to check localStorage safely
+  const [theme, setTheme] = useState<string>(() => {
+    // Only run on client-side
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      return savedTheme || 'light'; // Default to 'light' if no saved theme
+    }
+    return 'light'; // Server-side fallback
+  });
 
   const themes: Theme[] = [
     { name: 'light', label: 'Light' },
@@ -31,28 +39,35 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   ];
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-    if (savedTheme && themes.some((t) => t.name === savedTheme)) {
-      setTheme(savedTheme);
-    }
-  }, []);
+    // Only run on client-side
+    if (typeof window === 'undefined') return;
 
-  useEffect(() => {
     const html = document.documentElement;
 
-    // Remove all existing theme classes
-    themes.forEach((t) => html.classList.remove(`theme-${t.name}`));
+    // 1. Remove all existing theme classes
+    themes.forEach((t) => {
+      html.classList.remove(`theme-${t.name}`);
+    });
 
-    // Add current theme class
+    // 2. Add current theme class
     html.classList.add(`theme-${theme}`);
-    // html.classList.add('theme-transition');
+    html.classList.add('theme-transition');
 
-    // Persist to localStorage
-    localStorage.setItem(THEME_STORAGE_KEY, theme);
-  }, [theme]);
+    // 3. Persist to localStorage
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (e) {
+      console.warn('Failed to save theme preference:', e);
+    }
+  }, [theme]); // Only re-run when theme changes
 
   const changeTheme = (themeName: string) => {
-    setTheme(themeName);
+    // Validate the theme exists before setting
+    if (themes.some((t) => t.name === themeName)) {
+      setTheme(themeName);
+    } else {
+      console.warn(`Attempted to set invalid theme: ${themeName}`);
+    }
   };
 
   return (

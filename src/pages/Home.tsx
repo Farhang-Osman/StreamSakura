@@ -151,7 +151,7 @@ const Home = () => {
         <div className='flex flex-col gap-4 min-lg:mt-3 min-lg:flex-4/5'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
             <h3
-              className={`${activeTab === 'topUpcoming' ? 'bg2 border2' : 'border1'}
+              className={`${activeTab === 'topUpcoming' ? 'bg2 selected border2' : 'border1'}
              label  transition-colors duration-100 ease-in-out text1 cursor-pointer`}
               title='Top Upcoming Tab'
               onClick={() => setActiveTab('topUpcoming')}
@@ -159,7 +159,7 @@ const Home = () => {
               Top Upcoming
             </h3>
             <div
-              className={`${activeTab === 'mostPopular' ? 'bg2 border2' : 'border1'}
+              className={`${activeTab === 'mostPopular' ? 'bg2 selected border2' : 'border1'}
             label  transition-colors duration-100 ease-in-out text1 cursor-pointer`}
               title='Most Popular Tab'
               onClick={() => setActiveTab('mostPopular')}
@@ -167,7 +167,7 @@ const Home = () => {
               Most Popular
             </div>
             <div
-              className={`${activeTab === 'mostFavorite' ? 'bg2 border2' : 'border1'}
+              className={`${activeTab === 'mostFavorite' ? 'bg2 selected border2' : 'border1'}
             label  transition-colors duration-100 ease-in-out text1 cursor-pointer`}
               title='Most Favorite Tab'
               onClick={() => setActiveTab('mostFavorite')}
