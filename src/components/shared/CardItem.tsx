@@ -35,7 +35,7 @@ export const CardItem: FC<CardItemProps> = ({ data }) => {
                   title={'Play ' + (data.title || data.japanese_title)}
                 />
                 {data.tvInfo?.showType && (
-                  <p className='absolute bottom-0 px-1 text-xs rounded-tr-sm bg3'>
+                  <p className='absolute bottom-0 px-1 text-xs rounded-tr-sm bg2'>
                     {data.tvInfo?.showType}
                   </p>
                 )}

@@ -259,16 +259,16 @@ const Search: FC = () => {
     : [];
 
   return (
-    <div className='flex flex-col gap-2'>
-      <div className='flex flex-wrap gap-2 justify-center p-2 w-full bg-gray-300 rounded-sm'>
-        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+    <div className='flex flex-col gap-4'>
+      <div className='flex flex-wrap gap-2 justify-center p-2 w-full rounded-lg shadow'>
+        <div className='flex gap-1 px-1 rounded-lg border1 text2'>
           <p>Type </p>
           {/* {filterParams?.type === undefined ? <p>all</p> : <p>any</p>} */}
           <select
             name='type'
             id='type'
             onChange={(e) => handleFilters('type', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option value='all'>all</option>
             <option value='movie'>movie</option>
@@ -279,13 +279,13 @@ const Search: FC = () => {
             <option value='music'>music</option>
           </select>
         </div>
-        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+        <div className='flex gap-1 px-1 rounded-lg border1 text2'>
           <p>Status </p>
           <select
             name='status'
             id='status'
             onChange={(e) => handleFilters('status', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option value='all'>all</option>
             <option value='finished_airing'>finished_airing</option>
@@ -293,13 +293,13 @@ const Search: FC = () => {
             <option value='not_yet_aired'>not_yet_aired</option>
           </select>
         </div>
-        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+        <div className='flex gap-1 px-1 rounded-lg border1 text2'>
           <p>Rated </p>
           <select
             name='rated'
             id='rated'
             onChange={(e) => handleFilters('rated', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option value='all'>all</option>
             <option value='G'>G</option>
@@ -310,13 +310,13 @@ const Search: FC = () => {
             <option value='RX'>RX</option>
           </select>
         </div>
-        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+        <div className='flex gap-1 px-1 rounded-lg border1 text2'>
           <p>Score </p>
           <select
             name='score'
             id='score'
             onChange={(e) => handleFilters('score', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option value='all'>all</option>
             <option value='1'>1</option>
@@ -331,13 +331,13 @@ const Search: FC = () => {
             <option value='10'>10</option>
           </select>
         </div>
-        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+        <div className='flex gap-1 px-1 rounded-lg border1 text2'>
           <p>Season </p>
           <select
             name='season'
             id='season'
             onChange={(e) => handleFilters('season', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option value='all'>all</option>
             <option value='spring'>spring</option>
@@ -346,13 +346,13 @@ const Search: FC = () => {
             <option value='winter'>winter</option>
           </select>
         </div>
-        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+        <div className='flex gap-1 px-1 rounded-lg border1 text2'>
           <p>Language </p>
           <select
             name='language'
             id='language'
             onChange={(e) => handleFilters('language', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option value='all'>all</option>
             <option value='sub'>sub</option>
@@ -360,13 +360,13 @@ const Search: FC = () => {
             <option value='sub_dub'>sub_dub</option>
           </select>
         </div>
-        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+        <div className='flex gap-1 px-1 rounded-lg border1 text2'>
           <p>Start Date </p>
           <select
             name='sy'
             id='sy'
             onChange={(e) => handleFilters('sy', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option key='Year' value='Year'>
               Year
@@ -384,7 +384,7 @@ const Search: FC = () => {
             name='sm'
             id='sm'
             onChange={(e) => handleFilters('sm', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option key='Month' value='Month'>
               Month
@@ -399,7 +399,7 @@ const Search: FC = () => {
             name='sd'
             id='sd'
             onChange={(e) => handleFilters('sd', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option key='Day' value='Day'>
               Day
@@ -411,13 +411,13 @@ const Search: FC = () => {
             ))}
           </select>
         </div>
-        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+        <div className='flex gap-1 px-1 rounded-lg border1 text2'>
           <p>End Date </p>
           <select
             name='ey'
             id='ey'
             onChange={(e) => handleFilters('ey', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option key='Year' value='Year'>
               Year
@@ -435,7 +435,7 @@ const Search: FC = () => {
             name='em'
             id='em'
             onChange={(e) => handleFilters('em', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option key='Month' value='Month'>
               Month
@@ -450,7 +450,7 @@ const Search: FC = () => {
             name='ed'
             id='ed'
             onChange={(e) => handleFilters('ed', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option key='Day' value='Day'>
               Day
@@ -462,13 +462,13 @@ const Search: FC = () => {
             ))}
           </select>
         </div>
-        <div className='flex gap-1 px-1 bg-gray-200 rounded-sm'>
+        <div className='flex gap-1 px-1 rounded-lg border1 text2'>
           <p>Sort </p>
           <select
             name='sort'
             id='sort'
             onChange={(e) => handleFilters('sort', e.target.value)}
-            className='text-center text-blue-700 appearance-none'
+            className='text-center appearance-none cursor-pointer text1'
           >
             <option value='default'>default</option>
             <option value='recently_added'>recently_added</option>
@@ -481,7 +481,7 @@ const Search: FC = () => {
         </div>
       </div>
 
-      <div className='flex flex-wrap gap-2 px-2 py-4 bg-gray-300 rounded-sm'>
+      <div className='flex flex-wrap gap-2 px-2 py-4 rounded-lg shadow'>
         <ul className='flex flex-wrap gap-2 justify-center'>
           {Object.entries(genres).map(([id, name]) => {
             const numericKey = Number(id);
@@ -491,7 +491,7 @@ const Search: FC = () => {
               <li
                 onClick={() => handleGenres(id)}
                 key={id}
-                className={`${isSelected ? 'text-blue-500' : 'text-black'} px-1 bg-gray-200 rounded-sm hover:cursor-pointer`}
+                className={`${isSelected ? 'border2 bg3 text1' : 'text2 border1'} px-1 rounded-lg hover:cursor-pointer`}
               >
                 {name}
               </li>
@@ -500,7 +500,7 @@ const Search: FC = () => {
         </ul>
       </div>
       <button
-        className='bg-red-300 hover:cursor-pointer'
+        className='place-self-center py-2 w-1/3 min-w-60 rounded-lg cursor-pointer bg-[var(--color-bg2)] text1'
         onClick={() => {
           if (filterParams) fetchFilterResults(filterParams);
         }}
@@ -512,7 +512,7 @@ const Search: FC = () => {
           {Array.from({ length: 30 }).map((_, index) => (
             <div
               key={index}
-              className='bg-gray-300 animate-pulse rounded-lg aspect-[3/4]'
+              className='shadow animate-pulse rounded-lg aspect-[3/4]'
             ></div>
           ))}
         </div>

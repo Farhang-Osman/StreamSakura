@@ -98,7 +98,7 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
               title={'Play ' + (i.title || i.japanese_title)}
             >
               <div className='flex gap-1 pr-2 text2'>
-                <h3 className='px-1 font-serif text-2xl font-bold rounded-sm bg3 h-fit'>
+                <h3 className='px-1 font-serif text-2xl font-bold rounded-sm bg2 h-fit'>
                   {i.number}
                 </h3>
                 <div className='grid gap-1 w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer'>

@@ -67,7 +67,7 @@ export const SideBar: FC<{
                     </h5>
                     <div className='flex gap-1'>
                       {anime.tvInfo?.showType && (
-                        <p className='px-1 text-xs rounded-sm bg3'>
+                        <p className='px-1 text-xs rounded-sm bg2'>
                           {anime.tvInfo?.showType}
                         </p>
                       )}

@@ -80,7 +80,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                       </h2>
                       <div className='flex overflow-hidden gap-4 m-auto mt-0 text-sm text2 text-white overflow-ellipsis max-lg:text-sm max-sm:gap-1.5'>
                         {i.tvInfo?.showType && (
-                          <p className='flex px-1 text-xs font-bold rounded-sm bg3'>
+                          <p className='flex px-1 text-xs font-bold rounded-sm bg2'>
                             {i.tvInfo?.showType}
                           </p>
                         )}
@@ -97,7 +97,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                         </p>
                       )} */}
                         {i.tvInfo?.duration && (
-                          <p className='flex gap-1 items-center px-1 text-xs rounded-sm bg3'>
+                          <p className='flex gap-1 items-center px-1 text-xs rounded-sm bg2'>
                             <FaClock />
                             {i.tvInfo?.duration}mins
                           </p>
@@ -112,7 +112,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                     </div>
                     <div className='absolute bottom-6 right-8 text1 z-5 max-lg:right-6'>
                       <button
-                        className='flex p-6 rounded-full border-none transition-all duration-200 ease-in-out cursor-pointer bg3 max-sm:p-4 hover:scale-115 active:scale-115 focus:scale-115'
+                        className='flex p-6 rounded-full border-none transition-all duration-200 ease-in-out cursor-pointer bg2 max-sm:p-4 hover:scale-115 active:scale-115 focus:scale-115'
                         onClick={() => handlePlayButtonCllick(i.id)}
                         title={'Watch ' + (i.title || i.japanese_title)}
                       >
