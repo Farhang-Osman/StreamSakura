@@ -31,7 +31,7 @@ export const CardItem: FC<CardItemProps> = ({ data }) => {
                   className='whfull animation1 group-hover:brightness-60'
                 />
                 <TbPlayerPlayFilled
-                  className='absolute inset-0 top-1/2 left-1/2 z-10 text-3xl opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100'
+                  className='absolute inset-0 selected top-1/2 left-1/2 z-10 text-3xl opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100'
                   title={'Play ' + (data.title || data.japanese_title)}
                 />
                 {data.tvInfo?.showType && (

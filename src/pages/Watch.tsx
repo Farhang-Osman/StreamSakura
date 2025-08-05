@@ -332,8 +332,8 @@ const Watch: FC = () => {
   ) : episodesLoading ? (
     <>
       <div className='grid grid-cols-10 gap-3 w-full animate-pulse'>
-        <div className='relative col-span-7 mb-1 bg-gray-300 rounded-sm aspect-video max-xl:col-span-10'></div>
-        <div className='grid col-span-3 gap-1 content-start p-1 w-full h-full bg-gray-300 rounded-sm max-xl:col-span-10 max-xl:h-72 aspect-square'>
+        <div className='relative col-span-7 mb-1 rounded-sm bg2 aspect-video max-xl:col-span-10'></div>
+        <div className='grid col-span-3 gap-1 content-start p-1 w-full h-full rounded-sm bg2 max-xl:col-span-10 max-xl:h-72 aspect-square'>
           <div className='grid overflow-auto gap-1 p-1 px-3 scroll-smooth max-xl:gap-y-3 max-md:gap-1 max-xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1'>
             {Array.from({ length: 15 }).map((_, index) => (
               <div
@@ -343,8 +343,8 @@ const Watch: FC = () => {
             ))}
           </div>
         </div>
-        <div className='flex flex-col col-span-7 gap-3 w-full bg-gray-300 rounded-sm max-xl:col-span-10 aspect-video'></div>
-        <div className='grid grid-cols-1 col-span-3 gap-10 bg-gray-300 rounded-sm max-xl:gap-4 max-md:gap-10 max-xl:col-span-10 max-xl:grid-cols-2 max-md:grid-cols-1 h-fit'>
+        <div className='flex flex-col col-span-7 gap-3 w-full rounded-sm bg2 max-xl:col-span-10 aspect-video'></div>
+        <div className='grid grid-cols-1 col-span-3 gap-10 rounded-sm bg2 max-xl:gap-4 max-md:gap-10 max-xl:col-span-10 max-xl:grid-cols-2 max-md:grid-cols-1 h-fit'>
           <div className='flex overflow-x-hidden relative flex-col gap-2 rounded-lg h-[1200px]'>
             {Array.from({ length: 10 }).map((_, index) => (
               <div
@@ -385,8 +385,8 @@ const Watch: FC = () => {
         ></iframe>
       </div>
       {/* list of episodes container */}
-      <div className='grid col-span-3 gap-1 content-start p-1 w-full h-full bg-gray-300 rounded-sm shadow max-xl:col-span-10 max-xl:h-72 aspect-square'>
-        <div className='px-1 text-gray-500 bg-gray-200 rounded-sm'>
+      <div className='grid col-span-3 gap-1 content-start p-1 w-full h-full rounded-sm shadow max-xl:col-span-10 max-xl:h-72 aspect-square'>
+        <div className='px-1 rounded-sm text2 bg1 border1'>
           {`Episodes ${episodes[0].episode_no} - ${episodes[episodes.length - 1].episode_no}`}
         </div>
         <div
@@ -395,14 +395,14 @@ const Watch: FC = () => {
         >
           {episodes.map(({ ...ep }) =>
             selectedEpisode === Number(ep.id.split('ep=')[1]) ? (
-              <button className='flex gap-4 items-center px-1 text-blue-500 bg-blue-100 rounded-sm border-2 border-blue-400 transition duration-100 ease-in-out cursor-pointer snap-center scale-103'>
+              <button className='flex gap-4 items-center px-1 rounded-sm transition duration-100 ease-in-out cursor-pointer selected bg2 border2 snap-center scale-103'>
                 <FaPlay />
                 <p>{ep.title}</p>
               </button>
             ) : (
               <button
                 onClick={(e) => onClickEp(ep, e.currentTarget)}
-                className='flex gap-4 px-1 text-gray-500 bg-gray-100 rounded-sm transition duration-100 ease-in-out cursor-pointer hover:bg-blue-200 hover:scale-103'
+                className='flex gap-4 px-1 rounded-sm transition duration-100 ease-in-out cursor-pointer border1 text2 hover:scale-103'
               >
                 <p>{ep.episode_no}.</p>
                 <p>{ep.title}</p>
@@ -413,38 +413,38 @@ const Watch: FC = () => {
       </div>
       {/* Source and anime info */}
       <div className='flex flex-col col-span-7 gap-4 w-full max-xl:col-span-10 aspect-video'>
-        <div className='flex gap-2 justify-evenly items-center p-2 bg-gray-300 rounded-sm shadow'>
-          <p className='flex flex-wrap gap-1 items-center p-1 px-4 bg-gray-100 rounded-sm'>
+        <div className='flex gap-2 justify-evenly items-center p-2 rounded-sm shadow'>
+          <p className='flex flex-wrap gap-1 items-center p-1 px-4 rounded-sm transition duration-200 text2 bg1 border1'>
             you are watching Episode{' '}
-            <p className='px-1 text-blue-500 bg-blue-100 rounded-sm border'>
+            <p className='px-1 text-lg font-bold rounded-sm border selected bg2 border2'>
               {episode?.episode_no}
             </p>
           </p>
           <div className='flex flex-wrap gap-4 max-sm:gap-2'>
             <button
               onClick={() => setIsSubOrDub('sub')}
-              className={`flex gap-2 items-center p-1 px-4 rounded-sm ${isSubOrDub === 'sub' ? 'bg-blue-200 text-blue-500 border-2' : 'cursor-pointer bg-gray-100 hover:bg-blue-200'}`}
+              className={`flex transition duration-200 gap-2 items-center p-1 px-4 rounded-sm ${isSubOrDub === 'sub' ? 'bg2 selected border2 text-lg' : 'cursor-pointer text2 border1 bg1'}`}
             >
               <FaClosedCaptioning /> sub
             </button>
             <button
               onClick={() => setIsSubOrDub('dub')}
-              className={`flex gap-2 items-center p-1 px-4 rounded-sm ${isSubOrDub === 'dub' ? 'bg-blue-200 text-blue-500 border-2' : 'cursor-pointer bg-gray-100 hover:bg-blue-200'}`}
+              className={`flex transition duration-200 gap-2 items-center p-1 px-4 rounded-sm ${isSubOrDub === 'dub' ? 'bg2 selected border2 text-lg' : 'cursor-pointer text2 border1 bg1'}`}
             >
               <FaMicrophone /> dub
             </button>
           </div>
         </div>
 
-        <div className='flex w-full bg-gray-300 rounded-sm shadow'>
+        <div className='flex w-full rounded-sm shadow'>
           <div className='w-1/4 max-md:w-2/5'>
             <img src={animeInfo.data?.poster} alt='' className='rounded-sm' />
           </div>
           <div className='flex flex-col gap-4 items-center p-2 w-3/4 max-sm:w-3/5 max-sm:gap-2'>
-            <p className='px-1 text-xl text-blue-500 bg-gray-100 rounded-sm w-fit'>
+            <p className='px-1 text-xl rounded-sm animate-rainbow w-fit'>
               {animeInfo.data?.title || animeInfo.data?.japanese_title}
             </p>
-            <p className='px-1 bg-gray-100 rounded-sm w-fit'>
+            <p className='px-1 rounded-sm animate-rainbow w-fit'>
               {animeInfo.data?.animeInfo?.Japanese}
             </p>
 
@@ -452,7 +452,7 @@ const Watch: FC = () => {
               {animeInfo.data?.animeInfo.Genres && (
                 <>
                   {animeInfo.data?.animeInfo.Genres.map((item) => (
-                    <p className='overflow-hidden overflow-y-auto p-1 text-xs text-red-800 bg-gray-100 rounded-md'>
+                    <p className='overflow-hidden overflow-y-auto p-1 text-sm rounded-lg transition duration-300 border1 text2'>
                       {item}
                     </p>
                   ))}
@@ -461,7 +461,7 @@ const Watch: FC = () => {
             </div>
             {isDescriptionExpanded ? (
               <p
-                className='overflow-y-auto px-1 text-sm text-gray-500 bg-gray-200 rounded-sm max-h-30 scroll-smooth'
+                className='overflow-y-auto px-1 text-sm rounded-sm transition duration-300 cursor-pointer text2 max-h-30 scroll-smooth'
                 dangerouslySetInnerHTML={{
                   __html: `${animeInfo.data?.animeInfo?.Overview}`,
                 }}
@@ -469,7 +469,7 @@ const Watch: FC = () => {
               />
             ) : (
               <p
-                className='overflow-y-auto px-1 text-sm text-gray-500 bg-gray-200 rounded-sm max-h-30 scroll-smooth'
+                className='overflow-y-auto px-1 text-sm rounded-sm transition duration-300 cursor-pointer text2 max-h-30 scroll-smooth'
                 dangerouslySetInnerHTML={{
                   __html: `${animeInfo.data?.animeInfo?.Overview.substring(0, 150)}...[click to show more]`,
                 }}
@@ -482,7 +482,7 @@ const Watch: FC = () => {
                 <a
                   href={`https://anilist.co/anime/${animeInfo.data?.anilistId}`}
                   target='_blank'
-                  className='flex items-center px-8 h-6 bg-gray-100 rounded-sm'
+                  className='flex items-center px-8 py-4 h-6 rounded-sm transition duration-300 border1 text2'
                 >
                   <SiAnilist className='size-6' />
                 </a>
@@ -491,7 +491,7 @@ const Watch: FC = () => {
                 <a
                   href={`https://myanimelist.net/anime/${animeInfo.data?.malId}`}
                   target='_blank'
-                  className='flex items-center px-8 h-6 bg-gray-100 rounded-sm'
+                  className='flex items-center px-8 py-4 h-6 rounded-sm transition duration-300 border1 text2'
                 >
                   <SiMyanimelist className='size-10' />
                 </a>
@@ -499,13 +499,13 @@ const Watch: FC = () => {
             </div>
 
             <div className='flex flex-wrap gap-2 justify-center'>
-              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+              <p className='px-1 text-sm rounded-sm transition duration-300 text2'>
                 {animeInfo.data?.showType}
               </p>
-              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+              <p className='px-1 text-sm rounded-sm transition duration-300 text2'>
                 {animeInfo.data?.animeInfo?.Premiered.split('-')[1]}
               </p>
-              <p className='flex gap-1 items-center px-1 text-sm bg-gray-100 rounded-sm'>
+              <p className='flex gap-1 items-center px-1 text-sm rounded-sm transition duration-300 text2'>
                 {Number(animeInfo.data?.animeInfo?.['MAL Score']) >= 7.5 ? (
                   <TbStarFilled />
                 ) : (
@@ -513,11 +513,11 @@ const Watch: FC = () => {
                 )}
                 {animeInfo.data?.animeInfo?.['MAL Score']}
               </p>
-              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+              <p className='px-1 text-sm rounded-sm transition duration-300 text2'>
                 {' '}
                 Rating: {animeInfo.data?.animeInfo?.tvInfo.rating}
               </p>
-              <p className='px-1 text-sm bg-gray-100 rounded-sm'>
+              <p className='px-1 text-sm rounded-sm transition duration-300 text2'>
                 {animeInfo.data?.animeInfo?.Status}
               </p>
             </div>
@@ -525,8 +525,8 @@ const Watch: FC = () => {
         </div>
 
         {animeInfo.seasons.length !== 0 && (
-          <div className='flex flex-col gap-4 pt-1 pb-4 text-center bg-gray-300 rounded-sm shadow h-fit'>
-            <p className='place-self-center w-3/4 bg-gray-200 shadow label'>
+          <div className='flex flex-col gap-4 pt-1 pb-4 text-center rounded-sm shadow h-fit'>
+            <p className='place-self-center w-3/4 text1 border1 label'>
               Seasons
             </p>
             <div className='flex relative flex-wrap gap-2 justify-center'>
@@ -537,20 +537,24 @@ const Watch: FC = () => {
                       <img
                         src={animeInfo.data?.poster}
                         alt=''
-                        className='object-cover relative w-40 max-sm:w-30 rounded-sm aspect-[3/4] brightness-75 scale-106'
+                        className='object-cover relative w-40 max-sm:w-30 rounded-sm aspect-[3/4] opacity-50 scale-106'
                       />
-                      <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center text-white'>
+                      <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center rounded-lg border2 text1'>
                         {item.season}
                       </p>
                     </>
                   ) : (
-                    <Link to={`/watch/${item.id}`} target='_blank'>
+                    <Link
+                      to={`/watch/${item.id}`}
+                      target='_blank'
+                      className='group'
+                    >
                       <img
                         src={item.season_poster}
                         alt=''
-                        className='object-cover w-40 max-sm:w-30 rounded-sm aspect-[3/4] brightness-50'
+                        className='object-cover w-40 max-sm:w-30 rounded-sm aspect-[3/4] opacity-25 group-hover:opacity-50'
                       />
-                      <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center text-gray-300 hover:text-white'>
+                      <p className='absolute top-0 place-content-center w-full h-full text-lg font-medium text-center text2'>
                         {item.season}
                       </p>
                     </Link>

@@ -27,15 +27,15 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     // Only run on client-side
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-      return savedTheme || 'light'; // Default to 'light' if no saved theme
+      return savedTheme || 'dark'; // Default to 'dark' if no saved theme
     }
-    return 'light'; // Server-side fallback
+    return 'dark'; // Server-side fallback
   });
 
   const themes: Theme[] = [
     { name: 'light', label: 'Light' },
     { name: 'dark', label: 'Dark' },
-    { name: 'blue', label: 'Ocean' },
+    { name: 'sakura', label: 'Sakura' },
   ];
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
     // 2. Add current theme class
     html.classList.add(`theme-${theme}`);
-    html.classList.add('theme-transition');
+    // html.classList.add('theme-transition');
 
     // 3. Persist to localStorage
     try {

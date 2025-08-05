@@ -146,21 +146,26 @@ body {
   @apply border-3 border-[var(--color-bg2)];
 }
 .border2 {
-  @apply border-3 border-[var(--color-bg1)] border-dashed;
+  @apply border-3 border-[var(--color-bg1)]  border-dashed;
 }
 
 @layer base {
   /* Light theme (default) */
   :root,
   .theme-light {
-    --color-text1: #3b82f6;
-    --color-text1-hover: #2563eb;
-    --color-text2: #222831;
-    --color-text2-hover: #059669;
+    /* black */
+    --color-text1: #000000;
+    /* blue-800 */
+    --color-text1-hover: #193cb8;
+    /* gray-600 */
+    --color-text2: #4a5565;
+    /* blue-800 */
+    --color-text2-hover: #193cb8;
+    /* white */
     --color-bg1: #ffffff;
-    --color-bg2: #111827;
+    /* gray-400 */
+    --color-bg2: #99a1af;
   }
-
   /* Dark theme */
   .theme-dark {
     /* white */
@@ -171,20 +176,25 @@ body {
     --color-text2: #99a1af;
     /* gray-200 */
     --color-text2-hover: #e5e7eb;
-    /* gray-900 */
-    --color-bg1: #101828;
+    /* black */
+    --color-bg1: #000000;
     /* gray-700 */
     --color-bg2: #364153;
   }
-
   /* Blue theme */
-  .theme-blue {
-    --color-text1: #1d4ed8;
-    --color-text1-hover: #1e40af;
-    --color-text2: #0ea5e9;
-    --color-text2-hover: #0284c7;
-    --color-bg1: #eff6ff;
-    --color-bg2: #1e3a8a;
+  .theme-sakura {
+    /* pink-400 */
+    --color-text1: #fb64b6;
+    /* pink-500 */
+    --color-text1-hover: #a684ff;
+    /* pink-700 */
+    --color-text2: #c6005c;
+    /* pink-500 */
+    --color-text2-hover: #a684ff;
+    /* gray-800 */
+    --color-bg1: #1e2939;
+    /* gray-700 */
+    --color-bg2: #364153;
   }
 }
 
@@ -220,12 +230,4 @@ body {
       background-color 200ms,
       border-color 200ms;
   }
-
-  /* .hover\:bg-primary:hover {
-    background-color: var(--color-primary-hover);
-  }
-
-  .hover\:bg-secondary:hover {
-    background-color: var(--color-secondary-hover);
-  } */
 }

@@ -60,7 +60,7 @@ const TopNavBar = () => {
           <input
             type='text'
             placeholder='search anime'
-            className='px-1 py-1 placeholder-[var(--color-bg1))] text2 border-r-2 border-[var(--color-bg1)] focus:outline-none'
+            className='px-1 py-1 text2 border-r-2 border-[var(--color-bg1)] focus:outline-none'
             value={search}
             onChange={handleInputChange}
             // onClick={() => navigate(`/search/${search}`)}
@@ -72,37 +72,33 @@ const TopNavBar = () => {
           />
         </search>
       </div>
-      <div className='flex gap-8 items-center pt-1'>
+      <div className='flex gap-4 max-lg:gap-2 items-center pt-1'>
         <div
-          className='flex flex-col items-center px-1 h-full text2 group hover:cursor-pointer'
+          className='flex flex-col justify-center items-center px-1 h-full text-lg cursor-pointer text2 group'
           onClick={() => handleRandomAnime()}
         >
-          <GiPerspectiveDiceSixFacesRandom className='selected size-9' />
+          <GiPerspectiveDiceSixFacesRandom className='selected size-7' />
           <h3>Random</h3>
         </div>
         <div
           onClick={() => navigate('/special')}
-          className='flex flex-col items-center px-1 h-full text2 group hover:cursor-pointer'
+          className='flex flex-col justify-center items-center px-1 h-full text-lg cursor-pointer text2 group'
         >
-          <RiVipDiamondFill className='selected size-9' />
+          <RiVipDiamondFill className='selected size-7' />
           <p>Special</p>
         </div>
         <div
           onClick={() => navigate('/movie')}
-          className='flex flex-col items-center px-1 h-full text2 group hover:cursor-pointer'
+          className='flex flex-col justify-center items-center px-1 h-full text-lg cursor-pointer text2 group'
         >
-          <BiSolidCameraMovie className='selected size-9' />
+          <BiSolidCameraMovie className='selected size-7' />
           <p>Movie</p>
-        </div>
-        <div className='flex flex-col items-center px-1 h-full text2 group hover:cursor-pointer'>
-          <FaDiscord className='selected size-9' />
-          <p>Dicord</p>
         </div>
         <div
           onClick={() => navigate('/history')}
-          className='flex flex-col justify-center items-center px-1 h-full text2 group hover:cursor-pointer'
+          className='flex flex-col justify-center items-center px-1 h-full text-lg cursor-pointer text2 group'
         >
-          <FaHistory className='selected size-8' />
+          <FaHistory className='selected size-6' />
           <h3>History</h3>
         </div>
       </div>

@@ -78,7 +78,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                       <h2 className='overflow-hidden m-auto max-w-full font-bold overflow-ellipsis animate-rainbow text-clamp-title min-sm:whitespace-nowrap'>
                         {i.title || i.japanese_title}
                       </h2>
-                      <div className='flex overflow-hidden gap-4 m-auto mt-0 text-sm text2 text-white overflow-ellipsis max-lg:text-sm max-sm:gap-1.5'>
+                      <div className='flex overflow-hidden transition duration-200 gap-4 m-auto mt-0 text-sm text2 text-white overflow-ellipsis max-lg:text-sm max-sm:gap-1.5'>
                         {i.tvInfo?.showType && (
                           <p className='flex px-1 text-xs font-bold rounded-sm bg2'>
                             {i.tvInfo?.showType}
@@ -104,7 +104,7 @@ export const HomeCarousel: FC<HomeCarouselProps> = ({
                         )}
                       </div>
                       <p
-                        className='overflow-hidden overflow-y-auto max-h-16 text-xs text2 max-w-2/3'
+                        className='overflow-hidden overflow-y-auto max-h-16 text-xs transition duration-200 text2 max-w-2/3'
                         dangerouslySetInnerHTML={{
                           __html: i.description as string,
                         }}
