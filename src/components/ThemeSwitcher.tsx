@@ -1,13 +1,15 @@
 import { useTheme } from './ThemeContext';
 
-const ThemeSwitcher = () => {
+const ThemeSwitcher = ({
+  className,
+}: React.HTMLAttributes<HTMLSelectElement>) => {
   const { theme, themes, changeTheme } = useTheme();
 
   return (
     <select
       value={theme}
       onChange={(e) => changeTheme(e.target.value)}
-      className='text-center cursor-pointer text2 bg2 label'
+      className={className}
     >
       {themes.map((t) => (
         <option value={t.name} key={t.name}>
