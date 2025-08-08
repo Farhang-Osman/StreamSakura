@@ -44,7 +44,9 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
           ? 5
           : screenwidth > 800
             ? 4
-            : 3;
+            : screenwidth > 480
+              ? 3
+              : 2;
 
     return slidePerView;
   };
