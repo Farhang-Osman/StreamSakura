@@ -10,11 +10,11 @@ import Search from './pages/Search';
 import TOS from './pages/TOS-and-privacy-policy';
 import Watch from './pages/Watch';
 import { AuthProvider } from './client/useAuth';
-// import SideNavBar from './components/navigation/SideNavBar';
 import TopNavBar from './components/navigation/TopNavBar';
 import Special from './pages/Special';
 import Movie from './pages/Movie';
 import { ThemeProvider } from './components/ThemeContext';
+import BottomNavBar from './components/navigation/BottomNavBar';
 
 register();
 
@@ -24,7 +24,7 @@ function App() {
       <AuthProvider>
         <ThemeProvider>
           <TopNavBar />
-          {/* <SideNavBar /> */}
+          <BottomNavBar />
           <Routes>
             {/* <Route path='/dfj' element={<sideBarNav />} /> */}
             <Route path='/' element={<Home />} />
