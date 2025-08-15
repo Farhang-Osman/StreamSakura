@@ -33,8 +33,12 @@
 body {
   margin: 0 auto;
   max-width: 90rem;
-  padding: 4.5rem 10px 2rem 16px;
+  padding: 4.5rem 4px 2rem 12px;
   background-color: var(--color-bg1);
+
+  @media (width < 48rem /* 768px */) {
+    padding: 4rem 4px 4rem 4px;
+  }
 }
 
 @theme {

@@ -151,12 +151,12 @@ const Home = () => {
         <div className='flex flex-col gap-4 min-lg:mt-3 min-lg:flex-4/5'>
           <div className='flex flex-wrap gap-2 justify-center w-full'>
             <h3
-              className={`${activeTab === 'topUpcoming' ? 'bg2 selected border2' : 'border1'}
+              className={`${activeTab === 'latestCompleted' ? 'bg2 selected border2' : 'border1'}
              label  transition duration-300 ease-in-out text1 cursor-pointer`}
               title='Top Upcoming Tab'
-              onClick={() => setActiveTab('topUpcoming')}
+              onClick={() => setActiveTab('latestCompleted')}
             >
-              Top Upcoming
+              Latest
             </h3>
             <div
               className={`${activeTab === 'mostPopular' ? 'bg2 selected border2' : 'border1'}
@@ -176,9 +176,9 @@ const Home = () => {
             </div>
           </div>
           <div>
-            {activeTab === 'topUpcoming' &&
+            {activeTab === 'latestCompleted' &&
               renderCardGrid(
-                homeData?.results?.topUpcoming as HomeAnimeInfo[],
+                homeData?.results?.latestCompleted as HomeAnimeInfo[],
                 isLoading,
               )}
             {activeTab === 'mostPopular' &&
@@ -202,8 +202,8 @@ const Home = () => {
           />
 
           <SideBar
-            animeData={homeData?.results?.latestCompleted || []}
-            title='Latest Completed'
+            animeData={homeData?.results?.topUpcoming || []}
+            title='Top Upcoming'
             icon={<IoCheckmarkDoneCircle className='size-9' />}
             isLoading={isLoading}
           />

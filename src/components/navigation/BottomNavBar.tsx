@@ -23,7 +23,7 @@ const BottomNavBar = () => {
   };
 
   return (
-    <div className='fixed flex gap-4 items-center px-4 py-2 min-md:hidden justify-evenly bottom-0 left-0 right-0 z-50 w-full h-16 backdrop-blur-sm bg-[var(--color-bg1)]/50'>
+    <div className='fixed flex gap-4 items-center px-4 py-2 min-md:hidden justify-evenly bottom-0 left-0 right-0 z-50 w-full h-16 backdrop-blur-sm bg-[var(--color-bg1)]/75'>
       <div
         onClick={() => navigate('/home')}
         className='flex flex-col justify-center items-center h-full text-lg cursor-pointer max-lg:text-sm text2'
