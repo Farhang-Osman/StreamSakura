@@ -2,9 +2,14 @@ import { CgProfile } from 'react-icons/cg';
 import { SiAnilist } from 'react-icons/si';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { useAuth } from '../client/useAuth';
+import { useEffect } from 'react';
 
 const Profile = () => {
   const { isLoggedIn, userData, username, login, logout } = useAuth();
+
+  useEffect(() => {
+    document.title = 'Profile | Stream Sakura';
+  }, []);
 
   return (
     <div>

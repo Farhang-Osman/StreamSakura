@@ -66,9 +66,9 @@ interface HomeInterface {
 }
 
 const Home = () => {
-  // useEffect(() => {
-  //   document.title = 'StreamSakura | watch anime online';
-  // }, []);
+  useEffect(() => {
+    document.title = 'Stream Sakura';
+  }, []);
 
   const navigate = useNavigate();
 

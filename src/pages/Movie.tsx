@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { CardItem } from '../components/shared/CardItem';
 
 const Movie = () => {
+  useEffect(() => {
+    document.title = 'Movie | Stream Sakura';
+  }, []);
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState<boolean>(true);

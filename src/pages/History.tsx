@@ -2,9 +2,14 @@ import { watchedEpisodes } from './Watch';
 import { Link, useNavigate } from 'react-router-dom';
 import { TiDelete } from 'react-icons/ti';
 import { FaPlayCircle } from 'react-icons/fa';
+import { useEffect } from 'react';
 
 const History = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = 'History | Stream Sakura';
+  }, []);
 
   function getParsedLocalStorageValues(partialKey: string) {
     try {

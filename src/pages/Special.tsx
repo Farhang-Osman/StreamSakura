@@ -7,6 +7,10 @@ import { CardItem } from '../components/shared/CardItem';
 const Special = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    document.title = 'Special | Stream Sakura';
+  }, []);
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [animeInfo, setAnimeInfo] = useState<HomeAnimeInfo[]>(
     [] as HomeAnimeInfo[],

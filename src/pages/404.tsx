@@ -1,8 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import punch_screen from '/src/assets/punch_screen.webp';
+import { useEffect } from 'react';
 
 const NotFound = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = '404 | Stream Sakura';
+  }, []);
 
   return (
     <div className='flex flex-col gap-2 items-center mt-4'>

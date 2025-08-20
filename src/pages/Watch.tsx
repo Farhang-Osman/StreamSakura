@@ -214,6 +214,12 @@ const Watch: FC = () => {
     }
   }, [filteredUrlSearch, episodesLoading]);
 
+  useEffect(() => {
+    if (animeInfo.data?.title) {
+      document.title = `${animeInfo.data?.title || animeInfo.data?.animeInfo?.Japanese} | Stream Sakura`;
+    }
+  }, [animeInfo]);
+
   const handleLoad = () => {
     // Show loading for at least 0.5 second (even if content loads faster)
     setTimeout(() => {

@@ -8,6 +8,10 @@ const Callback = () => {
   const [errorMessage, setErrorMessage] = useState(''); // State to store the error message
 
   useEffect(() => {
+    document.title = 'Callback | Stream Sakura';
+  }, []);
+
+  useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const error = queryParams.get('error');
     const code = queryParams.get('code');

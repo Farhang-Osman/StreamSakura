@@ -100,6 +100,10 @@ const Search: FC = () => {
   const [filterParams, setFilterParams] = useState<filters | undefined>();
   const [selectedgGenres, setSelectedgGenres] = useState<string>();
 
+  useEffect(() => {
+    document.title = 'Search | Stream Sakura';
+  }, []);
+
   async function fetchFilterResults(filterParams: filters | undefined) {
     try {
       setIsLoading(true);
