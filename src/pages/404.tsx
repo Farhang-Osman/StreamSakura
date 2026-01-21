@@ -13,12 +13,12 @@ const NotFound = () => {
     <div className='flex flex-col gap-2 items-center mt-4'>
       <p className='text-5xl font-extralight text2'>404 Error</p>
       <p className='text-5xl font-medium text2'>Not Found</p>
-      <img src={punch_screen} alt='404 Error' />
+      <img className='rounded-lg' src={punch_screen} alt='404 Error' />
       <button
-        className='rounded-lg shadow cursor-pointer bg2 label'
+        className='shadow mt-4 cursor-pointer bg2 label'
         onClick={() => navigate('/home')}
       >
-        <p className='text-2xl selected'>go to home</p>
+        <p className='text-2xl text2 animation1'>go to home</p>
       </button>
     </div>
   );
