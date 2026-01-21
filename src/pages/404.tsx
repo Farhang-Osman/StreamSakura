@@ -18,7 +18,7 @@ const NotFound = () => {
         className='shadow mt-4 cursor-pointer bg2 label'
         onClick={() => navigate('/home')}
       >
-        <p className='text-2xl text2 animation1'>go to home</p>
+        <p className='text-2xl text2 transition duration-200'>go to home</p>
       </button>
     </div>
   );

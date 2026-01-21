@@ -101,11 +101,6 @@ body {
   }
 }
 
-@layer {
-  .animation1 {
-    transition: 0.2s ease-in-out;
-  }
-}
 .home-carousel-layout {
   @apply relative max-w-full h-[30rem] rounded-lg max-lg:h-80 max-sm:h-64
   cursor-grab active:cursor-grabbing;
@@ -127,9 +122,6 @@ body {
 }
 .text-long {
   @apply overflow-hidden whitespace-nowrap text-ellipsis;
-}
-.whfull {
-  @apply w-full h-full;
 }
 .label {
   @apply p-1 px-4 content-center text-lg font-medium rounded-lg;

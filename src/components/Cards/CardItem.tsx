@@ -25,11 +25,11 @@ export const CardItem: FC<CardItemProps> = ({ data }) => {
         <div className='w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer group/title'>
           <div className='transition duration-200 ease-in-out hover:-translate-y-2.5'>
             <div className='rounded-lg overflow-hidden relative aspect-[3/4]  animate-slideUp transition duration-200 ease-in-out shadow text-left'>
-              <div className='whfull group'>
+              <div className='w-full h-full group'>
                 <img
                   src={imageSrc}
                   alt=''
-                  className='whfull animation1 group-hover:brightness-60'
+                  className='w-full h-full transition duration-200 group-hover:brightness-60'
                 />
                 <TbPlayerPlayFilled
                   className='absolute inset-0 top-1/2 left-1/2 z-10 text-3xl text-blue-300 opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100'

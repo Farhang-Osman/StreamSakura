@@ -104,12 +104,12 @@ export const HomeVerticalSlide: FC<HomeVerticalSlide> = ({
                   {i.number}
                 </h3>
                 <div className='grid gap-1 w-full rounded-lg transition duration-200 ease-in-out scale-100 cursor-pointer'>
-                  <div className='rounded-lg whfull group overflow-hidden relative aspect-[3/4] shadow transition duration-200 ease-in-out text-left'>
+                  <div className='rounded-lg w-full h-full group overflow-hidden relative aspect-[3/4] shadow transition duration-200 ease-in-out text-left'>
                     <img
                       src={i.poster}
                       alt=''
                       onClick={() => navigate(`/watch/${i.id}`)}
-                      className='whfull group-hover:brightness-60'
+                      className='w-full h-full group-hover:brightness-60'
                     />
                     <TbPlayerPlayFilled className='absolute inset-0 top-1/2 left-1/2 z-10 text-3xl opacity-0 transition-opacity duration-300 ease-in -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100' />
                   </div>
